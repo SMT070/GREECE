@@ -183,6 +183,10 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 #s4.film #mTop,#s4.film #dock,#s4.film .leaflet-control-container{opacity:0;pointer-events:none!important}
 #s4.film #live{pointer-events:none}
 @media(max-width:860px){#dock{grid-template-columns:1fr;right:14px;max-height:55%;padding:14px 16px}#cine .cc{padding:16px 20px}}
+
+/* no stretched/blurry vector lines while the camera flies or when zoomed far out */
+#live .leaflet-overlay-pane,#live .leaflet-hwp-pane,#live .hwlw{transition:opacity .45s ease}
+#live.flying .leaflet-overlay-pane,#live.flying .leaflet-hwp-pane,#live.flying .hwlw,#live.lowz .leaflet-hwp-pane,#live.lowz .hwlw{opacity:0;transition-duration:.25s}
 </style>
 </head>
 <body>
@@ -568,7 +572,8 @@ async function run(o,opt){opt=opt||{};const my=++tok;if(!live)return;
   k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)})}
 function setPins(pts){pg&&live.removeLayer(pg);pg=L.layerGroup((pts||[]).map(s=>L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:500}))).addTo(live)}
 /* smooth camera move; resolves when it arrives */
-function camTo(c,o){o=o||{};return new Promise(res=>{if(!live)return res();let d=0;const fin=()=>{if(!d){d=1;res()}},ms=o.ms||1.8;
+let flyN=0;
+function camTo(c,o){o=o||{};return new Promise(res=>{if(!live)return res();let d=0;const lc=live.getContainer(),n=++flyN,fin=()=>{if(!d){d=1;setTimeout(()=>{if(n===flyN)lc.classList.remove('flying')},180);res()}},ms=o.ms||1.8;lc.classList.add('flying');
  const b=c.c?L.latLng(c.c).toBounds(c.m||5000):L.latLngBounds(c.b),H=live.getSize().y;
  const bot=Math.min(o.film?190:$('dock').offsetHeight+34+(o.opts?70:0),H*.55),top=o.film?80:72;
  live.once('moveend',fin);setTimeout(fin,ms*1000+700);
@@ -651,6 +656,7 @@ function initMap(){if(live){live.invalidateSize();if(!filming)phase(0);return}
   c.addEventListener('pointerdown',e=>{if(lmode!=='draw'||e.target.closest('.leaflet-control'))return;live.dragging.disable();lln=Lf.polyline([live.mouseEventToLatLng(e)],{color:'#ff4d4d',weight:5,lineCap:'round'}).addTo(live);c.setPointerCapture(e.pointerId)});
   c.addEventListener('pointermove',e=>{if(lln)lln.addLatLng(live.mouseEventToLatLng(e))});
   const en=()=>{if(lln){lmine.push(lln);lln=null;live.dragging.enable()}};c.addEventListener('pointerup',en);c.addEventListener('pointercancel',en);
+  const lz=()=>live.getContainer().classList.toggle('lowz',live.getZoom()<8.5);live.on('zoomend',lz);lz();
   setTimeout(()=>{live.invalidateSize();prefetch();loadHw();phase(0)},120)}catch(err){$('liveMsg').style.display='block'}}
 function setLBase(){const Lf=window.L,old=[lbase,lref],er=()=>$('liveMsg').style.display='block';
  if(lsat){lbase=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles &copy; Esri',maxZoom:18}).on('tileerror',er).addTo(live);
