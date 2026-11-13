@@ -187,6 +187,16 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 /* no stretched/blurry vector lines while the camera flies or when zoomed far out */
 #live .leaflet-overlay-pane,#live .leaflet-hwp-pane,#live .hwlw{transition:opacity .45s ease}
 #live.flying .leaflet-overlay-pane,#live.flying .leaflet-hwp-pane,#live.flying .hwlw,#live.lowz .leaflet-hwp-pane,#live.lowz .hwlw{opacity:0;transition-duration:.25s}
+
+/* compact lower-third caption that never covers the route */
+#cine{bottom:calc(8% + 14px)}
+#cine .cc{padding:14px 26px 16px;background:#111d}
+#cine h3{font-size:clamp(1.4rem,2.3vw,2.4rem);margin:.1em 0 .3em}
+#cine .cd{font-size:clamp(.88rem,1vw,1.05rem);gap:4px 22px}
+#cine .cn{font-size:.7rem}
+#cine.full .cc{padding:0;background:none}
+
+#live.hwoff .leaflet-hwp-pane,#live.hwoff .hwlw{opacity:0}
 </style>
 </head>
 <body>
@@ -285,7 +295,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
      <div class="tools" id="mTools">
       <button class="tb go" id="play" data-e="▶ Play the journey" data-h="▶ הפעלת המסע"></button>
       <button class="tb" id="pNext" data-e="Next ›" data-h="הבא ›"></button>
-      <button class="tb on" id="lHw" data-e="Highways" data-h="כבישים ראשיים"></button>
+      <button class="tb" id="lHw" data-e="Highways" data-h="כבישים ראשיים"></button>
       <button class="tb" id="lSat" data-e="Satellite" data-h="לוויין"></button>
      </div>
     </div>
@@ -538,7 +548,7 @@ function prefetch(){
  PH.forEach(p=>p.opts.forEach(o=>{if(o.osrm)o.rp=osrm(o.osrm).then(r=>{if(r){o.pa=r;o.ok=1}return r})}));
  PH.forEach(p=>p.opts.forEach(o=>{if(o.der){const src=OPT(o.der[0][0],o.der[0][1]);o.rp=src.rp.then(r=>{if(r)o.pa=o.der[1](r);return r})}}))}
 /* ---------- main highways (OpenStreetMap via Overpass) ---------- */
-function hwLine(pts,mot,lay){L.polyline(pts,{pane:'hwp',color:lay?'#f0a30a':'#fff',weight:lay?(mot?5:3.5):(mot?9:7),opacity:lay?1:.9,lineCap:'round',lineJoin:'round',smoothFactor:1.5,interactive:false}).addTo(hwG)}
+function hwLine(pts,mot,lay){L.polyline(pts,{pane:'hwp',color:lay?'#f0a30a':'#fff',weight:lay?(mot?3.5:2.5):(mot?6.5:5),opacity:lay?.95:.8,lineCap:'round',lineJoin:'round',smoothFactor:1.5,interactive:false}).addTo(hwG)}
 function drawHw(els){const best={},ways=[];
  els.forEach(w=>{if(!w.geometry)return;const pts=w.geometry.map(g=>[g.lat,g.lon]),mot=w.tags&&w.tags.highway==='motorway';ways.push([pts,mot]);
   const ref=((w.tags&&w.tags.ref)||'').split(';')[0].trim();if(ref&&(!best[ref]||pts.length>best[ref].length))best[ref]=pts});
@@ -546,8 +556,8 @@ function drawHw(els){const best={},ways=[];
  Object.keys(best).forEach(ref=>{const m=best[ref][Math.floor(best[ref].length/2)];L.marker(m,{icon:L.divIcon({className:'hwlw',html:'<div class="hwl">'+ref+'</div>',iconSize:[0,0]}),interactive:false}).addTo(hwG)})}
 async function loadHw(){if(hwLoaded||!live)return;hwLoaded=true;
  live.createPane('hwp');live.getPane('hwp').style.zIndex=390;live.getPane('hwp').style.pointerEvents='none';
- hwG=L.layerGroup();if(hwOn)hwG.addTo(live);
- const q='[out:json][timeout:25];(way["highway"="motorway"](37.85,23.55,38.52,24.05);way["highway"="trunk"](38.20,23.50,38.52,24.05););out geom;';
+ hwG=L.layerGroup().addTo(live);
+ const q='[out:json][timeout:25];(way["highway"="motorway"](37.85,23.55,38.52,24.05););out geom;';
  for(const ep of['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter']){
   try{const r=await fetchT(ep+'?data='+encodeURIComponent(q),30000),j=await r.json();if(j.elements&&j.elements.length){drawHw(j.elements);return}}catch(e){}}
  /* fallback: mark the main car routes themselves as highways */
@@ -573,9 +583,11 @@ async function run(o,opt){opt=opt||{};const my=++tok;if(!live)return;
 function setPins(pts){pg&&live.removeLayer(pg);pg=L.layerGroup((pts||[]).map(s=>L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:500}))).addTo(live)}
 /* smooth camera move; resolves when it arrives */
 let flyN=0;
+function setHw(on){hwOn=!!on;$('lHw').classList.toggle('on',hwOn);if(live)live.getContainer().classList.toggle('hwoff',!hwOn)}
+
 function camTo(c,o){o=o||{};return new Promise(res=>{if(!live)return res();let d=0;const lc=live.getContainer(),n=++flyN,fin=()=>{if(!d){d=1;setTimeout(()=>{if(n===flyN)lc.classList.remove('flying')},180);res()}},ms=o.ms||1.8;lc.classList.add('flying');
  const b=c.c?L.latLng(c.c).toBounds(c.m||5000):L.latLngBounds(c.b),H=live.getSize().y;
- const bot=Math.min(o.film?190:$('dock').offsetHeight+34+(o.opts?70:0),H*.55),top=o.film?80:72;
+ const bot=Math.min(o.film?(o.bot!=null?o.bot:190):$('dock').offsetHeight+34+(o.opts?70:0),H*.62),top=o.film?Math.round(H*.08)+34:72;
  live.once('moveend',fin);setTimeout(fin,ms*1000+700);
  live.flyToBounds(b,{paddingTopLeft:[60,top],paddingBottomRight:[60,bot],duration:ms,maxZoom:c.z||(c.c?15:12),easeLinearity:.2})})}
 /* ---------- interactive phases ---------- */
@@ -612,7 +624,7 @@ const scenes=()=>[
   cap:{n:['01 · By air','01 · בטיסה'],t:['Tel Aviv → Athens','תל אביב → אתונה'],d:[['Direct flight, about 2h 10m','טיסה ישירה, כ־2:10 שעות'],['Many airlines, low fares all year','הרבה חברות תעופה, מחירים נמוכים כל השנה']]}},
  {sat:false,pts:PH[1].pts,cam:{b:PH[1].b},camMs:2.8,route:OPT(1,'m'),ms:6500,hold:900,
   cap:{n:['02 · Into the city','02 · אל העיר'],t:['Airport → Athens centre','שדה התעופה → מרכז אתונה'],d:[['Metro line 3, about 40 min, €9–10','מטרו קו 3, כ־40 דק׳, €9–10'],['Taxi €40 fixed by day, or a rental car','מונית במחיר קבוע €40 ביום, או רכב שכור']]}},
- {sat:false,pts:[PH[2].pts[0],PH[2].pts[1]],cam:{b:[CTR,ORO]},camMs:3,route:OPT(2,'c'),ms:8000,hold:900,
+ {sat:false,hw:1,pts:[PH[2].pts[0],PH[2].pts[1]],cam:{b:[CTR,ORO]},camMs:3,route:OPT(2,'c'),ms:8000,hold:900,
   cap:{n:['03 · By road','03 · בכביש'],t:['Athens → Oropos','אתונה → אורופוס'],d:[['About 1 hour by car','כשעה נסיעה ברכב'],['Main road: the A1 highway north','הכביש הראשי: כביש A1 צפונה']]}},
  {sat:false,pts:[PH[2].pts[1],PH[2].pts[2]],cam:{b:[ORO,ERE]},camMs:2.8,route:OPT(3,'f'),ms:5500,hold:800,
   cap:{n:['04 · By sea','04 · בים'],t:['Oropos → Eretria','אורופוס → ארטריה'],d:[['Ferry, about 23 minutes','מעבורת, כ־23 דקות'],['Runs all year, cars and passengers','פועלת כל השנה, רכבים ונוסעים']]}},
@@ -622,7 +634,7 @@ const scenes=()=>[
   cap:{n:['06 · Along the coast','06 · לאורך החוף'],t:['Eretria → Chalkida','ארטריה → חלקיס'],d:[['About 20 km by car','כ־20 ק״מ ברכב'],['A coastal road','כביש לאורך החוף']]}},
  {sat:true,pts:PH[5].pts,cam:{c:CHA,m:7500},camMs:3,hold:5200,
   cap:{n:['07 · The capital','07 · בירת האי'],t:['Chalkida','חלקיס'],d:[['Shops, hospital and services','חנויות, בית חולים ושירותים'],['Two bridges to the mainland','שני גשרים ליבשת']]}},
- {sat:false,pts:[PH[2].pts[0],PH[2].pts[3]],cam:{b:[CTR,CHA]},camMs:3.4,route:OPT(2,'h'),ms:9000,hold:900,
+ {sat:false,hw:1,pts:[PH[2].pts[0],PH[2].pts[3]],cam:{b:[CTR,CHA]},camMs:3.4,route:OPT(2,'h'),ms:9000,hold:900,
   cap:{n:['08 · Another way','08 · דרך נוספת'],t:['Athens → Chalkida by road','אתונה → חלקיס בכביש'],d:[['About 1h 15m by car','כ־1:15 שעות ברכב'],['Over the bridge, no ferry needed','מעל הגשר, בלי מעבורת']]}},
  {full:1,sat:false,pts:PH[6].pts,cam:{b:[[38.25,23.55],[38.55,23.95]]},camMs:3.4,hold:3200,
   cap:{n:['Your home in Evia','הבית שלכם באוויה'],t:['Eretria · Oropos · Chalkida','ארטריה · אורופוס · חלקיס'],d:[['Let’s build your shortlist','בואו נבנה לכם רשימה מותאמת']]}}
@@ -636,15 +648,16 @@ async function film(){if(!live||filming)return;
   await W(1100);
   for(let i=0;i<SC.length;i++){const s=SC[i];fp.style.width=(i/SC.length*100)+'%';
    if(s.sat!==undefined&&s.sat!==lsat){lsat=s.sat;setLBase();$('lSat').classList.toggle('on',lsat)}
-   curPts=s.pts||null;setPins(curPts);
-   const cam=camTo(s.cam,{ms:s.camMs||2.8,film:true});showCap(s.cap);await cam;if(my!==fTok)throw'stop';
+   curPts=s.pts||null;setPins(curPts);setHw(!!s.hw);
+   showCap(s.cap);const cc=$('cine').querySelector('.cc'),H=live.getSize().y;
+   const cam=camTo(s.cam,{ms:s.camMs||2.8,film:true,bot:s.cap.full?Math.round(H*.1):cc.offsetHeight+Math.round(H*.08)+14+44});await cam;if(my!==fTok)throw'stop';
    if(s.route){await run(s.route,{film:true,ms:s.ms});if(my!==fTok)throw'stop'}
    await W(s.hold||1000);hideCap();await W(1100)}
   fp.style.width='100%';await W(700)
  }catch(e){if(e!=='stop')console.error(e)}
  if(my===fTok)endFilm()}
 function stopFilm(){if(!filming)return;fTok++;tok++;endFilm()}
-function endFilm(){filming=false;$('s4').classList.remove('film');hideCap();curPts=null;
+function endFilm(){filming=false;setHw(false);$('s4').classList.remove('film');hideCap();curPts=null;
  if(live){FILM_LOCKS.forEach(k=>live[k]&&live[k].enable());phase(0,true,2.6)}}
 /* ---------- map setup ---------- */
 function initMap(){if(live){live.invalidateSize();if(!filming)phase(0);return}
@@ -656,7 +669,7 @@ function initMap(){if(live){live.invalidateSize();if(!filming)phase(0);return}
   c.addEventListener('pointerdown',e=>{if(lmode!=='draw'||e.target.closest('.leaflet-control'))return;live.dragging.disable();lln=Lf.polyline([live.mouseEventToLatLng(e)],{color:'#ff4d4d',weight:5,lineCap:'round'}).addTo(live);c.setPointerCapture(e.pointerId)});
   c.addEventListener('pointermove',e=>{if(lln)lln.addLatLng(live.mouseEventToLatLng(e))});
   const en=()=>{if(lln){lmine.push(lln);lln=null;live.dragging.enable()}};c.addEventListener('pointerup',en);c.addEventListener('pointercancel',en);
-  const lz=()=>live.getContainer().classList.toggle('lowz',live.getZoom()<8.5);live.on('zoomend',lz);lz();
+  const lz=()=>live.getContainer().classList.toggle('lowz',live.getZoom()<9);live.on('zoomend',lz);lz();setHw(false);
   setTimeout(()=>{live.invalidateSize();prefetch();loadHw();phase(0)},120)}catch(err){$('liveMsg').style.display='block'}}
 function setLBase(){const Lf=window.L,old=[lbase,lref],er=()=>$('liveMsg').style.display='block';
  if(lsat){lbase=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles &copy; Esri',maxZoom:18}).on('tileerror',er).addTo(live);
@@ -665,7 +678,7 @@ function setLBase(){const Lf=window.L,old=[lbase,lref],er=()=>$('liveMsg').style
   lref=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,maxNativeZoom:16}).addTo(live)}
  setTimeout(()=>old.forEach(l=>l&&live.removeLayer(l)),1000)}
 $('lSat').onclick=e=>{if(!live)return;lsat=!lsat;e.currentTarget.classList.toggle('on',lsat);setLBase()};
-$('lHw').onclick=e=>{hwOn=!hwOn;e.currentTarget.classList.toggle('on',hwOn);if(hwG&&live)hwOn?hwG.addTo(live):live.removeLayer(hwG)};
+$('lHw').onclick=()=>setHw(!hwOn);
 function lmodeSet(m){lmode=lmode===m?null:m;$('lDraw').classList.toggle('on',lmode==='draw');$('lPin').classList.toggle('on',lmode==='pin')}
 $('lDraw').onclick=()=>lmodeSet('draw');$('lPin').onclick=()=>lmodeSet('pin');
 $('lUndo').onclick=()=>{const l=lmine.pop();if(l&&live)live.removeLayer(l)};$('lClr').onclick=()=>{lmine.splice(0).forEach(l=>live.removeLayer(l))};
