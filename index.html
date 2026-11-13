@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" translate="no">
 <head>
 <meta charset="utf-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SAMIR Real Estate · Evia, Greece</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -495,7 +496,7 @@ const S=[
  {ll:[38.3965,23.8035],en:['Eretria','A short ferry crossing from Oropos'],he:['ארטריה','חציית מעבורת קצרה מאורופוס']},
  {ll:[38.4636,23.5983],en:['Chalkida','Approx. 20 km from Eretria. Bridge to the mainland.'],he:['חלקיס','כ־20 ק״מ מארטריה. גשר ליבשת.']}
 ];
-let lang='en',n=0,booted=false;
+let lang=(()=>{try{const v=new URLSearchParams(location.search).get('lang')||localStorage.getItem('samir-lang');return v==='he'?'he':'en'}catch(e){return'en'}})(),n=0,booted=false;
 const $=id=>document.getElementById(id),rtl=()=>lang==='he';
 const sl=[...document.querySelectorAll('.slide')];
 /* ---------- i18n ---------- */
@@ -527,7 +528,7 @@ let tx=null;addEventListener('touchstart',e=>{tx=e.target.closest('.mb')?null:e.
 addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60)go((d<0)!==rtl()?1:-1)});
 let wl=0;addEventListener('wheel',e=>{if(e.target.closest('.mb,.col')||Date.now()-wl<1000||Math.abs(e.deltaY)<30)return;wl=Date.now();go(e.deltaY>0?1:-1)},{passive:true});
 const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{});$('fs').onclick=fs;
-$('lang').onclick=()=>{lang=rtl()?'en':'he';render()};
+$('lang').onclick=()=>{lang=rtl()?'en':'he';try{localStorage.setItem('samir-lang',lang)}catch(e){}render()};
 function counters(root){root.querySelectorAll('[data-n]').forEach(c=>{const v=+c.dataset.n,d=+(c.dataset.d||0);let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1800,1);c.textContent='\u200E'+(c.dataset.pre||'')+(c.dataset.f==='hm'?(m=>Math.floor(m/60)+':'+String(m%60).padStart(2,'0'))(Math.round(v*(1-Math.pow(1-p,3)))):(v*(1-Math.pow(1-p,3))).toFixed(d))+(p===1?(c.dataset.s||''):'')+'\u200E';if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 /* title slideshow */
 $('hs').innerHTML=HERO.map((h,i)=>`<div class="hs${i===0?' on':''}"><img src="${h==='main'?MAIN:'photos/'+h+'.jpg'}" alt="" onerror="this.style.display='none'"></div>`).join('');
