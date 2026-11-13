@@ -26,7 +26,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 .slide.alt{background:var(--bg2)}
 .dk{color:#fff}.dk p{color:#e6ebf0}.dk .eyebrow{color:#fff;opacity:.85}
 .slide>*:not(.bgp):not(.pic):not(.mp){position:relative;z-index:2}
-.bgp{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,var(--ac2),var(--bg2))}
+.bgp{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,#111,#3a3a38)}
 .bgp img,.fg img,.pic img{width:100%;height:100%;object-fit:cover;display:block}
 .bgp:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0008 0,#0000 30%,#000b 100%)}
 .slide.on .kb{animation:kb 16s linear forwards}
@@ -67,14 +67,14 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 .ul{list-style:none;padding:0;margin-top:1.6rem;display:grid;gap:.7rem;font-size:clamp(1.1rem,1.5vw + .4vh,1.6rem)}
 .ul li{padding-inline-start:1.4em;position:relative}.ul li:before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:.7em;height:2px;background:var(--ac)}
 /* split */
-.pic{position:absolute;inset-block:0;inset-inline-start:0;width:46%;overflow:hidden;z-index:1;background:linear-gradient(160deg,var(--ac2),var(--bg2))}
+.pic{position:absolute;inset-block:0;inset-inline-start:0;width:46%;overflow:hidden;z-index:1;background:linear-gradient(160deg,#111,#3a3a38)}
 .pic figcaption,.fg figcaption{position:absolute;inset:auto 18px 16px;color:#fff;font-family:var(--hf);font-size:1.4rem;text-shadow:0 2px 12px #000a}
 .pic:after,.fg:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,#0008)}
 .pic figcaption,.fg figcaption{z-index:2}
 #s5{padding-inline-start:calc(46% + 4vw)}
 .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:3vh;height:52vh}
 .duo{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:3vh;height:54vh}
-.fg{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--ac2),var(--bg2))}
+.fg{position:relative;overflow:hidden;background:linear-gradient(160deg,#111,#3a3a38)}
 .focus{display:grid;gap:2.2vh;margin-top:2vh}.focus h3{color:var(--ac)}
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:2vw;margin-top:6vh;counter-reset:s}
@@ -129,6 +129,9 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 .mem h3{font-size:1.5rem;margin:.15em 0 .3em}.mem p{font-size:.95rem}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4vw;margin-top:4vh}
 @media(max-width:860px){.team,.three{grid-template-columns:1fr}}
+#s10t{overflow:auto}
+@media(min-width:861px) and (max-height:820px){.team{gap:1.2vw;margin-top:2vh}.mem{padding:12px 14px}.av{width:48px;height:48px;margin-bottom:8px;font-size:1.2rem}.mem h3{font-size:1.2rem}.mem p{font-size:.82rem}}
+@media print{#s4{display:none!important}}
 </style>
 </head>
 <body>
@@ -166,7 +169,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
   <div class="stat"><b data-n="4" data-s="x" style="color:#fff">0</b><span data-e="more visitors than residents" data-h="פי ארבעה מבקרים מתושבים"></span></div>
   <div class="stat"><b data-n="23" data-pre="~" style="color:#fff">0</b><span data-e="minutes by ferry, Oropos to Eretria" data-h="דקות במעבורת, מאורופוס לארטריה"></span></div>
  </div>
- <p class="a" style="--i:3;margin-top:2vh" data-e="Constant demand for places to stay means strong potential for summer rentals and long-term value." data-h="ביקוש קבוע ללינה משמעו פוטנציאל חזק להשכרת קיץ ולערך לאורך זמן."></p>
+ <p class="a" style="--i:3;margin-top:2vh" data-e="Constant demand for places to stay means strong potential for summer rentals and long-term value." data-h="ביקוש קבוע ללינה פירושו פוטנציאל חזק להשכרת קיץ ולערך לאורך זמן."></p>
 </section>
 
 <!-- 3 REASONS -->
@@ -301,13 +304,13 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
  <div class="eyebrow a" data-e="The team" data-h="הצוות"></div>
  <h2 class="a" style="--i:1" data-e="The people behind your purchase" data-h="האנשים שמאחורי הרכישה"></h2>
  <div class="team">
-  <div class="mem a" style="--i:2"><div class="av">SS<img src="photos/team-samir.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Founder" data-h="מייסד"></small><h3>Samir Suidan</h3><p data-e="Your main contact, from first call to keys." data-h="איש הקשר שלכם, משיחה ראשונה ועד המפתחות."></p></div>
-  <div class="mem a" style="--i:3"><div class="av">EK<img src="photos/team-lawyer.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Greek lawyer" data-h="עורך דין ביוון"></small><h3>Eleni Karras</h3><p data-e="Title checks, contracts and the notary." data-h="בדיקת בעלות, חוזים ונוטריון."></p></div>
-  <div class="mem a" style="--i:3"><div class="av">DL<img src="photos/team-israeli-lawyer.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Israeli lawyer" data-h="עורך דין בישראל"></small><h3>Dana Levi</h3><p data-e="Speaks your language. Reviews the deal in Hebrew and guides Israeli reporting." data-h="בשפה שלכם. בודקת את העסקה בעברית ומלווה בדיווחים בישראל."></p></div>
-  <div class="mem a" style="--i:4"><div class="av">NM<img src="photos/team-engineer.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Civil engineer" data-h="מהנדס אזרחי"></small><h3>Nikos Mavros</h3><p data-e="Building, permits and condition survey." data-h="מבנה, היתרים ובדיקת מצב הנכס."></p></div>
-  <div class="mem a" style="--i:5"><div class="av">DA<img src="photos/team-accountant.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Accountant" data-h="רואה חשבון"></small><h3>Dimitra Alexiou</h3><p data-e="Tax number, taxes and rental income." data-h="מספר מס, מיסים והכנסה משכירות."></p></div>
-  <div class="mem a" style="--i:6"><div class="av">YS<img src="photos/team-manager.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Property manager" data-h="מנהל נכס"></small><h3>Yannis Stavros</h3><p data-e="Cleaning, maintenance and guests while you are away." data-h="ניקיון, תחזוקה ואורחים כשאתם לא שם."></p></div>
-  <div class="mem a" style="--i:7"><div class="av">KL<img src="photos/team-agent.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Local agent, Greece" data-h="סוכן מקומי, יוון"></small><h3>Katerina Lamprou</h3><p data-e="On the ground in Eretria and Oropos." data-h="בשטח בארטריה ובאורופוס."></p></div>
+  <div class="mem a" style="--i:2"><div class="av">SS<img src="photos/team-samir.jpg" alt="Samir Suidan" onerror="this.style.display='none'"></div><small data-e="Founder" data-h="מייסד"></small><h3>Samir Suidan</h3><p data-e="Your main contact, from first call to keys." data-h="איש הקשר שלכם, משיחה ראשונה ועד המפתחות."></p></div>
+  <div class="mem a" style="--i:3"><div class="av">EK<img src="photos/team-lawyer.jpg" alt="Eleni Karras" onerror="this.style.display='none'"></div><small data-e="Greek lawyer" data-h="עורך דין ביוון"></small><h3>Eleni Karras</h3><p data-e="Title checks, contracts and the notary." data-h="בדיקת בעלות, חוזים ונוטריון."></p></div>
+  <div class="mem a" style="--i:3"><div class="av">DL<img src="photos/team-israeli-lawyer.jpg" alt="Dana Levi" onerror="this.style.display='none'"></div><small data-e="Israeli lawyer" data-h="עורך דין בישראל"></small><h3>Dana Levi</h3><p data-e="Speaks your language. Reviews the deal in Hebrew and guides Israeli reporting." data-h="בשפה שלכם. בודקת את העסקה בעברית ומלווה בדיווחים בישראל."></p></div>
+  <div class="mem a" style="--i:4"><div class="av">NM<img src="photos/team-engineer.jpg" alt="Nikos Mavros" onerror="this.style.display='none'"></div><small data-e="Civil engineer" data-h="מהנדס אזרחי"></small><h3>Nikos Mavros</h3><p data-e="Building, permits and condition survey." data-h="מבנה, היתרים ובדיקת מצב הנכס."></p></div>
+  <div class="mem a" style="--i:5"><div class="av">DA<img src="photos/team-accountant.jpg" alt="Dimitra Alexiou" onerror="this.style.display='none'"></div><small data-e="Accountant" data-h="רואה חשבון"></small><h3>Dimitra Alexiou</h3><p data-e="Tax number, taxes and rental income." data-h="מספר מס, מיסים והכנסה משכירות."></p></div>
+  <div class="mem a" style="--i:6"><div class="av">YS<img src="photos/team-manager.jpg" alt="Yannis Stavros" onerror="this.style.display='none'"></div><small data-e="Property manager" data-h="מנהל נכס"></small><h3>Yannis Stavros</h3><p data-e="Cleaning, maintenance and guests while you are away." data-h="ניקיון, תחזוקה ואורחים כשאתם לא שם."></p></div>
+  <div class="mem a" style="--i:7"><div class="av">KL<img src="photos/team-agent.jpg" alt="Katerina Lamprou" onerror="this.style.display='none'"></div><small data-e="Local agent, Greece" data-h="סוכן מקומי, יוון"></small><h3>Katerina Lamprou</h3><p data-e="On the ground in Eretria and Oropos." data-h="בשטח בארטריה ובאורופוס."></p></div>
  </div>
 </section>
 
@@ -343,8 +346,8 @@ const HERO=['main'];
 const S=[
  {ll:[32.0114,34.8867],en:['Tel Aviv','Direct flight, about 2.5 hours'],he:['תל אביב','טיסה ישירה, כ־2.5 שעות']},
  {ll:[37.9364,23.9445],en:['Athens Airport','Eleftherios Venizelos (ATH). You land here.'],he:['נמל התעופה אתונה','אלפתריוס ונייזלוס (ATH). כאן נוחתים.']},
- {ll:[37.9838,23.7275],en:['Athens','Approx. 35 km from the airport'],he:['אתונה','כ־35 ק״מ מנמל התעופה']},
- {ll:[38.3235,23.7880],en:['Oropos','Approx. 50 km from Athens. Ferry port to Evia.'],he:['אורופוס','כ־50 ק״מ מאתונה. נמל המעבורת לאוויה.']},
+ {ll:[37.9838,23.7275],en:['Athens','Approx. 33 km from the airport'],he:['אתונה','כ־33 ק״מ מנמל התעופה']},
+ {ll:[38.3235,23.7880],en:['Oropos','Approx. 40–50 km from Athens. Ferry port to Evia.'],he:['אורופוס','כ־40–50 ק״מ מאתונה. נמל המעבורת לאוויה.']},
  {ll:[38.3965,23.8035],en:['Eretria','A short ferry crossing from Oropos'],he:['ארטריה','חציית מעבורת קצרה מאורופוס']},
  {ll:[38.4636,23.5983],en:['Chalkida','Approx. 20 km from Eretria. Bridge to the mainland.'],he:['חלקיס','כ־20 ק״מ מארטריה. גשר ליבשת.']}
 ];
@@ -378,7 +381,7 @@ addEventListener('keydown',e=>{const k=e.key;if(e.target.closest&&e.target.close
  else if(k==='Home')show(0);else if(k==='End')show(sl.length-1);else if(k==='f'||k==='F')fs()});
 let tx=null;addEventListener('touchstart',e=>{tx=e.target.closest('.mb')?null:e.touches[0].clientX},{passive:true});
 addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60)go((d<0)!==rtl()?1:-1)});
-let wl=0;addEventListener('wheel',e=>{if(e.target.closest('.mb')||Date.now()-wl<1000||Math.abs(e.deltaY)<30)return;wl=Date.now();go(e.deltaY>0?1:-1)},{passive:true});
+let wl=0;addEventListener('wheel',e=>{if(e.target.closest('.mb,.col')||Date.now()-wl<1000||Math.abs(e.deltaY)<30)return;wl=Date.now();go(e.deltaY>0?1:-1)},{passive:true});
 const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{});$('fs').onclick=fs;
 $('lang').onclick=()=>{lang=rtl()?'en':'he';render()};
 function counters(root){root.querySelectorAll('[data-n]').forEach(c=>{const v=+c.dataset.n,d=+(c.dataset.d||0);let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1800,1);c.textContent=(c.dataset.pre||'')+(v*(1-Math.pow(1-p,3))).toFixed(d)+(p===1?(c.dataset.s||''):'');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
@@ -414,7 +417,7 @@ const PH=[
  st:[[229,'',['nonstop flights a week','טיסות ישירות בשבוע']],[6,'+',['airlines compete','חברות תעופה']],[50,'€',['cheapest one-way from','הכי זול, לכיוון אחד, החל מ־']]],
  bars:[[55,55,55,75,90,110,130,130,90,80,60,70],['Approx. one-way fare from Israel, € (indicative)','מחיר משוער לכיוון אחד מישראל, € (מנחה)']],
  pts:[[['Tel Aviv','תל אביב'],TLV],[['Athens Airport','נמל התעופה אתונה'],ATH]],
- opts:[O('f','plane',['Direct flight','טיסה ישירה'],['About 2h 10m','כ־2:10 שעות'],['Aegean, Wizz Air, Arkia, Israir, SKY express and more','אג׳יאן, ויז אייר, ארקיע, ישראייר, SKY express ועוד'],arc(TLV,ATH))].map(o=>({...o,ms:2300}))},
+ opts:[O('f','plane',['Direct flight','טיסה ישירה'],['About 2.5 hours','כ־2.5 שעות'],['Aegean, Wizz Air, Arkia, Israir, SKY express and more','אג׳יאן, ויז אייר, ארקיע, ישראייר, SKY express ועוד'],arc(TLV,ATH))].map(o=>({...o,ms:2300}))},
 {n:['Airport → Athens','שדה התעופה → אתונה'],h:['From the airport to Athens','משדה התעופה לאתונה'],b:[ATH,CTR],
  p:['Athens airport is about 33 km from the centre. Pick what fits you:','שדה התעופה כ־33 ק״מ ממרכז אתונה. בוחרים מה שמתאים:'],
  pts:[[['Athens Airport','נמל התעופה'],ATH],[['Athens centre','מרכז אתונה'],CTR]],
