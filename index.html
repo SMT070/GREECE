@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr" data-theme="noir">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,11 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600&family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#fff;--bg2:#F5F5F3;--fg:#111;--mu:#5c5c5c;--ac:#111;--on:#fff;--ac2:#111;--card:#fff;--sea:#E8E8E6;--land:#fff;--route:#111}
 :root{--hf:'Bodoni Moda','Frank Ruhl Libre',serif}
 :lang(he){--hf:'Frank Ruhl Libre','Bodoni Moda',serif}
-[data-theme=noir]{--bg:#0B0C0F;--bg2:#12151A;--fg:#F2EEE6;--mu:#A3A7AE;--ac:#D6C29A;--on:#0B0C0F;--ac2:#7FB8D1;--card:#1A1E25;--sea:#0A1822;--land:#26343F;--route:#D6C29A}
-[data-theme=aegean]{--bg:#F8F5EF;--bg2:#ECE7DB;--fg:#10202E;--mu:#55636F;--ac:#0F5C8C;--on:#fff;--ac2:#C4623A;--card:#fff;--sea:#BDD8E6;--land:#F7F0E1;--route:#C4623A}
-[data-theme=olive]{--bg:#0E1B16;--bg2:#16271F;--fg:#F1EEE3;--mu:#9DB0A5;--ac:#D2BF8E;--on:#0E1B16;--ac2:#7FC0A8;--card:#1D3228;--sea:#0B1712;--land:#2B4638;--route:#D2BF8E}
 *{box-sizing:border-box;margin:0}
 html,body{height:100%;overflow:hidden}
 body{font-family:'Heebo',system-ui,sans-serif;background:var(--bg);color:var(--fg);font-weight:300;line-height:1.55}
@@ -43,6 +41,11 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 #s0 h1{font-size:clamp(3.4rem,9vw + 1vh,9rem);max-width:11ch}
 #s0 p{margin:1.4rem 0 1.8rem;font-size:clamp(1.1rem,1.6vw,1.7rem)}
 #s0 .bgp:after{background:linear-gradient(180deg,#0006 0,#0002 22%,#0008 52%,#000e 100%)}#s0 .bgp:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#000a 0,#0004 55%,#0000 100%)}#s0 .hs img{object-position:50% 40%}#s0 h1,#s0 p,#s0 .eyebrow,#s0 .big{text-shadow:0 2px 24px #000c,0 1px 3px #0008}
+.dk .btn:not(.o){background:#fff;color:#111;border-color:#fff}
+#sv .land{stroke:#9d9d9d}
+.home,.mem{border:1px solid #e2e2e0;box-shadow:0 10px 30px #0000000f}
+.tb{border-color:#bdbdbd}
+.eyebrow{color:#111}.dk .eyebrow{color:#fff}
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;margin-top:3vh}
 .stat b{display:block;font-family:var(--hf);font-size:clamp(4rem,11vw,10rem);font-weight:500;line-height:1;color:var(--ac)}
@@ -100,8 +103,6 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 .chrome{position:fixed;z-index:60;color:var(--fg);display:flex;align-items:center;gap:16px}body.dk .chrome{color:#fff}
 #top{inset:0 0 auto 0;padding:16px 3vw}#bot{inset:auto 0 0 0;padding:18px 3vw;gap:20px}
 .brand{display:flex;align-items:center;gap:10px;margin-inline-end:auto;color:inherit;text-decoration:none;font-family:var(--hf);font-size:1.25rem;letter-spacing:.2em;cursor:pointer}.brand svg{height:32px}
-.dots{display:flex;gap:7px}.dots button{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;cursor:pointer}
-.dots [data-t=noir]{background:linear-gradient(135deg,#0B0C0F 50%,#D6C29A 50%)}.dots [data-t=aegean]{background:linear-gradient(135deg,#F8F5EF 50%,#0F5C8C 50%)}.dots [data-t=olive]{background:linear-gradient(135deg,#0E1B16 50%,#D2BF8E 50%)}
 .cb{border:1px solid currentColor;color:inherit;background:none;padding:6px 14px;border-radius:99px;cursor:pointer;font:inherit;font-size:.85rem}.cb:hover{background:var(--ac);color:var(--on);border-color:var(--ac)}
 #prog{flex:1;display:flex;gap:6px}#prog i{flex:1;height:3px;background:currentColor;opacity:.25;cursor:pointer;transition:opacity .4s}#prog i.on{opacity:1}#prog i:hover{opacity:.6}
 #cnt{font-family:var(--hf);font-size:1.2rem;min-width:4.5em}
@@ -123,8 +124,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 </head>
 <body>
 <div class="chrome" id="top">
- <a class="brand" id="home" aria-label="SAMIR Real Estate"><svg viewBox="0 0 410 480" fill="none" stroke-width="26"><path style="stroke:var(--ac)" d="M12 480V342L106 260M203 480V160L329 270V480"/><path stroke="currentColor" d="M141 480V130L266 32V170M399 480V370L365 320"/></svg>SAMIR</a>
- <div class="dots"><button data-t="noir" aria-label="Noir"></button><button data-t="aegean" aria-label="Aegean"></button><button data-t="olive" aria-label="Olive"></button></div>
+ <a class="brand" id="home" aria-label="SAMIR Real Estate"><svg viewBox="0 0 410 480" fill="none" stroke-width="26"><path stroke="currentColor" d="M12 480V342L106 260M203 480V160L329 270V480"/><path stroke="currentColor" d="M141 480V130L266 32V170M399 480V370L365 320"/></svg>SAMIR</a>
  <button class="cb" id="lang">עברית</button><button class="cb" id="fs" aria-label="Fullscreen">⛶</button>
 </div>
 
@@ -399,9 +399,6 @@ let tx=null;addEventListener('touchstart',e=>{tx=e.target.closest('.mb')?null:e.
 addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60)go((d<0)!==rtl()?1:-1)});
 let wl=0;addEventListener('wheel',e=>{if(e.target.closest('.mb')||Date.now()-wl<1000||Math.abs(e.deltaY)<30)return;wl=Date.now();go(e.deltaY>0?1:-1)},{passive:true});
 const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{});$('fs').onclick=fs;
-function theme(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('th',t)}catch(e){}if(live)setTimeout(()=>live.invalidateSize(),50)}
-document.querySelectorAll('.dots button').forEach(b=>b.onclick=()=>theme(b.dataset.t));
-try{const t=localStorage.getItem('th');if(t)document.documentElement.dataset.theme=t}catch(e){}
 $('lang').onclick=()=>{lang=rtl()?'en':'he';render()};
 function counters(root){root.querySelectorAll('[data-n]').forEach(c=>{const v=+c.dataset.n,d=+(c.dataset.d||0);let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1800,1);c.textContent=(c.dataset.pre||'')+(v*(1-Math.pow(1-p,3))).toFixed(d)+(p===1?(c.dataset.s||''):'');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 /* title slideshow */
@@ -461,7 +458,7 @@ let live=null,lsat=true,lbase,lref,lmode=null,lln=null;const lmine=[];
 function initLive(){if(live){live.invalidateSize();return}
  const Lf=window.L;if(!Lf){$('liveMsg').style.display='block';return}
  try{live=Lf.map('live',{zoomControl:true}).setView([38.36,23.75],10);setLBase();
-  S.slice(1).forEach(s=>Lf.marker(s.ll,{icon:Lf.divIcon({className:'',html:'<div class="pin" style="background:#D6C29A"></div>',iconSize:[14,14]})}).addTo(live).bindTooltip(()=>s[lang][0],{direction:'top',offset:[0,-8]}));
+  S.slice(1).forEach(s=>Lf.marker(s.ll,{icon:Lf.divIcon({className:'',html:'<div class="pin" style="background:#111"></div>',iconSize:[14,14]})}).addTo(live).bindTooltip(()=>s[lang][0],{direction:'top',offset:[0,-8]}));
   const gm=()=>{const c=live.getCenter();$('gm').href=`https://www.google.com/maps/@${c.lat.toFixed(5)},${c.lng.toFixed(5)},${live.getZoom()}z/data=!3m1!1e${lsat?3:0}`};live.on('moveend',gm);gm();
   live.on('click',e=>{if(lmode!=='pin')return;const t=prompt(rtl()?'שם לסמן:':'Label for this pin:')||'',m=Lf.marker(e.latlng,{icon:Lf.divIcon({className:'',html:'<div class="pin"></div>',iconSize:[14,14]})}).addTo(live);if(t)m.bindTooltip(t,{permanent:true,direction:'top',offset:[0,-8]});lmine.push(m)});
   const c=live.getContainer();
