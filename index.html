@@ -132,6 +132,57 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 #s10t{overflow:auto}
 @media(min-width:861px) and (max-height:820px){.team{gap:1.2vw;margin-top:2vh}.mem{padding:12px 14px}.av{width:48px;height:48px;margin-bottom:8px;font-size:1.2rem}.mem h3{font-size:1.2rem}.mem p{font-size:.82rem}}
 @media print{#s4{display:none!important}}
+
+/* ---- journey map v2: details on the map, film mode, highways ---- */
+#s4 .mp{inset:78px 3vw 72px;display:block;overflow:hidden}
+#s4 .mb{position:absolute;inset:0;min-height:0}
+.ov{position:absolute;z-index:1100;pointer-events:none}
+#mTop{inset:12px 12px auto 12px;display:flex;flex-direction:column;gap:8px;transition:opacity .8s}
+#mTop .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+#mTop .tools{pointer-events:auto}
+#pTabs .tb,#mTools .tb,#pTools .tb{background:#fffe;backdrop-filter:blur(6px);box-shadow:0 2px 10px #0002}
+#pTabs .tb.on,#pTabs .tb:hover,#mTools .tb.on,#mTools .tb:hover,#pTools .tb.on,#pTools .tb:hover{background:var(--ac);border-color:var(--ac);color:var(--on)}
+#mTools .tb.go{background:#111;color:#fff;border-color:#111}
+#lHw:before{content:"";display:inline-block;width:18px;height:5px;background:#f0a30a;border:1px solid #fff;border-radius:3px;margin-inline-end:7px;vertical-align:middle}
+#dock{left:14px;right:72px;bottom:14px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px 30px;background:#fffffff0;backdrop-filter:blur(10px);padding:18px 24px;border:1px solid #1112;box-shadow:0 14px 40px #0003;max-height:48%;overflow:auto;pointer-events:auto;transition:opacity .8s}
+#dock .eyebrow{margin-bottom:.5rem}
+#dock h2{font-size:clamp(1.7rem,2.2vw + 1vh,2.6rem);max-width:none;margin-bottom:.4rem}
+#dock p{max-width:none}
+#pBody p{font-size:.98rem;margin-bottom:10px}
+#pBody .tools{margin-top:6px}
+.dr{min-width:0}
+#pExtra .mini b{font-size:1.9rem}
+#pExtra .bars{height:46px;margin:6px 0 20px}
+#pInfo{margin-top:10px;padding:12px 16px}
+#pInfo h3{font-size:1.5rem;margin:.1em 0}
+#pInfo p{font-size:.95rem;margin:2px 0 0}
+.hwlw{background:none;border:0}
+.hwl{position:absolute;transform:translate(-50%,-50%);background:#f0a30a;color:#111;font:700 .72rem Heebo,sans-serif;padding:1px 7px;border:2px solid #fff;border-radius:6px;white-space:nowrap;box-shadow:0 2px 6px #0004}
+/* film */
+#cine{position:absolute;z-index:1200;left:0;right:0;bottom:11%;display:flex;justify-content:center;pointer-events:none;opacity:0;transition:opacity .9s}
+#cine.on{opacity:1}
+#cine .cc{background:#111e;color:#fff;padding:22px 36px;max-width:min(800px,88%);backdrop-filter:blur(6px);transform:translateY(26px);transition:transform 1.3s cubic-bezier(.2,.8,.2,1)}
+#cine.on .cc{transform:none}
+#cine .cn{letter-spacing:.3em;font-size:.78rem;text-transform:uppercase;opacity:.75;font-weight:600}
+:lang(he) #cine .cn{letter-spacing:.06em}
+#cine h3{font-family:var(--hf);color:#fff;font-size:clamp(1.8rem,3.2vw,3.2rem);margin:.15em 0 .4em}
+#cine .cd{display:flex;flex-wrap:wrap;gap:6px 26px;font-size:clamp(.95rem,1.15vw,1.2rem);color:#e8e8e8}
+#cine .cd span:before{content:"";display:inline-block;width:.6em;height:2px;background:#fff;margin-inline-end:.6em;vertical-align:middle}
+#cine.full{bottom:0;top:0;align-items:center;background:#000b}
+#cine.full .cc{background:none;text-align:center;max-width:920px;backdrop-filter:none}
+#cine.full h3{font-size:clamp(2.6rem,6vw,6rem)}
+#cine.full .cd{justify-content:center}
+.lbx{position:absolute;left:0;right:0;height:0;background:#000;z-index:1150;transition:height 1.2s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.lbx.t{top:0}.lbx.b{bottom:0}
+#s4.film .lbx{height:8%}
+#fprog{position:absolute;left:0;right:0;bottom:0;height:3px;background:#fff3;z-index:1300;opacity:0;transition:opacity .6s;pointer-events:none}
+#fprog i{display:block;height:100%;width:0;background:#fff;transition:width 1.6s linear}
+#s4.film #fprog{opacity:1}
+#fstop{position:absolute;z-index:1400;top:calc(8% + 12px);right:14px;display:none}
+#s4.film #fstop{display:block}
+#s4.film #mTop,#s4.film #dock,#s4.film .leaflet-control-container{opacity:0;pointer-events:none!important}
+#s4.film #live{pointer-events:none}
+@media(max-width:860px){#dock{grid-template-columns:1fr;right:14px;max-height:55%;padding:14px 16px}#cine .cc{padding:16px 20px}}
 </style>
 </head>
 <body>
@@ -155,7 +206,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
  <h2 class="a" style="--i:1" data-e="Why Greece. Why now." data-h="למה יוון. למה עכשיו."></h2>
  <div class="stats a" style="--i:2">
   <div class="stat"><b data-n="300" data-s="+">0</b><span data-e="sunny days a year" data-h="ימי שמש בשנה"></span></div>
-  <div class="stat"><b data-n="2.5" data-d="1">0</b><span data-e="hours, Tel Aviv to Athens" data-h="שעות טיסה, תל אביב לאתונה"></span></div>
+  <div class="stat"><b data-n="130" data-f="hm">0</b><span data-e="hours, Tel Aviv to Athens" data-h="שעות טיסה, תל אביב לאתונה"></span></div>
   <div class="stat"><b data-n="2" data-pre="#">0</b><span data-e="Evia: Greece's second-largest island" data-h="אוויה: האי השני בגודלו ביוון"></span></div>
  </div>
 </section>
@@ -221,16 +272,30 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 <!-- JOURNEY + LIVE MAP (phases) -->
 <section class="slide alt" id="s4">
  <div class="mp">
-  <div class="col">
-   <div class="eyebrow" data-e="The journey" data-h="המסע"></div>
-   <h2 id="pT"></h2>
-   <div class="tools" id="pTabs"></div>
-   <div id="pBody"></div>
-   <div class="info" id="pInfo" style="display:none"></div>
-   <div class="tools"><button class="tb go" id="play" data-e="▶ Play the journey" data-h="▶ הפעלת המסע"></button><button class="tb" id="pNext" data-e="Next ›" data-h="הבא ›"></button></div>
-   <div id="pTools" class="tools" style="display:none"><button class="tb" id="lSat" data-e="Satellite" data-h="לוויין"></button><button class="tb" id="lDraw" data-e="Draw" data-h="ציור"></button><button class="tb" id="lPin" data-e="Pin" data-h="סמן"></button><button class="tb" id="lUndo" data-e="Undo" data-h="בטל"></button><button class="tb" id="lClr" data-e="Clear" data-h="נקה"></button><a class="tb" id="gm" target="_blank" rel="noopener" style="text-decoration:none" data-e="Google Maps ↗" data-h="גוגל מפות ↗"></a></div>
+  <div class="mb">
+   <div id="live"></div>
+   <div id="liveMsg" data-e="Live map tiles could not load. Check the internet connection." data-h="לא ניתן לטעון את המפה. בדקו חיבור אינטרנט."></div>
+   <div class="ov" id="mTop">
+    <div class="row">
+     <div class="tools" id="pTabs"></div>
+     <div class="tools" id="mTools">
+      <button class="tb go" id="play" data-e="▶ Play the journey" data-h="▶ הפעלת המסע"></button>
+      <button class="tb" id="pNext" data-e="Next ›" data-h="הבא ›"></button>
+      <button class="tb on" id="lHw" data-e="Highways" data-h="כבישים ראשיים"></button>
+      <button class="tb" id="lSat" data-e="Satellite" data-h="לוויין"></button>
+     </div>
+    </div>
+    <div id="pTools" class="tools" style="display:none"><button class="tb" id="lDraw" data-e="Draw" data-h="ציור"></button><button class="tb" id="lPin" data-e="Pin" data-h="סמן"></button><button class="tb" id="lUndo" data-e="Undo" data-h="בטל"></button><button class="tb" id="lClr" data-e="Clear" data-h="נקה"></button><a class="tb" id="gm" target="_blank" rel="noopener" style="text-decoration:none" data-e="Google Maps ↗" data-h="גוגל מפות ↗"></a></div>
+   </div>
+   <div class="ov" id="dock">
+    <div class="dl"><div class="eyebrow" data-e="The journey" data-h="המסע"></div><h2 id="pT"></h2><div id="pBody"></div></div>
+    <div class="dr"><div id="pExtra"></div><div class="info" id="pInfo" style="display:none"></div></div>
+   </div>
+   <div id="cine"></div>
+   <div class="lbx t"></div><div class="lbx b"></div>
+   <div id="fprog"><i></i></div>
+   <button class="tb go" id="fstop" data-e="■ Stop" data-h="■ עצירה"></button>
   </div>
-  <div class="mb"><div id="live"></div><div id="liveMsg" data-e="Live map tiles could not load. Check the internet connection." data-h="לא ניתן לטעון את המפה. בדקו חיבור אינטרנט."></div></div>
  </div>
 </section>
 
@@ -344,7 +409,7 @@ const MAIN='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGB
 const HERO=['main'];
 /* stops: ll=[lat,lon]. Edit freely. */
 const S=[
- {ll:[32.0114,34.8867],en:['Tel Aviv','Direct flight, about 2.5 hours'],he:['תל אביב','טיסה ישירה, כ־2.5 שעות']},
+ {ll:[32.0114,34.8867],en:['Tel Aviv','Direct flight, about 2h 10m'],he:['תל אביב','טיסה ישירה, כ־2:10 שעות']},
  {ll:[37.9364,23.9445],en:['Athens Airport','Eleftherios Venizelos (ATH). You land here.'],he:['נמל התעופה אתונה','אלפתריוס ונייזלוס (ATH). כאן נוחתים.']},
  {ll:[37.9838,23.7275],en:['Athens','Approx. 33 km from the airport'],he:['אתונה','כ־33 ק״מ מנמל התעופה']},
  {ll:[38.3235,23.7880],en:['Oropos','Approx. 40–50 km from Athens. Ferry port to Evia.'],he:['אורופוס','כ־40–50 ק״מ מאתונה. נמל המעבורת לאוויה.']},
@@ -361,11 +426,11 @@ function render(){
  $('lang').textContent=rtl()?'English':'עברית';
  $('homeList').innerHTML=PROPS.map(p=>{const c=p[lang],m=encodeURIComponent((rtl()?'שלום סמיר, מעוניין בפרטים על: ':'Hi Samir, I am interested in: ')+c[0]+' ('+p.area+')');
   return `<article class="home a" style="--i:2"><div class="ph">${p.img?`<img src="${p.img}" alt="">`:''}${SAMPLE?`<span class="tag">${rtl()?'דוגמה':'Sample'}</span>`:''}</div><div class="b"><h3>${c[0]}</h3><small>${p.area}</small><p>${c[1]}</p><div class="pr">${p.price}</div><a class="btn o" target="_blank" rel="noopener" href="https://wa.me/972545335225?text=${m}">${rtl()?'לפרטים על הבית':'Ask about this home'}</a></div></article>`}).join('');
-  if(booted)phase(ph,true)
+  if(booted){if(filming)refreshCap();else phase(ph,true)}
 }
 /* ---------- slideshow engine ---------- */
 $('prog').innerHTML=sl.map((_,i)=>`<i data-g="${i}"></i>`).join('');
-function show(i){i=Math.max(0,Math.min(sl.length-1,i));if(booted&&i===n)return;
+function show(i){i=Math.max(0,Math.min(sl.length-1,i));if(booted&&i===n)return;if(filming&&sl[i].id!=='s4')stopFilm();
  sl[n].classList.remove('on');n=i;sl[n].classList.add('on');booted=true;
  document.body.classList.toggle('dk',sl[n].classList.contains('dk'));
  $('cnt').textContent=String(n+1).padStart(2,'0')+' / '+String(sl.length).padStart(2,'0');
@@ -378,13 +443,13 @@ const go=d=>show(n+d);
 $('nxt').onclick=()=>go(1);$('prv').onclick=()=>go(-1);$('prog').onclick=e=>{const g=e.target.dataset.g;if(g!==undefined)show(+g)};$('home').onclick=()=>show(0);
 addEventListener('keydown',e=>{const k=e.key;if(e.target.closest&&e.target.closest('input,textarea'))return;
  if(k==='ArrowRight')go(rtl()?-1:1);else if(k==='ArrowLeft')go(rtl()?1:-1);else if(k===' '||k==='PageDown'||k==='ArrowDown'){e.preventDefault();go(1)}else if(k==='PageUp'||k==='ArrowUp')go(-1);
- else if(k==='Home')show(0);else if(k==='End')show(sl.length-1);else if(k==='f'||k==='F')fs()});
+ else if(k==='Home')show(0);else if(k==='End')show(sl.length-1);else if(k==='f'||k==='F')fs();else if(k==='Escape'&&filming)stopFilm()});
 let tx=null;addEventListener('touchstart',e=>{tx=e.target.closest('.mb')?null:e.touches[0].clientX},{passive:true});
 addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60)go((d<0)!==rtl()?1:-1)});
 let wl=0;addEventListener('wheel',e=>{if(e.target.closest('.mb,.col')||Date.now()-wl<1000||Math.abs(e.deltaY)<30)return;wl=Date.now();go(e.deltaY>0?1:-1)},{passive:true});
 const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{});$('fs').onclick=fs;
 $('lang').onclick=()=>{lang=rtl()?'en':'he';render()};
-function counters(root){root.querySelectorAll('[data-n]').forEach(c=>{const v=+c.dataset.n,d=+(c.dataset.d||0);let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1800,1);c.textContent=(c.dataset.pre||'')+(v*(1-Math.pow(1-p,3))).toFixed(d)+(p===1?(c.dataset.s||''):'');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
+function counters(root){root.querySelectorAll('[data-n]').forEach(c=>{const v=+c.dataset.n,d=+(c.dataset.d||0);let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1800,1);c.textContent=(c.dataset.pre||'')+(c.dataset.f==='hm'?(m=>Math.floor(m/60)+':'+String(m%60).padStart(2,'0'))(Math.round(v*(1-Math.pow(1-p,3)))):(v*(1-Math.pow(1-p,3))).toFixed(d))+(p===1?(c.dataset.s||''):'');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 /* title slideshow */
 $('hs').innerHTML=HERO.map((h,i)=>`<div class="hs${i===0?' on':''}"><img src="${h==='main'?MAIN:'photos/'+h+'.jpg'}" alt="" onerror="this.style.display='none'"></div>`).join('');
 let hi=0;setInterval(()=>{const s=document.querySelectorAll('.hs');if(sl[n].id!=='s0')return;s[hi].classList.remove('on');hi=(hi+1)%s.length;s[hi].classList.add('on')},6500);
@@ -411,67 +476,173 @@ boat:'M20 21c-1.39 0-2.78-.47-4-1.32-2.44 1.71-5.56 1.71-8 0C6.78 20.53 5.39 21 
 const ic=(k,s=18)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor" style="vertical-align:-3px"><path d="${ICO[k]}"/></svg>`;
 const brg=(a,b)=>Math.atan2((b[1]-a[1])*Math.cos(a[0]*Math.PI/180),b[0]-a[0])*180/Math.PI;
 const O=(k,i,l,t,c,pa,n)=>({k,i,l,t,c,pa,n});
+const SCH=[38.3167,23.5833],X=(o,e)=>Object.assign(o,e),SH=(r,a)=>r.map(q=>[q[0]+(a||.004),q[1]+(a||.004)]);
+const FERRY=dens([ORO,ERE],40);
 const PH=[
 {n:['Flight','טיסה'],h:['Tel Aviv → Athens','תל אביב → אתונה'],b:[TLV,ATH],
  p:['A short nonstop hop. Many airlines compete on this route, so fares stay low all year.','טיסה ישירה וקצרה. הרבה חברות תעופה מתחרות בקו הזה, ולכן המחירים נמוכים כל השנה.'],
  st:[[229,'',['nonstop flights a week','טיסות ישירות בשבוע']],[6,'+',['airlines compete','חברות תעופה']],[50,'€',['cheapest one-way from','הכי זול, לכיוון אחד, החל מ־']]],
  bars:[[55,55,55,75,90,110,130,130,90,80,60,70],['Approx. one-way fare from Israel, € (indicative)','מחיר משוער לכיוון אחד מישראל, € (מנחה)']],
  pts:[[['Tel Aviv','תל אביב'],TLV],[['Athens Airport','נמל התעופה אתונה'],ATH]],
- opts:[O('f','plane',['Direct flight','טיסה ישירה'],['About 2.5 hours','כ־2.5 שעות'],['Aegean, Wizz Air, Arkia, Israir, SKY express and more','אג׳יאן, ויז אייר, ארקיע, ישראייר, SKY express ועוד'],arc(TLV,ATH))].map(o=>({...o,ms:2300}))},
+ opts:[O('f','plane',['Direct flight','טיסה ישירה'],['About 2h 10m','כ־2:10 שעות'],['Aegean, Wizz Air, Arkia, Israir, SKY express and more','אג׳יאן, ויז אייר, ארקיע, ישראייר, SKY express ועוד'],arc(TLV,ATH))]},
 {n:['Airport → Athens','שדה התעופה → אתונה'],h:['From the airport to Athens','משדה התעופה לאתונה'],b:[ATH,CTR],
  p:['Athens airport is about 33 km from the centre. Pick what fits you:','שדה התעופה כ־33 ק״מ ממרכז אתונה. בוחרים מה שמתאים:'],
  pts:[[['Athens Airport','נמל התעופה'],ATH],[['Athens centre','מרכז אתונה'],CTR]],
  opts:[O('m','train',['Metro line 3','מטרו קו 3'],['About 40 min to Syntagma','כ־40 דק׳ לסינטגמה'],['About €9–10','כ־€9–10'],MET),
-  O('b','bus',['Bus X95','אוטובוס X95'],['60–90 min, runs 24/7','60–90 דק׳, 24/7'],['€5.50','€5.50'],OD.map(q=>[q[0]+.004,q[1]+.004])),
+  X(O('b','bus',['Bus X95','אוטובוס X95'],['60–90 min, runs 24/7','60–90 דק׳, 24/7'],['€5.50','€5.50'],SH(OD)),{der:[[1,'c'],r=>SH(r)]}),
   O('t','train',['Suburban train','רכבת פרוורים'],['About 45 min to Larissis station','כ־45 דק׳ לתחנת לריסיס'],['About €9–10','כ־€9–10'],TRAIN),
-  O('x','taxi',['Taxi','מונית'],['35–45 min','35–45 דק׳'],['Fixed €40 day, €55 night','קבוע €40 ביום, €55 בלילה'],OD),
-  O('c','car',['Rental car','השכרת רכב'],['About 40 min, pick up at the airport','כ־40 דק׳, איסוף בשדה התעופה'],['Price varies by season','המחיר משתנה לפי עונה'],OD.map(q=>[q[0]-.004,q[1]-.004]))]},
-{n:['Athens → Oropos','אתונה → אורופוס'],h:['From Athens to Oropos','מאתונה לאורופוס'],b:[CTR,ERE],
- p:['Oropos (Skala Oropou) is the ferry port to Evia, about 40–50 km north of Athens.','אורופוס (סקאלה אורופו) היא נמל המעבורת לאוויה, כ־40–50 ק״מ צפונית לאתונה.'],
- pts:[[['Athens','אתונה'],CTR],[['Oropos','אורופוס'],ORO]],
- opts:[O('c','car',['Car','רכב'],['About 1 hour','כשעה'],['Fuel and tolls','דלק וכבישי אגרה'],NORTH),
-  O('b','bus',['KTEL Attikis bus','אוטובוס ΚΤΕΛ אטיקי'],['About 1h 15m from Pedion Areos','כ־1:15 שעות מפדיון אריוס'],['About €5–7','כ־€5–7'],ARENORTH,['Timetables change, check before you travel','לוחות הזמנים משתנים, כדאי לבדוק לפני הנסיעה']),
-  O('e','bus',['Direct bus to Eretria','אוטובוס ישיר לארטריה'],['About 1h 30m, 3 a day (KTEL Evias)','כ־1:30 שעות, 3 ביום (ΚΤΕΛ אוויה)'],['About €10–13','כ־€10–13'],ARENORTH.concat(dens([ORO,ERE],24)))]},
+  X(O('x','taxi',['Taxi','מונית'],['35–45 min','35–45 דק׳'],['Fixed €40 day, €55 night','קבוע €40 ביום, €55 בלילה'],OD),{der:[[1,'c'],r=>r]}),
+  X(O('c','car',['Rental car','השכרת רכב'],['About 40 min, pick up at the airport','כ־40 דק׳, איסוף בשדה התעופה'],['Price varies by season','המחיר משתנה לפי עונה'],SH(OD,-.004)),{osrm:[ATH,CTR]})]},
+{n:['Athens → Oropos','אתונה → אורופוס'],h:['From Athens to Oropos','מאתונה לאורופוס'],b:[CTR,ERE,CHA],
+ p:['Oropos (Skala Oropou) is the ferry port to Evia, about 40–50 km north of Athens. You can also drive to Chalkida over the bridge, with no ferry.','אורופוס (סקאלה אורופו) היא נמל המעבורת לאוויה, כ־40–50 ק״מ צפונית לאתונה. אפשר גם לנסוע לחלקיס בכביש מעל הגשר, בלי מעבורת.'],
+ pts:[[['Athens','אתונה'],CTR],[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA]],
+ opts:[X(O('c','car',['Car to Oropos','ברכב לאורופוס'],['About 1 hour','כשעה'],['Fuel and tolls','דלק וכבישי אגרה'],NORTH),{osrm:[CTR,ORO]}),
+  X(O('r','car',['Car to Eretria, with the ferry','ברכב לארטריה, עם המעבורת'],['About 1 hour drive + 23 min ferry','כשעה נסיעה + 23 דק׳ מעבורת'],['Fuel, tolls and ferry fare','דלק, כבישי אגרה ומחיר המעבורת'],NORTH.concat(FERRY)),{der:[[2,'c'],r=>r.concat(FERRY)],ms:9000}),
+  X(O('h','car',['Car to Chalkida, over the bridge','ברכב לחלקיס, מעל הגשר'],['About 1h 15m, no ferry','כ־1:15 שעות, בלי מעבורת'],['Fuel and tolls','דלק וכבישי אגרה'],dens([CTR,[38.07,23.76],[38.19,23.80],SCH,[38.40,23.62],CHA],120)),{osrm:[CTR,SCH,CHA],ms:8500}),
+  X(O('b','bus',['KTEL Attikis bus','אוטובוס ΚΤΕΛ אטיקי'],['About 1h 15m from Pedion Areos','כ־1:15 שעות מפדיון אריוס'],['About €5–7','כ־€5–7'],SH(ARENORTH),['Timetables change, check before you travel','לוחות הזמנים משתנים, כדאי לבדוק לפני הנסיעה']),{der:[[2,'c'],r=>SH(r)]}),
+  X(O('e','bus',['Direct bus to Eretria','אוטובוס ישיר לארטריה'],['About 1h 30m, 3 a day (KTEL Evias)','כ־1:30 שעות, 3 ביום (ΚΤΕΛ אוויה)'],['About €10–13','כ־€10–13'],ARENORTH.concat(dens([ORO,ERE],24))),{der:[[2,'c'],r=>SH(r,.002).concat(dens([ORO,ERE],24))],ms:9000})]},
 {n:['To Evia','לאוויה'],h:['Crossing to Eretria and Chalkida','חוצים לארטריה ולחלקיס'],b:[ORO,CHA],
  p:['A short ferry takes you and your car across to Eretria. Chalkida is a coastal drive away, with trains and buses from Athens too.','מעבורת קצרה מעבירה אתכם והרכב לארטריה. חלקיס במרחק נסיעה לאורך החוף, ויש גם רכבות ואוטובוסים מאתונה.'],
  pts:[[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA]],
- opts:[O('f','boat',['Ferry Oropos → Eretria','מעבורת אורופוס → ארטריה'],['About 23 min, runs all year','כ־23 דק׳, כל השנה'],['Cars and passengers, see the operator','רכבים ונוסעים, פרטים אצל המפעיל'],dens([ORO,ERE],40)),
-  O('c','car',['Eretria → Chalkida by car','ארטריה → חלקיס ברכב'],['About 20 km along the coast','כ־20 ק״מ לאורך החוף'],['Fuel','דלק'],COAST),
-  O('b','bus',['KTEL Evias bus','אוטובוס ΚΤΕΛ אוויה'],['Several a day, Chalkida ↔ Eretria','כמה ביום, חלקיס ↔ ארטריה'],['Low fare','מחיר נמוך'],COAST.map(q=>[q[0]+.006,q[1]]))]},
+ opts:[O('f','boat',['Ferry Oropos → Eretria','מעבורת אורופוס → ארטריה'],['About 23 min, runs all year','כ־23 דק׳, כל השנה'],['Cars and passengers, see the operator','רכבים ונוסעים, פרטים אצל המפעיל'],FERRY),
+  X(O('c','car',['Eretria → Chalkida by car','ארטריה → חלקיס ברכב'],['About 20 km along the coast','כ־20 ק״מ לאורך החוף'],['Fuel','דלק'],COAST),{osrm:[ERE,CHA]}),
+  X(O('b','bus',['KTEL Evias bus','אוטובוס ΚΤΕΛ אוויה'],['Several a day, Chalkida ↔ Eretria','כמה ביום, חלקיס ↔ ארטריה'],['Low fare','מחיר נמוך'],COAST.map(q=>[q[0]+.006,q[1]])),{der:[[3,'c'],r=>r.map(q=>[q[0]+.004,q[1]])]})]},
+{n:['Eretria','ארטריה'],h:['Eretria','ארטריה'],town:{c:ERE,m:6500},
+ p:['A seaside town with a promenade, marina life and ancient history. The ferry from Oropos arrives right here, about 23 minutes across.','עיירת חוף עם טיילת, חיי מרינה והיסטוריה עתיקה. המעבורת מאורופוס מגיעה בדיוק לכאן, כ־23 דקות חציה.'],
+ pts:[[['Eretria','ארטריה'],ERE]],opts:[]},
+{n:['Chalkida','חלקיס'],h:['Chalkida','חלקיס'],town:{c:CHA,m:7500},
+ p:['The island’s capital: shops, hospital and services, joined to the mainland by two bridges. You can drive here from Athens without taking a ferry.','בירת האי: חנויות, בית חולים ושירותים, מחוברת ליבשת בשני גשרים. אפשר להגיע לכאן מאתונה ברכב בלי מעבורת.'],
+ pts:[[['Chalkida','חלקיס'],CHA]],opts:[]},
 {n:['Explore & draw','חקור וצייר'],h:['Explore the land','חוקרים את המקום'],b:[[38.25,23.55],[38.55,23.95]],
  p:['Satellite view. Zoom to any street, draw on a plot, drop pins.','תצלום לוויין. מתקרבים לכל רחוב, מציירים על מגרש ומסמנים נקודות.'],
  pts:[[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA]],opts:[],jump:1}
 ];
-let live=null,lsat=false,lbase,lref,lmode=null,lln=null,ph=0,tok=0,pt=0,route=null,veh=null,pg=null,cas=null;const lmine=[];
-const mTip=m=>m.bindTooltip(()=>m._n?T(m._n):'',{permanent:true,direction:'top',offset:[0,-6]});
-function clearRoute(){tok++;if(live){route&&live.removeLayer(route);veh&&live.removeLayer(veh);cas&&live.removeLayer(cas)}route=veh=cas=null}
-function run(o){const my=++tok;if(!live)return Promise.resolve();[cas,route,veh].forEach(l=>l&&live.removeLayer(l));
- cas=L.polyline([o.pa[0]],{color:'#fff',weight:8,opacity:.95,lineCap:'round',lineJoin:'round'}).addTo(live);
- route=L.polyline([o.pa[0]],{color:'#111',weight:4,lineCap:'round',lineJoin:'round'}).addTo(live);
- veh=L.marker(o.pa[0],{icon:L.divIcon({className:'veh',html:`<div class="vi">${ic(o.i,22)}</div>`,iconSize:[42,42],iconAnchor:[21,21]}),interactive:false,zIndexOffset:900}).addTo(live);
- document.querySelectorAll('.opt').forEach(b=>b.classList.toggle('on',b.dataset.k===o.k));
- $('pInfo').style.display='block';$('pInfo').innerHTML=`<small>${T(o.l)}</small><h3>${T(o.t)}</h3><p>${T(o.c)}${o.n?'<br>'+T(o.n):''}</p>`;
- return new Promise(r=>{const t0=performance.now(),ms=o.ms||1300,N=o.pa.length-1;const f=ts=>{if(my!==tok)return r();const k=Math.min((ts-t0)/ms,1),m=Math.max(1,Math.round(k*N)),sl=o.pa.slice(0,m+1);cas.setLatLngs(sl);route.setLatLngs(sl);veh.setLatLng(o.pa[m]);if(o.i==='plane'){const d=veh._icon&&veh._icon.firstChild;if(d)d.style.transform=`rotate(${brg(o.pa[Math.max(0,m-1)],o.pa[Math.min(N,m+1)])}deg)`}k<1?requestAnimationFrame(f):r()};requestAnimationFrame(f)})}
-function phase(i,keep,auto){if(!auto)pt++;ph=i;const p=PH[i];clearRoute();
+const OPT=(i,k)=>PH[i].opts.find(o=>o.k===k);
+let live=null,lsat=false,lbase,lref,lmode=null,lln=null,ph=0,tok=0,pt=0,route=null,veh=null,cas=null,pg=null,hwG=null,hwOn=true,hwLoaded=false,filming=false,fTok=0,curCap=null,curPts=null;const lmine=[],trail=[],RC={};
+/* ---------- helpers: geometry, easing, network ---------- */
+const hv=(a,b)=>Math.hypot((b[1]-a[1])*Math.cos((a[0]+b[0])*Math.PI/360),b[0]-a[0]);
+const cum=p=>{const c=[0];for(let i=1;i<p.length;i++)c.push(c[i-1]+hv(p[i-1],p[i]));return c};
+const at=(p,c,f)=>{const d=f*c[c.length-1];let lo=0,hi=c.length-1;while(hi-lo>1){const m=(lo+hi)>>1;c[m]<=d?lo=m:hi=m}const sp=c[hi]-c[lo]||1,t=Math.min(1,Math.max(0,(d-c[lo])/sp));return{i:lo,pt:[p[lo][0]+(p[hi][0]-p[lo][0])*t,p[lo][1]+(p[hi][1]-p[lo][1])*t]}};
+const ease=k=>-(Math.cos(Math.PI*k)-1)/2;
+const thin=(p,n)=>{if(p.length<=n)return p;const k=(p.length-1)/(n-1),o=[];for(let i=0;i<n-1;i++)o.push(p[Math.round(i*k)]);o.push(p[p.length-1]);return o};
+const fetchT=(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);return fetch(u,{signal:c.signal}).finally(()=>clearTimeout(t))};
+/* real car routes (snapped to roads) from the public OSRM server; falls back to the hand-drawn paths above */
+function osrm(pts){const key=pts.join(';');if(RC[key])return RC[key];
+ const u='https://router.project-osrm.org/route/v1/driving/'+pts.map(q=>q[1]+','+q[0]).join(';')+'?overview=full&geometries=geojson';
+ return RC[key]=fetchT(u,15000).then(r=>r.json()).then(j=>{const c=j&&j.routes&&j.routes[0]&&j.routes[0].geometry&&j.routes[0].geometry.coordinates;return c&&c.length>1?thin(c.map(q=>[q[1],q[0]]),450):null}).catch(()=>null)}
+function prefetch(){
+ PH.forEach(p=>p.opts.forEach(o=>{if(o.osrm)o.rp=osrm(o.osrm).then(r=>{if(r){o.pa=r;o.ok=1}return r})}));
+ PH.forEach(p=>p.opts.forEach(o=>{if(o.der){const src=OPT(o.der[0][0],o.der[0][1]);o.rp=src.rp.then(r=>{if(r)o.pa=o.der[1](r);return r})}}))}
+/* ---------- main highways (OpenStreetMap via Overpass) ---------- */
+function hwLine(pts,mot,lay){L.polyline(pts,{pane:'hwp',color:lay?'#f0a30a':'#fff',weight:lay?(mot?5:3.5):(mot?9:7),opacity:lay?1:.9,lineCap:'round',lineJoin:'round',smoothFactor:1.5,interactive:false}).addTo(hwG)}
+function drawHw(els){const best={},ways=[];
+ els.forEach(w=>{if(!w.geometry)return;const pts=w.geometry.map(g=>[g.lat,g.lon]),mot=w.tags&&w.tags.highway==='motorway';ways.push([pts,mot]);
+  const ref=((w.tags&&w.tags.ref)||'').split(';')[0].trim();if(ref&&(!best[ref]||pts.length>best[ref].length))best[ref]=pts});
+ ways.forEach(w=>hwLine(w[0],w[1],0));ways.forEach(w=>hwLine(w[0],w[1],1));
+ Object.keys(best).forEach(ref=>{const m=best[ref][Math.floor(best[ref].length/2)];L.marker(m,{icon:L.divIcon({className:'hwlw',html:'<div class="hwl">'+ref+'</div>',iconSize:[0,0]}),interactive:false}).addTo(hwG)})}
+async function loadHw(){if(hwLoaded||!live)return;hwLoaded=true;
+ live.createPane('hwp');live.getPane('hwp').style.zIndex=390;live.getPane('hwp').style.pointerEvents='none';
+ hwG=L.layerGroup();if(hwOn)hwG.addTo(live);
+ const q='[out:json][timeout:25];(way["highway"="motorway"](37.85,23.55,38.52,24.05);way["highway"="trunk"](38.20,23.50,38.52,24.05););out geom;';
+ for(const ep of['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter']){
+  try{const r=await fetchT(ep+'?data='+encodeURIComponent(q),30000),j=await r.json();if(j.elements&&j.elements.length){drawHw(j.elements);return}}catch(e){}}
+ /* fallback: mark the main car routes themselves as highways */
+ const ros=[OPT(1,'c'),OPT(2,'c'),OPT(2,'h'),OPT(3,'c')];await Promise.all(ros.map(o=>o.rp));
+ ros.forEach(o=>{if(o.ok){hwLine(o.pa,1,0);hwLine(o.pa,1,1)}})}
+/* ---------- route animation ---------- */
+function clearRoute(){tok++;[cas,route,veh].forEach(l=>l&&live&&live.removeLayer(l));cas=route=veh=null;trail.splice(0).forEach(l=>live&&live.removeLayer(l))}
+function keepTrail(){if(route){route.setStyle({weight:3,opacity:.5});trail.push(route)}[cas,veh].forEach(l=>l&&live.removeLayer(l));cas=route=veh=null}
+async function run(o,opt){opt=opt||{};const my=++tok;if(!live)return;
+ if(opt.film)keepTrail();else{[cas,route,veh].forEach(l=>l&&live.removeLayer(l));cas=route=veh=null}
+ if(o.rp){await Promise.race([o.rp,sleep(4000)]);if(my!==tok)return}
+ const pa=o.pa,c=cum(pa),N=pa.length-1,ms=opt.ms||o.ms||({plane:6500,boat:4500}[o.i]||6000);
+ cas=L.polyline([pa[0]],{color:'#fff',weight:9,opacity:.95,lineCap:'round',lineJoin:'round',interactive:false}).addTo(live);
+ route=L.polyline([pa[0]],Object.assign({color:'#111',weight:4.5,lineCap:'round',lineJoin:'round',interactive:false},o.i==='boat'?{dashArray:'1 11'}:{})).addTo(live);
+ veh=L.marker(pa[0],{icon:L.divIcon({className:'veh',html:`<div class="vi">${ic(o.i,22)}</div>`,iconSize:[42,42],iconAnchor:[21,21]}),interactive:false,zIndexOffset:900}).addTo(live);
+ if(!opt.film){document.querySelectorAll('.opt').forEach(b=>b.classList.toggle('on',b.dataset.k===o.k));
+  $('pInfo').style.display='block';$('pInfo').innerHTML=`<small>${T(o.l)}</small><h3>${T(o.t)}</h3><p>${T(o.c)}${o.n?'<br>'+T(o.n):''}</p>`}
+ return new Promise(res=>{const t0=performance.now();const f=ts=>{if(my!==tok)return res();
+  const k=Math.min(Math.max((ts-t0)/ms,0),1),q=at(pa,c,ease(k)),sl=pa.slice(0,q.i+1);sl.push(q.pt);
+  cas.setLatLngs(sl);route.setLatLngs(sl);veh.setLatLng(q.pt);
+  if(o.i==='plane'){const d=veh._icon&&veh._icon.firstChild;if(d)d.style.transform=`rotate(${brg(pa[q.i],pa[Math.min(N,q.i+1)])}deg)`}
+  k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)})}
+function setPins(pts){pg&&live.removeLayer(pg);pg=L.layerGroup((pts||[]).map(s=>L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:500}))).addTo(live)}
+/* smooth camera move; resolves when it arrives */
+function camTo(c,o){o=o||{};return new Promise(res=>{if(!live)return res();let d=0;const fin=()=>{if(!d){d=1;res()}},ms=o.ms||1.8;
+ const b=c.c?L.latLng(c.c).toBounds(c.m||5000):L.latLngBounds(c.b),H=live.getSize().y;
+ const bot=Math.min(o.film?190:$('dock').offsetHeight+34+(o.opts?70:0),H*.55),top=o.film?80:72;
+ live.once('moveend',fin);setTimeout(fin,ms*1000+700);
+ live.flyToBounds(b,{paddingTopLeft:[60,top],paddingBottomRight:[60,bot],duration:ms,maxZoom:c.z||(c.c?15:12),easeLinearity:.2})})}
+/* ---------- interactive phases ---------- */
+function phase(i,keep,ms){if(filming)return;pt++;ph=i;const p=PH[i],my=pt;clearRoute();
  $('pT').textContent=T(p.h);
  $('pTabs').innerHTML=PH.map((q,j)=>`<button class="tb${j===i?' on':''}" data-p="${j}">${T(q.n)}</button>`).join('');
  let h=`<p>${T(p.p)}</p>`;
- if(p.st)h+='<div class="mini">'+p.st.map(s=>`<div><b data-n="${s[0]}" data-pre="${s[1]==='€'?'€':''}" data-s="${s[1]==='+'?'+':''}">0</b><span>${T(s[2])}</span></div>`).join('')+'</div>';
- if(p.bars){const M=rtl()?'יפמאמיואסונד'.split(''):'JFMAMJJASOND'.split('');h+='<div class="bars">'+p.bars[0].map((v,k)=>`<i style="height:${v/1.4}%;${v>=110?'background:#b5b5b5':''}"><em>${M[k]}</em></i>`).join('')+`</div><small class="cap">${T(p.bars[1])}</small>`}
  if(p.opts.length)h+='<div class="tools">'+p.opts.map(o=>`<button class="tb opt" data-k="${o.k}">${ic(o.i,16)} ${T(o.l)}</button>`).join('')+'</div>';
  if(p.jump)h+='<div class="tools">'+p.pts.map((s,j)=>`<button class="tb" data-j="${j}">${T(s[0])}</button>`).join('')+'</div>';
- $('pBody').innerHTML=h;$('pInfo').style.display='none';$('pTools').style.display=p.jump?'flex':'none';
- counters($('pBody'));
+ $('pBody').innerHTML=h;
+ let x='';
+ if(p.st)x+='<div class="mini">'+p.st.map(s=>`<div><b data-n="${s[0]}" data-pre="${s[1]==='€'?'€':''}" data-s="${s[1]==='+'?'+':''}">0</b><span>${T(s[2])}</span></div>`).join('')+'</div>';
+ if(p.bars){const M=rtl()?'יפמאמיואסונד'.split(''):'JFMAMJJASOND'.split('');x+='<div class="bars">'+p.bars[0].map((v,k)=>`<i style="height:${v/1.4}%;${v>=110?'background:#b5b5b5':''}"><em>${M[k]}</em></i>`).join('')+`</div><small class="cap">${T(p.bars[1])}</small>`}
+ $('pExtra').innerHTML=x;$('pInfo').style.display='none';$('pTools').style.display=p.jump?'flex':'none';
+ counters($('pExtra'));
  if(!live)return;
- if((i===4)!==lsat){lsat=i===4;setLBase();$('lSat').classList.toggle('on',lsat)}
- pg&&live.removeLayer(pg);pg=L.layerGroup(p.pts.map(s=>{return L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:500})})).addTo(live);
- live.flyToBounds(p.b,{padding:[70,70],duration:keep?.1:.9,maxZoom:i===4?11:12});
- if(!keep&&p.opts.length){const my=pt;setTimeout(()=>{if(my===pt)run(p.opts[0])},800)}}
+ const sat=i>=4;if(sat!==lsat){lsat=sat;setLBase();$('lSat').classList.toggle('on',lsat)}
+ setPins(p.pts);
+ camTo(p.town?{c:p.town.c,m:p.town.m}:{b:p.b},{ms:ms||(keep?.1:2.4),opts:p.opts.length}).then(()=>{if(!keep&&p.opts.length&&my===pt)setTimeout(()=>{if(my===pt)run(p.opts[0])},350)})}
 $('pTabs').onclick=e=>{const b=e.target.closest('[data-p]');if(b)phase(+b.dataset.p)};
-$('pBody').onclick=e=>{const o=e.target.closest('.opt'),j=e.target.closest('[data-j]');if(o){pt++;run(PH[ph].opts.find(x=>x.k===o.dataset.k))}if(j&&live)live.flyTo(PH[4].pts[+j.dataset.j][1],14,{duration:1.6})};
+$('pBody').onclick=e=>{const o=e.target.closest('.opt'),j=e.target.closest('[data-j]');if(o&&!filming){pt++;run(PH[ph].opts.find(x=>x.k===o.dataset.k))}if(j&&live)camTo({c:PH[6].pts[+j.dataset.j][1],m:3500},{ms:2.4})};
 $('pNext').onclick=()=>phase(Math.min(ph+1,PH.length-1));
-$('play').onclick=async()=>{const my=++pt;for(let i=0;i<4;i++){phase(i,true,true);await sleep(700);if(my!==pt)return;await run(PH[i].opts[0]);await sleep(600);if(my!==pt)return}phase(4,false,true)};
-function initMap(){if(live){live.invalidateSize();phase(0);return}
+$('play').onclick=()=>filming?stopFilm():film();
+$('fstop').onclick=()=>stopFilm();
+/* ---------- the mini film ---------- */
+const capHTML=c=>`<div class="cc">${c.n?`<div class="cn">${T(c.n)}</div>`:''}<h3>${T(c.t)}</h3><div class="cd">${(c.d||[]).map(x=>`<span>${T(x)}</span>`).join('')}</div></div>`;
+function showCap(c){curCap=c;const e=$('cine');e.innerHTML=capHTML(c);e.classList.toggle('full',!!c.full);requestAnimationFrame(()=>requestAnimationFrame(()=>e.classList.add('on')))}
+function hideCap(){$('cine').classList.remove('on');curCap=null}
+function refreshCap(){if(curCap)$('cine').innerHTML=capHTML(curCap);if(curPts&&live)setPins(curPts)}
+const scenes=()=>[
+ {full:1,sat:false,cam:{b:[[33.5,21],[40.5,36.5]]},camMs:3,hold:2200,
+  cap:{n:['A short film','סרט קצר'],t:['Tel Aviv to Evia','מתל אביב לאוויה'],d:[['Door to door, step by step','מדלת לדלת, צעד אחר צעד']]}},
+ {sat:false,pts:PH[0].pts,cam:{b:PH[0].b},camMs:2.6,route:OPT(0,'f'),ms:8000,hold:900,
+  cap:{n:['01 · By air','01 · בטיסה'],t:['Tel Aviv → Athens','תל אביב → אתונה'],d:[['Direct flight, about 2h 10m','טיסה ישירה, כ־2:10 שעות'],['Many airlines, low fares all year','הרבה חברות תעופה, מחירים נמוכים כל השנה']]}},
+ {sat:false,pts:PH[1].pts,cam:{b:PH[1].b},camMs:2.8,route:OPT(1,'m'),ms:6500,hold:900,
+  cap:{n:['02 · Into the city','02 · אל העיר'],t:['Airport → Athens centre','שדה התעופה → מרכז אתונה'],d:[['Metro line 3, about 40 min, €9–10','מטרו קו 3, כ־40 דק׳, €9–10'],['Taxi €40 fixed by day, or a rental car','מונית במחיר קבוע €40 ביום, או רכב שכור']]}},
+ {sat:false,pts:[PH[2].pts[0],PH[2].pts[1]],cam:{b:[CTR,ORO]},camMs:3,route:OPT(2,'c'),ms:8000,hold:900,
+  cap:{n:['03 · By road','03 · בכביש'],t:['Athens → Oropos','אתונה → אורופוס'],d:[['About 1 hour by car','כשעה נסיעה ברכב'],['Main road: the A1 highway north','הכביש הראשי: כביש A1 צפונה']]}},
+ {sat:false,pts:[PH[2].pts[1],PH[2].pts[2]],cam:{b:[ORO,ERE]},camMs:2.8,route:OPT(3,'f'),ms:5500,hold:800,
+  cap:{n:['04 · By sea','04 · בים'],t:['Oropos → Eretria','אורופוס → ארטריה'],d:[['Ferry, about 23 minutes','מעבורת, כ־23 דקות'],['Runs all year, cars and passengers','פועלת כל השנה, רכבים ונוסעים']]}},
+ {sat:true,pts:PH[4].pts,cam:{c:ERE,m:6500},camMs:3.2,hold:5200,
+  cap:{n:['05 · Arrival','05 · הגעה'],t:['Eretria','ארטריה'],d:[['Seaside town with a promenade and marina','עיירת חוף עם טיילת ומרינה'],['Ancient history on your doorstep','היסטוריה עתיקה ממש ליד הבית']]}},
+ {sat:true,pts:[PH[3].pts[1],PH[3].pts[2]],cam:{b:[ERE,CHA]},camMs:3,route:OPT(3,'c'),ms:7000,hold:900,
+  cap:{n:['06 · Along the coast','06 · לאורך החוף'],t:['Eretria → Chalkida','ארטריה → חלקיס'],d:[['About 20 km by car','כ־20 ק״מ ברכב'],['A coastal road','כביש לאורך החוף']]}},
+ {sat:true,pts:PH[5].pts,cam:{c:CHA,m:7500},camMs:3,hold:5200,
+  cap:{n:['07 · The capital','07 · בירת האי'],t:['Chalkida','חלקיס'],d:[['Shops, hospital and services','חנויות, בית חולים ושירותים'],['Two bridges to the mainland','שני גשרים ליבשת']]}},
+ {sat:false,pts:[PH[2].pts[0],PH[2].pts[3]],cam:{b:[CTR,CHA]},camMs:3.4,route:OPT(2,'h'),ms:9000,hold:900,
+  cap:{n:['08 · Another way','08 · דרך נוספת'],t:['Athens → Chalkida by road','אתונה → חלקיס בכביש'],d:[['About 1h 15m by car','כ־1:15 שעות ברכב'],['Over the bridge, no ferry needed','מעל הגשר, בלי מעבורת']]}},
+ {full:1,sat:false,pts:PH[6].pts,cam:{b:[[38.25,23.55],[38.55,23.95]]},camMs:3.4,hold:3200,
+  cap:{n:['Your home in Evia','הבית שלכם באוויה'],t:['Eretria · Oropos · Chalkida','ארטריה · אורופוס · חלקיס'],d:[['Let’s build your shortlist','בואו נבנה לכם רשימה מותאמת']]}}
+];
+const FILM_LOCKS=['dragging','scrollWheelZoom','doubleClickZoom','touchZoom','boxZoom','keyboard'];
+async function film(){if(!live||filming)return;
+ const my=++fTok,SC=scenes();filming=true;pt++;clearRoute();hideCap();
+ $('s4').classList.add('film');FILM_LOCKS.forEach(k=>live[k]&&live[k].disable());
+ const W=ms=>new Promise((res,rej)=>setTimeout(()=>my===fTok?res():rej('stop'),ms)),fp=$('fprog').firstElementChild;fp.style.width='0';
+ try{
+  await W(1100);
+  for(let i=0;i<SC.length;i++){const s=SC[i];fp.style.width=(i/SC.length*100)+'%';
+   if(s.sat!==undefined&&s.sat!==lsat){lsat=s.sat;setLBase();$('lSat').classList.toggle('on',lsat)}
+   curPts=s.pts||null;setPins(curPts);
+   const cam=camTo(s.cam,{ms:s.camMs||2.8,film:true});showCap(s.cap);await cam;if(my!==fTok)throw'stop';
+   if(s.route){await run(s.route,{film:true,ms:s.ms});if(my!==fTok)throw'stop'}
+   await W(s.hold||1000);hideCap();await W(1100)}
+  fp.style.width='100%';await W(700)
+ }catch(e){if(e!=='stop')console.error(e)}
+ if(my===fTok)endFilm()}
+function stopFilm(){if(!filming)return;fTok++;tok++;endFilm()}
+function endFilm(){filming=false;$('s4').classList.remove('film');hideCap();curPts=null;
+ if(live){FILM_LOCKS.forEach(k=>live[k]&&live[k].enable());phase(0,true,2.6)}}
+/* ---------- map setup ---------- */
+function initMap(){if(live){live.invalidateSize();if(!filming)phase(0);return}
  const Lf=window.L;if(!Lf){$('liveMsg').style.display='block';return}
  try{live=Lf.map('live',{zoomControl:false,zoomSnap:.25}).setView([36,28],5);Lf.control.zoom({position:'bottomright'}).addTo(live);setLBase();
   const gm=()=>{const c=live.getCenter();$('gm').href=`https://www.google.com/maps/@${c.lat.toFixed(5)},${c.lng.toFixed(5)},${Math.round(live.getZoom())}z/data=!3m1!1e${lsat?3:0}`};live.on('moveend',gm);gm();
@@ -480,14 +651,15 @@ function initMap(){if(live){live.invalidateSize();phase(0);return}
   c.addEventListener('pointerdown',e=>{if(lmode!=='draw'||e.target.closest('.leaflet-control'))return;live.dragging.disable();lln=Lf.polyline([live.mouseEventToLatLng(e)],{color:'#ff4d4d',weight:5,lineCap:'round'}).addTo(live);c.setPointerCapture(e.pointerId)});
   c.addEventListener('pointermove',e=>{if(lln)lln.addLatLng(live.mouseEventToLatLng(e))});
   const en=()=>{if(lln){lmine.push(lln);lln=null;live.dragging.enable()}};c.addEventListener('pointerup',en);c.addEventListener('pointercancel',en);
-  setTimeout(()=>{live.invalidateSize();phase(0)},120)}catch(err){$('liveMsg').style.display='block'}}
-function setLBase(){const Lf=window.L;[lbase,lref].forEach(l=>l&&live.removeLayer(l));
- const er=()=>$('liveMsg').style.display='block';
+  setTimeout(()=>{live.invalidateSize();prefetch();loadHw();phase(0)},120)}catch(err){$('liveMsg').style.display='block'}}
+function setLBase(){const Lf=window.L,old=[lbase,lref],er=()=>$('liveMsg').style.display='block';
  if(lsat){lbase=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles &copy; Esri',maxZoom:18}).on('tileerror',er).addTo(live);
   lref=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:18}).addTo(live)}
  else{lbase=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles &copy; Esri',maxZoom:18,maxNativeZoom:16}).on('tileerror',er).addTo(live);
-  lref=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,maxNativeZoom:16}).addTo(live)}}
-$('lSat').onclick=e=>{if(!live)return;lsat=!lsat;e.target.classList.toggle('on',lsat);setLBase()};
+  lref=Lf.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,maxNativeZoom:16}).addTo(live)}
+ setTimeout(()=>old.forEach(l=>l&&live.removeLayer(l)),1000)}
+$('lSat').onclick=e=>{if(!live)return;lsat=!lsat;e.currentTarget.classList.toggle('on',lsat);setLBase()};
+$('lHw').onclick=e=>{hwOn=!hwOn;e.currentTarget.classList.toggle('on',hwOn);if(hwG&&live)hwOn?hwG.addTo(live):live.removeLayer(hwG)};
 function lmodeSet(m){lmode=lmode===m?null:m;$('lDraw').classList.toggle('on',lmode==='draw');$('lPin').classList.toggle('on',lmode==='pin')}
 $('lDraw').onclick=()=>lmodeSet('draw');$('lPin').onclick=()=>lmodeSet('pin');
 $('lUndo').onclick=()=>{const l=lmine.pop();if(l&&live)live.removeLayer(l)};$('lClr').onclick=()=>{lmine.splice(0).forEach(l=>live.removeLayer(l))};
