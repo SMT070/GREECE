@@ -42,6 +42,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 #s0{justify-content:flex-end;padding-bottom:14vh}
 #s0 h1{font-size:clamp(3.4rem,9vw + 1vh,9rem);max-width:11ch}
 #s0 p{margin:1.4rem 0 1.8rem;font-size:clamp(1.1rem,1.6vw,1.7rem)}
+#s0 .bgp:after{background:linear-gradient(180deg,#0006 0,#0002 22%,#0008 52%,#000e 100%)}#s0 .bgp:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#000a 0,#0004 55%,#0000 100%)}#s0 .hs img{object-position:50% 40%}#s0 h1,#s0 p,#s0 .eyebrow,#s0 .big{text-shadow:0 2px 24px #000c,0 1px 3px #0008}
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;margin-top:3vh}
 .stat b{display:block;font-family:var(--hf);font-size:clamp(4rem,11vw,10rem);font-weight:500;line-height:1;color:var(--ac)}
@@ -352,7 +353,7 @@ const PROPS=[
  {area:'Oropos',price:'€ 000,000',img:'',en:['Modern garden house','2 bedrooms · 95 m² · 400 m² plot · minutes from the port'],he:['בית מודרני עם גינה','2 חדרי שינה · 95 מ״ר · מגרש 400 מ״ר · דקות מהנמל']},
  {area:'Eretria',price:'€ 000,000',img:'',en:['Investment apartment','1 bedroom · 60 m² · walking distance to the sea'],he:['דירת השקעה','חדר שינה · 60 מ״ר · הליכה קצרה לים']}
 ];
-const HERO=['main','chiliadou-beach','chalkida','evia-bridge','dirfys-mountain','amarynthos'];
+const HERO=['main'];
 /* stops: ll=[lat,lon]. Edit freely. */
 const S=[
  {ll:[32.0114,34.8867],en:['Tel Aviv','Direct flight, about 2.5 hours'],he:['תל אביב','טיסה ישירה, כ־2.5 שעות']},
