@@ -109,6 +109,15 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 @media(max-width:860px){.slide{padding:84px 6vw 84px;overflow:auto}.stats,.four,.tri,.duo,.steps,.homes{grid-template-columns:1fr;height:auto}.fg{height:30vh}.pic{position:relative;width:100%;height:30vh;inset:auto}#s5{padding-inline-start:6vw}.mp{grid-template-columns:1fr;grid-template-rows:auto 1fr;overflow:auto}.mb{min-height:50vh}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{.chrome{display:none}html,body{overflow:visible;height:auto}.slide{position:relative;opacity:1;visibility:visible;transform:none;height:100vh;page-break-after:always}}
+
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:2vw;margin-top:3vh}
+.mem{background:var(--card);padding:20px 22px;border-top:2px solid var(--ac);box-shadow:0 18px 40px #0003}
+.av{width:72px;height:72px;border-radius:50%;background:linear-gradient(160deg,var(--ac2),var(--ac));margin-bottom:14px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;font-family:var(--hf);font-size:1.6rem;color:#fff}.av img{position:absolute;inset:0}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.mem small{color:var(--ac2);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.75rem}
+.mem h3{font-size:1.5rem;margin:.15em 0 .3em}.mem p{font-size:.95rem}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4vw;margin-top:4vh}
+@media(max-width:860px){.team,.three{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -122,7 +131,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 <section class="slide dk" id="s0">
  <div class="bgp" id="hs"></div>
  <div class="eyebrow a" style="--i:0">SAMIR Real Estate</div>
- <h1 class="a" style="--i:1" data-e="Your home in Evia, Greece" data-h="הבית שלך באיביה, יוון"></h1>
+ <h1 class="a" style="--i:1" data-e="Your home in Evia, Greece" data-h="הבית שלך באוויה, יוון"></h1>
  <p class="a" style="--i:2" data-e="Summer homes and investments in Eretria and Oropos" data-h="בתי קיץ והשקעות בארטריה ובאורופוס"></p>
  <div class="a" style="--i:3"><span class="big" style="opacity:.8" data-e="Presented by Samir Suidan" data-h="מוצג על ידי סמיר סוידאן"></span></div>
 </section>
@@ -134,8 +143,20 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
  <div class="stats a" style="--i:2">
   <div class="stat"><b data-n="300" data-s="+">0</b><span data-e="sunny days a year" data-h="ימי שמש בשנה"></span></div>
   <div class="stat"><b data-n="2.5" data-d="1">0</b><span data-e="hours, Tel Aviv to Athens" data-h="שעות טיסה, תל אביב לאתונה"></span></div>
-  <div class="stat"><b data-n="2" data-pre="#">0</b><span data-e="Evia: Greece's second-largest island" data-h="איביה: האי השני בגודלו ביוון"></span></div>
+  <div class="stat"><b data-n="2" data-pre="#">0</b><span data-e="Evia: Greece's second-largest island" data-h="אוויה: האי השני בגודלו ביוון"></span></div>
  </div>
+</section>
+
+<section class="slide dk" id="s1b">
+ <div class="bgp"><img class="kb" src="photos/chalkida.jpg" alt="" onerror="this.style.display='none'"></div>
+ <div class="eyebrow a" data-e="Demand" data-h="ביקוש"></div>
+ <h2 class="a" style="--i:1" data-e="40 million visitors a year" data-h="40 מיליון מבקרים בשנה"></h2>
+ <div class="stats a" style="--i:2">
+  <div class="stat"><b data-n="40" data-s="M" style="color:#fff">0</b><span data-e="tourists come to Greece every year" data-h="תיירים מגיעים ליוון מדי שנה"></span></div>
+  <div class="stat"><b data-n="4" data-s="x" style="color:#fff">0</b><span data-e="more visitors than residents" data-h="פי ארבעה מבקרים מתושבים"></span></div>
+  <div class="stat"><b data-n="30" data-pre="~" style="color:#fff">0</b><span data-e="minutes by ferry, Oropos to Eretria" data-h="דקות במעבורת, מאורופוס לארטריה"></span></div>
+ </div>
+ <p class="a" style="--i:3;margin-top:2vh" data-e="Constant demand for places to stay means strong potential for summer rentals and long-term value." data-h="ביקוש קבוע ללינה משמעו פוטנציאל חזק להשכרת קיץ ולערך לאורך זמן."></p>
 </section>
 
 <!-- 3 REASONS -->
@@ -150,11 +171,32 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
  </div>
 </section>
 
+<section class="slide alt" id="s2b">
+ <div class="eyebrow a" data-e="Why invest" data-h="למה להשקיע"></div>
+ <h2 class="a" style="--i:1" data-e="Why invest in Greece" data-h="למה להשקיע ביוון"></h2>
+ <div class="three">
+  <div class="card a" style="--i:2"><i>01</i><h3 data-e="Tourism-driven demand" data-h="ביקוש שנובע מתיירות"></h3><p data-e="Tens of millions of visitors support the rental market, especially in summer." data-h="עשרות מיליוני מבקרים תומכים בשוק ההשכרה, במיוחד בקיץ."></p></div>
+  <div class="card a" style="--i:3"><i>02</i><h3 data-e="Room to grow" data-h="מקום לצמיחה"></h3><p data-e="Evia is still far more affordable than the famous islands, with more upside." data-h="אוויה עדיין זולה בהרבה מהאיים המפורסמים, עם פוטנציאל גבוה יותר."></p></div>
+  <div class="card a" style="--i:4"><i>03</i><h3 data-e="Use it and earn from it" data-h="נהנים ומרוויחים"></h3><p data-e="Enjoy your own summer home and rent it out when you are away." data-h="נהנים מבית הקיץ שלכם ומשכירים אותו כשאתם לא שם."></p></div>
+ </div>
+</section>
+
+<section class="slide" id="s2c">
+ <div class="eyebrow a" data-e="Peace of mind" data-h="שקט נפשי"></div>
+ <h2 class="a" style="--i:1" data-e="Reasons to be confident" data-h="סיבות להרגיש בטוחים"></h2>
+ <div class="four">
+  <div class="card a" style="--i:2"><i>01</i><h3 data-e="EU member" data-h="חברה באיחוד האירופי"></h3><p data-e="Property rights protected under Greek and European law." data-h="זכויות הקניין מוגנות לפי החוק היווני והאירופי."></p></div>
+  <div class="card a" style="--i:3"><i>02</i><h3 data-e="Your own lawyer" data-h="עורך דין משלכם"></h3><p data-e="Independent legal check of title, permits and debts before you sign." data-h="בדיקה משפטית עצמאית של בעלות, היתרים וחובות לפני החתימה."></p></div>
+  <div class="card a" style="--i:4"><i>03</i><h3 data-e="Notary and registry" data-h="נוטריון ורישום"></h3><p data-e="The deal is signed before a notary and registered officially." data-h="העסקה נחתמת מול נוטריון ונרשמת רשמית."></p></div>
+  <div class="card a" style="--i:5"><i>04</i><h3 data-e="Transparent from day one" data-h="שקיפות מהיום הראשון"></h3><p data-e="Clear costs, clear steps, and a local team on the ground." data-h="עלויות ברורות, שלבים ברורים וצוות מקומי בשטח."></p></div>
+ </div>
+</section>
+
 <!-- 4 EVIA -->
 <section class="slide dk" id="s3">
  <div class="bgp"><img class="kb" src="photos/dirfys-mountain.jpg" alt="Mount Dirfys" onerror="this.style.display='none'"></div>
  <div class="eyebrow a" data-e="The island" data-h="האי"></div>
- <h2 class="a" style="--i:1" data-e="Evia: the island you can drive to" data-h="איביה: האי שאפשר להגיע אליו ברכב"></h2>
+ <h2 class="a" style="--i:1" data-e="Evia: the island you can drive to" data-h="אוויה: האי שאפשר להגיע אליו ברכב"></h2>
  <ul class="ul">
   <li class="a" style="--i:2" data-e="Greece's second-largest island" data-h="האי השני בגודלו ביוון"></li>
   <li class="a" style="--i:3" data-e="Joined to the mainland by road at Chalkida" data-h="מחובר ליבשת בכביש בחלקיס"></li>
@@ -205,7 +247,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
  <p class="a" style="--i:2" data-e="Shops, hospital and services, linked to the mainland by two bridges." data-h="חנויות, בית חולים ושירותים, מחוברת ליבשת בשני גשרים."></p>
  <div class="tri">
   <figure class="fg a" style="--i:3"><img class="kb" src="photos/chalkida.jpg" alt="" onerror="this.style.display='none'"><figcaption data-e="Chalkida" data-h="חלקיס"></figcaption></figure>
-  <figure class="fg a" style="--i:4"><img class="kb" src="photos/evia-bridge.jpg" alt="" onerror="this.style.display='none'"><figcaption data-e="The new Evia bridge" data-h="גשר איביה החדש"></figcaption></figure>
+  <figure class="fg a" style="--i:4"><img class="kb" src="photos/evia-bridge.jpg" alt="" onerror="this.style.display='none'"><figcaption data-e="The new Evia bridge" data-h="גשר אוויה החדש"></figcaption></figure>
   <figure class="fg a" style="--i:5"><img class="kb" src="photos/old-bridge.jpg" alt="" onerror="this.style.display='none'"><figcaption data-e="The old bridge" data-h="הגשר הישן"></figcaption></figure>
  </div>
 </section>
@@ -259,6 +301,31 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
  </div>
 </section>
 
+<section class="slide" id="s10w">
+ <div class="eyebrow a" data-e="How we work" data-h="איך אנחנו עובדים"></div>
+ <h2 class="a" style="--i:1" data-e="One team, start to finish" data-h="צוות אחד, מההתחלה ועד הסוף"></h2>
+ <div class="four">
+  <div class="card a" style="--i:2"><i>01</i><h3 data-e="Listen" data-h="מקשיבים"></h3><p data-e="We learn your goals, budget and timing first." data-h="קודם כול מבינים את המטרות, התקציב ולוחות הזמנים."></p></div>
+  <div class="card a" style="--i:3"><i>02</i><h3 data-e="Shortlist" data-h="רשימה מותאמת"></h3><p data-e="Only homes that fit you, visited with you or by video." data-h="רק בתים שמתאימים לכם, בסיור משותף או בווידאו."></p></div>
+  <div class="card a" style="--i:4"><i>03</i><h3 data-e="Protect" data-h="מגנים"></h3><p data-e="Lawyer, engineer and accountant check everything." data-h="עורך דין, מהנדס ורואה חשבון בודקים הכול."></p></div>
+  <div class="card a" style="--i:5"><i>04</i><h3 data-e="After the sale" data-h="אחרי המכירה"></h3><p data-e="Keys, utilities, furnishing and rental management, if you want it." data-h="מפתחות, חשבונות, ריהוט וניהול השכרה, אם תרצו."></p></div>
+ </div>
+</section>
+
+<section class="slide alt" id="s10t">
+ <div class="eyebrow a" data-e="The team" data-h="הצוות"></div>
+ <h2 class="a" style="--i:1" data-e="The people behind your purchase" data-h="האנשים שמאחורי הרכישה"></h2>
+ <div class="team">
+  <div class="mem a" style="--i:2"><div class="av">SS<img src="photos/team-samir.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Founder" data-h="מייסד"></small><h3>Samir Suidan</h3><p data-e="Your main contact, from first call to keys." data-h="איש הקשר שלכם, משיחה ראשונה ועד המפתחות."></p></div>
+  <div class="mem a" style="--i:3"><div class="av">EK<img src="photos/team-lawyer.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Greek lawyer" data-h="עורך דין ביוון"></small><h3>Eleni Karras</h3><p data-e="Title checks, contracts and the notary." data-h="בדיקת בעלות, חוזים ונוטריון."></p></div>
+  <div class="mem a" style="--i:3"><div class="av">DL<img src="photos/team-israeli-lawyer.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Israeli lawyer" data-h="עורך דין בישראל"></small><h3>Dana Levi</h3><p data-e="Speaks your language. Reviews the deal in Hebrew and guides Israeli reporting." data-h="בשפה שלכם. בודקת את העסקה בעברית ומלווה בדיווחים בישראל."></p></div>
+  <div class="mem a" style="--i:4"><div class="av">NM<img src="photos/team-engineer.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Civil engineer" data-h="מהנדס אזרחי"></small><h3>Nikos Mavros</h3><p data-e="Building, permits and condition survey." data-h="מבנה, היתרים ובדיקת מצב הנכס."></p></div>
+  <div class="mem a" style="--i:5"><div class="av">DA<img src="photos/team-accountant.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Accountant" data-h="רואה חשבון"></small><h3>Dimitra Alexiou</h3><p data-e="Tax number, taxes and rental income." data-h="מספר מס, מיסים והכנסה משכירות."></p></div>
+  <div class="mem a" style="--i:6"><div class="av">YS<img src="photos/team-manager.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Property manager" data-h="מנהל נכס"></small><h3>Yannis Stavros</h3><p data-e="Cleaning, maintenance and guests while you are away." data-h="ניקיון, תחזוקה ואורחים כשאתם לא שם."></p></div>
+  <div class="mem a" style="--i:7"><div class="av">KL<img src="photos/team-agent.jpg" alt="" onerror="this.style.display='none'"></div><small data-e="Local agent, Greece" data-h="סוכן מקומי, יוון"></small><h3>Katerina Lamprou</h3><p data-e="On the ground in Eretria and Oropos." data-h="בשטח בארטריה ובאורופוס."></p></div>
+ </div>
+</section>
+
 <!-- 12 CONTACT -->
 <section class="slide dk" id="s10">
  <div class="bgp"><img class="kb" src="photos/chiliadou-beach.jpg" alt="" onerror="this.style.display='none'"></div>
@@ -275,7 +342,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
  <small class="a" style="--i:5;opacity:.7;margin-top:1.6rem;max-width:60ch" data-e="Information is indicative and subject to change. Distances are approximate. Not financial or legal advice." data-h="המידע מנחה בלבד ועשוי להשתנות. המרחקים משוערים. אין לראות בכך ייעוץ פיננסי או משפטי."></small>
 </section>
 
-<div class="chrome" id="bot"><span id="cnt">01 / 12</span><div id="prog"></div><button class="ar" id="prv" aria-label="Previous">‹</button><button class="ar" id="nxt" aria-label="Next">›</button></div>
+<div class="chrome" id="bot"><span id="cnt">01 / 17</span><div id="prog"></div><button class="ar" id="prv" aria-label="Previous">‹</button><button class="ar" id="nxt" aria-label="Next">›</button></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -291,7 +358,7 @@ const S=[
  {ll:[32.0114,34.8867],en:['Tel Aviv','Direct flight, about 2.5 hours'],he:['תל אביב','טיסה ישירה, כ־2.5 שעות']},
  {ll:[37.9364,23.9445],en:['Athens Airport','Eleftherios Venizelos (ATH). You land here.'],he:['נמל התעופה אתונה','אלפתריוס ונייזלוס (ATH). כאן נוחתים.']},
  {ll:[37.9838,23.7275],en:['Athens','Approx. 35 km from the airport'],he:['אתונה','כ־35 ק״מ מנמל התעופה']},
- {ll:[38.3235,23.7880],en:['Oropos','Approx. 50 km from Athens. Ferry port to Evia.'],he:['אורופוס','כ־50 ק״מ מאתונה. נמל המעבורת לאיביה.']},
+ {ll:[38.3235,23.7880],en:['Oropos','Approx. 50 km from Athens. Ferry port to Evia.'],he:['אורופוס','כ־50 ק״מ מאתונה. נמל המעבורת לאוויה.']},
  {ll:[38.3965,23.8035],en:['Eretria','A short ferry crossing from Oropos'],he:['ארטריה','חציית מעבורת קצרה מאורופוס']},
  {ll:[38.4636,23.5983],en:['Chalkida','Approx. 20 km from Eretria. Bridge to the mainland.'],he:['חלקיס','כ־20 ק״מ מארטריה. גשר ליבשת.']}
 ];
@@ -317,7 +384,7 @@ function show(i){i=Math.max(0,Math.min(sl.length-1,i));if(booted&&i===n)return;
  $('cnt').textContent=String(n+1).padStart(2,'0')+' / '+String(sl.length).padStart(2,'0');
  document.querySelectorAll('#prog i').forEach((e,k)=>e.classList.toggle('on',k<=n));
  history.replaceState(null,'','#'+(n+1));
- if(sl[n].id==='s1')counters(sl[n]);
+ if(sl[n].querySelector('[data-n]'))counters(sl[n]);
  if(sl[n].id==='s4')setTimeout(apply,60);
  if(sl[n].id==='s8')setTimeout(initLive,80);
 }
