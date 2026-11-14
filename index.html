@@ -245,17 +245,17 @@ input,textarea{-webkit-user-select:text;user-select:text}
 @media(max-width:860px){.slide.fs{justify-content:flex-end}.fstats{grid-template-columns:1fr;gap:16px}.fs h2{font-size:clamp(3rem,16vw,5rem)}}
 /* ---- tourism slides (added) ---- */
 #s1c,#s1d,#s1e{background:#fff}
-#s1c .eyebrow,#s1d .eyebrow,#s1e .eyebrow{color:#0b5cad}
-#s1b .stat b{color:#ffd166!important}
-.dc b,.tf b{color:#0b5cad}
+#s1c .eyebrow,#s1d .eyebrow,#s1e .eyebrow{color:#111111}
+#s1b .stat b{color:#ffffff!important}
+.dc b,.tf b{color:#111111}
 .lg em{direction:ltr;unicode-bidi:isolate}
-.lg div{border-bottom-color:#0b5cad22}
-#s1d .br .fl{background:#0b5cad;color:#fff}#s1d .br .fl.md{background:#f4b223;color:#111}
-#s1d .br .tr,#s1e .br .tr{background:#0b5cad14}
-#s1e .tc .br .fl{background:#f4b223;color:#111}#s1e .tc .br .fl.lt{background:#0b5cad;color:#fff}
-.tc>div:nth-child(1){border-top-color:#f4b223}.tc>div:nth-child(1) b{color:#d98c00}
-.tc>div:nth-child(2){border-top-color:#0b5cad}.tc>div:nth-child(2) b{color:#0b5cad}
-.tc>div:nth-child(3){border-top-color:#e4572e}.tc>div:nth-child(3) b{color:#e4572e}
+.lg div{border-bottom-color:#11111122}
+#s1d .br .fl{background:#111111;color:#fff}#s1d .br .fl.md{background:#b5b5b2;color:#111}
+#s1d .br .tr,#s1e .br .tr{background:#11111114}
+#s1e .tc .br .fl{background:#b5b5b2;color:#111}#s1e .tc .br .fl.lt{background:#111111;color:#fff}
+.tc>div:nth-child(1){border-top-color:#b5b5b2}.tc>div:nth-child(1) b{color:#555555}
+.tc>div:nth-child(2){border-top-color:#111111}.tc>div:nth-child(2) b{color:#111111}
+.tc>div:nth-child(3){border-top-color:#555555}.tc>div:nth-child(3) b{color:#555555}
 @media(max-width:860px){#s1c,#s1d,#s1e{padding-bottom:130px}}
 .tc{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4vw;margin-top:3vh}
 .tc>div{border-top:2px solid #111;padding-top:14px}
@@ -292,16 +292,21 @@ input,textarea{-webkit-user-select:text;user-select:text}
 
 /* year calendar animation (slide: all year round) */
 .yr{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-top:2.6vh}
-.yr .m{position:relative;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:#0b5cad;color:#fff;font-weight:600;font-size:clamp(.8rem,1.1vw,1.1rem);opacity:0}
-.yr .m.su{background:#f4b223;color:#111}
-.yr .m.jn{outline:3px solid #e4572e;outline-offset:2px}
-.yr .m em{position:absolute;top:-12px;inset-inline:0;margin:auto;width:max-content;background:#e4572e;color:#fff;font-style:normal;font-size:.72rem;padding:1px 7px;border-radius:99px;direction:ltr}
+.yr .m{position:relative;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:#111111;color:#fff;font-weight:600;font-size:clamp(.8rem,1.1vw,1.1rem);opacity:0}
+.yr .m.su{background:#b5b5b2;color:#111}
+.yr .m.jn{outline:3px solid #555555;outline-offset:2px}
+.yr .m em{position:absolute;top:-12px;inset-inline:0;margin:auto;width:max-content;background:#555555;color:#fff;font-style:normal;font-size:.72rem;padding:1px 7px;border-radius:99px;direction:ltr}
 .slide.on .yr .m{animation:mp .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k)*.13s + .8s)}
 @keyframes mp{from{opacity:0;transform:translateY(18px) scale(.6)}to{opacity:1;transform:none}}
 .yk{display:flex;flex-wrap:wrap;gap:6px 28px;margin:1.4vh 0 0;font-size:.95rem}.yk span{display:inline-flex;align-items:center;gap:8px}.yk i{width:14px;height:14px;display:inline-block}
 #s1e .tc{margin-top:2.4vh}#s1e .tc b{font-size:clamp(2.2rem,4vw,3.6rem)}
 #s1e{justify-content:center}#s1e h2{max-width:none;font-size:clamp(2rem,3.4vw,3.4rem)}.yr .m{aspect-ratio:1/.9;font-size:clamp(.9rem,1.3vw,1.3rem)}#s1e small{margin-top:.8rem!important}
 @media(max-width:860px){.yr{grid-template-columns:repeat(6,1fr)}}
+
+.yr .m.jn{outline-color:#111}.yr .m em{background:#111}
+.yr .m.su{color:#111}
+.tc>div{border-top-color:#111!important}.tc>div b{color:#111!important}
+#s1c .eyebrow,#s1d .eyebrow,#s1e .eyebrow{color:#111}
 </style>
 </head>
 <body>
@@ -348,14 +353,14 @@ input,textarea{-webkit-user-select:text;user-select:text}
  <div class="eyebrow a" data-e="Where visitors come from" data-h="מאיפה המבקרים מגיעים"></div>
  <h2 class="a" style="--i:1" data-e="The whole world comes to Greece" data-h="כל העולם מגיע ליוון"></h2>
  <div class="tg">
-  <div class="dw a" style="--i:2"><div class="dn" style="background:conic-gradient(#0b5cad 0.00% 15.80%,#e4572e 15.80% 28.67%,#2fa36b 28.67% 34.47%,#f4b223 34.47% 39.68%,#7b4fd1 39.68% 43.76%,#cfd9e4 43.76% 100.00%)"></div><div class="dc"><b>‎37.98M‎</b><span>2025</span></div></div>
+  <div class="dw a" style="--i:2"><div class="dn" style="background:conic-gradient(#111111 0.00% 15.80%,#555555 15.80% 28.67%,#777777 28.67% 34.47%,#b5b5b2 34.47% 39.68%,#999999 39.68% 43.76%,#e5e5e3 43.76% 100.00%)"></div><div class="dc"><b>‎37.98M‎</b><span>2025</span></div></div>
   <div class="a" style="--i:3"><div class="lg">
-    <div><i style="background:#0b5cad;"></i><span data-e="Germany" data-h="גרמניה"></span><em>≈6.0M · 16%</em></div>
-    <div><i style="background:#e4572e;"></i><span data-e="United Kingdom" data-h="בריטניה"></span><em>4.89M · 13%</em></div>
-    <div><i style="background:#2fa36b;"></i><span data-e="Italy" data-h="איטליה"></span><em>2.20M · 6%</em></div>
-    <div><i style="background:#f4b223;"></i><span data-e="France" data-h="צרפת"></span><em>1.98M · 5%</em></div>
-    <div><i style="background:#7b4fd1;"></i><span data-e="United States" data-h="ארצות הברית"></span><em>1.55M · 4%</em></div>
-    <div><i style="background:#cfd9e4;border:1px solid #0002;"></i><span data-e="Other countries" data-h="מדינות אחרות"></span><em>21.36M · 56%</em></div>
+    <div><i style="background:#111111;"></i><span data-e="Germany" data-h="גרמניה"></span><em>≈6.0M · 16%</em></div>
+    <div><i style="background:#555555;"></i><span data-e="United Kingdom" data-h="בריטניה"></span><em>4.89M · 13%</em></div>
+    <div><i style="background:#777777;"></i><span data-e="Italy" data-h="איטליה"></span><em>2.20M · 6%</em></div>
+    <div><i style="background:#b5b5b2;"></i><span data-e="France" data-h="צרפת"></span><em>1.98M · 5%</em></div>
+    <div><i style="background:#999999;"></i><span data-e="United States" data-h="ארצות הברית"></span><em>1.55M · 4%</em></div>
+    <div><i style="background:#e5e5e3;border:1px solid #0002;"></i><span data-e="Other countries" data-h="מדינות אחרות"></span><em>21.36M · 56%</em></div>
   </div>
   <p style="margin-top:1.4rem" data-e="Germany and the UK send the most. US visitors are fewer, but they spend among the most per trip." data-h="גרמניה ובריטניה שולחות הכי הרבה. מבקרים מארצות הברית מעטים יותר, אך מוציאים מהגבוה ביותר לנסיעה."></p></div>
  </div>
@@ -383,7 +388,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
  <div class="eyebrow a" data-e="All year round" data-h="לאורך כל השנה"></div>
  <h2 class="a" style="--i:1" data-e="Tourists come all year, not only in summer" data-h="תיירים מגיעים כל השנה, לא רק בקיץ"></h2>
  <div class="yr a" style="--i:2"><div class="m jn" style="--k:0"><span data-e="Jan" data-h="ינו׳"></span><em>+33%</em></div><div class="m" style="--k:1"><span data-e="Feb" data-h="פבר׳"></span></div><div class="m" style="--k:2"><span data-e="Mar" data-h="מרץ"></span></div><div class="m" style="--k:3"><span data-e="Apr" data-h="אפר׳"></span></div><div class="m" style="--k:4"><span data-e="May" data-h="מאי"></span></div><div class="m" style="--k:5"><span data-e="Jun" data-h="יוני"></span></div><div class="m su" style="--k:6"><span data-e="Jul" data-h="יולי"></span></div><div class="m su" style="--k:7"><span data-e="Aug" data-h="אוג׳"></span></div><div class="m su" style="--k:8"><span data-e="Sep" data-h="ספט׳"></span></div><div class="m" style="--k:9"><span data-e="Oct" data-h="אוק׳"></span></div><div class="m" style="--k:10"><span data-e="Nov" data-h="נוב׳"></span></div><div class="m" style="--k:11"><span data-e="Dec" data-h="דצמ׳"></span></div></div>
- <div class="yk a" style="--i:3"><span><i style="background:#f4b223"></i><b data-e="July–September: 52% of foreign tourists" data-h="יולי–ספטמבר: 52% מהתיירים הזרים"></b></span><span><i style="background:#0b5cad"></i><b data-e="The other 9 months: 48%" data-h="תשעת החודשים האחרים: 48%"></b></span></div>
+ <div class="yk a" style="--i:3"><span><i style="background:#b5b5b2"></i><b data-e="July–September: 52% of foreign tourists" data-h="יולי–ספטמבר: 52% מהתיירים הזרים"></b></span><span><i style="background:#111111"></i><b data-e="The other 9 months: 48%" data-h="תשעת החודשים האחרים: 48%"></b></span></div>
  <div class="tc a" style="--i:4">
   <div><b data-n="48" data-s="%">0</b><h3 data-e="of foreign tourists arrive outside the summer" data-h="מהתיירים הזרים מגיעים מחוץ לקיץ"></h3><p data-e="In 2019 the summer share was 56%. The season keeps getting longer." data-h="ב־2019 חלק הקיץ היה 56%. העונה ממשיכה להתארך."></p></div>
   <div><b>+33%</b><h3 data-e="more tourists in January 2026 than January 2025" data-h="יותר תיירים בינואר 2026 מאשר בינואר 2025"></h3><p data-e="1.09 million foreign visitors, the busiest January ever." data-h="1.09 מיליון מבקרים זרים, ינואר העמוס ביותר אי פעם."></p></div>
