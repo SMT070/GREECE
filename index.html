@@ -303,7 +303,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
  <p class="a" style="--i:2" data-e="Three simple steps from Tel Aviv or Haifa to your front door." data-h="שלושה צעדים פשוטים מתל אביב או מחיפה עד הבית שלכם."></p>
  <ul class="ul">
   <li class="a" style="--i:3" data-e="Fly direct to Athens: about 2 hours from Tel Aviv, 3 from Haifa" data-h="טסים ישירות לאתונה: כ־2 שעות מתל אביב, 3 מחיפה"></li>
-  <li class="a" style="--i:4" data-e="Drive from Athens to Oropos, about 1 hour" data-h="נוסעים מאתונה לאורופוס, כשעה"></li>
+  <li class="a" style="--i:4" data-e="Drive from Athens to Oropos, about 40 minutes" data-h="נוסעים מאתונה לאורופוס, כ־40 דקות"></li>
   <li class="a" style="--i:5" data-e="Take the ferry to Eretria, about 25 minutes" data-h="מפליגים לארטריה, כ־25 דקות"></li>
  </ul>
 </section>
@@ -520,9 +520,9 @@ input,textarea{-webkit-user-select:text;user-select:text}
  <h2 class="a" style="--i:1" data-e="Oropos" data-h="אורופוס"></h2>
  <p class="a" style="--i:2" data-e="The mainland gateway on the Attica side." data-h="שער היבשת בצד אטיקה."></p>
  <ul class="ul">
-  <li class="a" style="--i:3" data-e="Athens by road, about 1 hour by car on the A1 highway north, or about 50 minutes from the airport" data-h="אתונה בכביש, כשעה נסיעה ברכב בכביש A1 צפונה, או כ־50 דקות משדה התעופה"></li>
+  <li class="a" style="--i:3" data-e="Athens by road, about 40 minutes by car on the A1 highway north, or about 50 minutes from the airport" data-h="אתונה בכביש, כ־40 דקות נסיעה ברכב בכביש A1 צפונה, או כ־50 דקות משדה התעופה"></li>
   <li class="a" style="--i:4" data-e="The ferry port to Evia, running all year for cars and passengers" data-h="נמל המעבורת לאוויה, פועל כל השנה לרכבים ונוסעים"></li>
-  <li class="a" style="--i:5" data-e="Eretria is just across the water: about 25 minutes by ferry, or about 1 hour by road via Chalkida" data-h="ארטריה ממש מעבר למים: כ־25 דקות במעבורת, או כשעה בכביש דרך חלקיס"></li>
+  <li class="a" style="--i:5" data-e="Eretria is just across the water: about 25 minutes by ferry from Oropos, or about 1 hour 15 minutes from Athens" data-h="ארטריה ממש מעבר למים: כ־25 דקות במעבורת מאורופוס, או כשעה ורבע מאתונה"></li>
  </ul>
 </section>
 
@@ -530,7 +530,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
 <section class="slide alt" id="s6">
  <div class="eyebrow a" data-e="The island's capital" data-h="בירת האי"></div>
  <h2 class="a" style="--i:1" data-e="Chalkida and the bridges" data-h="חלקיס והגשרים"></h2>
- <p class="a" style="--i:2" data-e="Shops, hospital and services, linked to the mainland by two bridges. About 35 minutes by road from Oropos." data-h="חנויות, בית חולים ושירותים, מחוברת ליבשת בשני גשרים. כ־35 דקות בכביש מאורופוס."></p>
+ <p class="a" style="--i:2" data-e="Shops, hospital and services, linked to the mainland by two bridges. About 55 minutes by car from Athens." data-h="חנויות, בית חולים ושירותים, מחוברת ליבשת בשני גשרים. כ־55 דקות נסיעה מאתונה."></p>
  <div class="tri">
   <figure class="fg a" style="--i:3"><img class="kb" src="photos/chalkida.jpg" alt="" onerror="this.style.display='none'"><figcaption data-e="Chalkida" data-h="חלקיס"></figcaption></figure>
   <figure class="fg a" style="--i:4"><img class="kb" src="photos/evia-bridge.jpg" alt="" onerror="this.style.display='none'"><figcaption data-e="The new Evia bridge" data-h="גשר אוויה החדש"></figcaption></figure>
@@ -699,11 +699,11 @@ const FERRY=dens([ORP,ERP],40);
 const PH=[
 {n:['Flight','טיסה'],h:['Tel Aviv or Haifa → Athens','תל אביב או חיפה → אתונה'],b:[[32.0114,23.9445],[37.9364,35.0431]],
  p:['A short nonstop hop, with two ways to fly: from Tel Aviv or from Haifa (Air Haifa). Many airlines compete, so fares stay low all year.','טיסה ישירה וקצרה, עם שתי אפשרויות: מתל אביב או מחיפה (אייר חיפה). הרבה חברות תעופה מתחרות, ולכן המחירים נמוכים כל השנה.'],
- st:[[229,'',['nonstop flights a week','טיסות ישירות בשבוע']],[6,'+',['airlines compete','חברות תעופה']],[50,'€',['cheapest one-way from','הכי זול, לכיוון אחד, החל מ־']]],
+ st:[[229,'',['nonstop flights a week','טיסות ישירות בשבוע']],[6,'+',['airlines compete','חברות תעופה']],[34,'€',['cheapest one-way from','הכי זול, לכיוון אחד, החל מ־']]],
  bars:[[55,55,55,75,90,110,130,130,90,80,60,70],['Approx. one-way fare from Israel, € (indicative)','מחיר משוער לכיוון אחד מישראל, € (מנחה)']],
  pts:[[['Tel Aviv','תל אביב'],TLV,'l'],[['Haifa','חיפה'],HFA],[['Athens Airport','נמל התעופה אתונה'],ATH]],
  opts:[O('f','plane',['Direct flight from Tel Aviv','טיסה ישירה מתל אביב'],['About 2 hours','כ־2 שעות'],['Aegean, Wizz Air, Arkia, Israir, SKY express and more','אג׳יאן, ויז אייר, ארקיע, ישראייר, SKY express ועוד'],arc(TLV,ATH)),
-  X(O('h','plane',['Direct flight from Haifa','טיסה ישירה מחיפה'],['About 3 hours','כ־3 שעות'],['Air Haifa','אייר חיפה'],arc(HFA,ATH,4.6)),{st:[[7,'',['nonstop flights a week, typically','טיסות ישירות בשבוע, בדרך כלל']],[1,'',['airline: Air Haifa','חברת תעופה אחת: אייר חיפה']],[99,'€',['cheapest one-way seen, from','הכי זול שנצפה, לכיוון אחד, החל מ־']]],note:['Air Haifa is the only airline on this route, about 2h 55m in the air. Fares are indicative, so check Air Haifa for current prices.','אייר חיפה היא החברה היחידה בקו, וזמן הטיסה כ־2:55 שעות. המחירים מנחים, כדאי לבדוק באייר חיפה.']})]},
+  X(O('h','plane',['Direct flight from Haifa','טיסה ישירה מחיפה'],['About 3 hours','כ־3 שעות'],['Air Haifa','אייר חיפה'],arc(HFA,ATH,4.6)),{st:[[7,'',['nonstop flights a week, typically','טיסות ישירות בשבוע, בדרך כלל']],[1,'',['airline: Air Haifa','חברת תעופה אחת: אייר חיפה']],[149,'$',['one-way launch fare, check Air Haifa for today’s price','מחיר כרטיס לכיוון אחד בהשקה, כדאי לבדוק באייר חיפה']]],note:['Air Haifa is the only airline on this route, about 2h 55m in the air. Fares are indicative, so check Air Haifa for current prices.','אייר חיפה היא החברה היחידה בקו, וזמן הטיסה כ־2:55 שעות. המחירים מנחים, כדאי לבדוק באייר חיפה.']})]},
 {n:['Airport → Athens','שדה התעופה → אתונה'],h:['From the airport to Athens','משדה התעופה לאתונה'],b:[ATH,CTR],
  p:['Athens airport is about 33 km from the centre. Pick what fits you:','שדה התעופה כ־33 ק״מ ממרכז אתונה. בוחרים מה שמתאים:'],
  pts:[[['Athens Airport','נמל התעופה'],ATH],[['Athens centre','מרכז אתונה'],CTR]],
@@ -713,11 +713,11 @@ const PH=[
   X(O('x','taxi',['Taxi','מונית'],['35–45 min','35–45 דק׳'],['Fixed €40 day, €55 night','קבוע €40 ביום, €55 בלילה'],OD),{der:[[1,'c'],r=>r]}),
   X(O('c','car',['Rental car','השכרת רכב'],['About 35 min, pick up at the airport','כ־35 דק׳, איסוף בשדה התעופה'],['Price varies by season','המחיר משתנה לפי עונה'],SH(OD,-.004)),{osrm:[ATH,CTR]})]},
 {n:['Athens → Oropos','אתונה → אורופוס'],h:['From Athens to Oropos','מאתונה לאורופוס'],b:[CTR,ERE,CHA],
- p:['Oropos (Skala Oropou) is the ferry port to Evia, about 40–50 km north of Athens, and about 50 minutes by car from the airport. You can also drive to Chalkida over the bridge, with no ferry.','אורופוס (סקאלה אורופו) היא נמל המעבורת לאוויה, כ־40–50 ק״מ צפונית לאתונה, וכ־50 דקות נסיעה משדה התעופה. אפשר גם לנסוע לחלקיס בכביש מעל הגשר, בלי מעבורת.'],
+ p:['Oropos (Skala Oropou) is the ferry port to Evia, about 40–50 km north of Athens, about 40 minutes by car from Athens and about 50 minutes from the airport. You can also drive to Chalkida over the bridge, with no ferry.','אורופוס (סקאלה אורופו) היא נמל המעבורת לאוויה, כ־40–50 ק״מ צפונית לאתונה, כ־40 דקות נסיעה מאתונה וכ־50 דקות משדה התעופה. אפשר גם לנסוע לחלקיס בכביש מעל הגשר, בלי מעבורת.'],
  pts:[[['Athens','אתונה'],CTR],[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA]],
- opts:[X(O('c','car',['Car to Oropos','ברכב לאורופוס'],['About 1 hour','כשעה'],['Fuel and tolls','דלק וכבישי אגרה'],NORTH),{osrm:[CTR,ORO],via:VIA}),
-  X(O('r','car',['Car to Eretria, with the ferry','ברכב לארטריה, עם המעבורת'],['About 1 hour drive + 25 min ferry','כשעה נסיעה + 25 דק׳ מעבורת'],['Fuel, tolls and ferry fare','דלק, כבישי אגרה ומחיר המעבורת'],NORTH.concat(FERRY)),{der:[[2,'c'],r=>r.concat(FERRY)],ms:9000}),
-  X(O('h','car',['Car to Chalkida, over the bridge','ברכב לחלקיס, מעל הגשר'],['About 1h 15m, no ferry','כ־1:15 שעות, בלי מעבורת'],['Fuel and tolls','דלק וכבישי אגרה'],dens([CTR,[38.07,23.76],[38.19,23.80],SCH,[38.40,23.62],CHA],120)),{osrm:[CTR,SCH,CHA],via:VIA,ms:8500}),
+ opts:[X(O('c','car',['Car to Oropos','ברכב לאורופוס'],['About 40 min','כ־40 דק׳'],['Fuel and tolls','דלק וכבישי אגרה'],NORTH),{osrm:[CTR,ORO],via:VIA}),
+  X(O('r','car',['Car to Eretria, with the ferry','ברכב לארטריה, עם המעבורת'],['About 1h 15m in all: 40 min drive + 25 min ferry','כ־1:15 שעות בסך הכול: 40 דק׳ נסיעה + 25 דק׳ מעבורת'],['Fuel, tolls and ferry fare','דלק, כבישי אגרה ומחיר המעבורת'],NORTH.concat(FERRY)),{der:[[2,'c'],r=>r.concat(FERRY)],ms:9000}),
+  X(O('h','car',['Car to Chalkida, over the bridge','ברכב לחלקיס, מעל הגשר'],['About 55 min, no ferry','כ־55 דק׳, בלי מעבורת'],['Fuel and tolls','דלק וכבישי אגרה'],dens([CTR,[38.07,23.75],[38.13,23.745],[38.245,23.755],SCH,[38.3725,23.5932],[38.4115,23.5898],CHA],120)),{osrm:[CTR,SCH,CHA],via:VIA,ms:8500}),
   X(O('b','bus',['KTEL Attikis bus','אוטובוס ΚΤΕΛ אטיקי'],['About 1h 15m from Pedion Areos','כ־1:15 שעות מפדיון אריוס'],['About €5–7','כ־€5–7'],SH(ARENORTH),['Timetables change, check before you travel','לוחות הזמנים משתנים, כדאי לבדוק לפני הנסיעה']),{der:[[2,'c'],r=>SH(r)]}),
   X(O('e','bus',['Direct bus to Eretria','אוטובוס ישיר לארטריה'],['About 1h 30m, 3 a day (KTEL Evias)','כ־1:30 שעות, 3 ביום (ΚΤΕΛ אוויה)'],['About €10–13','כ־€10–13'],ARENORTH.concat(dens([ORP,ERP],24))),{der:[[2,'c'],r=>SH(r,.002).concat(dens([ORP,ERP],24))],ms:9000})]},
 {n:['To Evia','לאוויה'],h:['Crossing to Eretria and Chalkida','חוצים לארטריה ולחלקיס'],b:[ORO,CHA],
@@ -727,10 +727,10 @@ const PH=[
   X(O('c','car',['Eretria → Chalkida by car','ארטריה → חלקיס ברכב'],['About 20 km along the coast','כ־20 ק״מ לאורך החוף'],['Fuel','דלק'],COAST),{osrm:[ERE,CHA]}),
   X(O('b','bus',['KTEL Evias bus','אוטובוס ΚΤΕΛ אוויה'],['Several a day, Chalkida ↔ Eretria','כמה ביום, חלקיס ↔ ארטריה'],['Low fare','מחיר נמוך'],COAST.map(q=>[q[0]+.006,q[1]])),{der:[[3,'c'],r=>r.map(q=>[q[0]+.004,q[1]])]})]},
 {n:['Eretria','ארטריה'],h:['Eretria','ארטריה'],town:{c:ERE,m:6500},
- p:['A seaside town with a promenade, marina life and ancient history. The ferry from Oropos arrives right here, about 25 minutes across. By road via Chalkida it takes about 1 hour.','עיירת חוף עם טיילת, חיי מרינה והיסטוריה עתיקה. המעבורת מאורופוס מגיעה בדיוק לכאן, כ־25 דקות חציה. בכביש דרך חלקיס זה כשעה.'],
+ p:['A seaside town with a promenade, marina life and ancient history. The ferry from Oropos arrives right here, about 25 minutes across. From Athens it takes about 1 hour 15 minutes door to door, with the ferry.','עיירת חוף עם טיילת, חיי מרינה והיסטוריה עתיקה. המעבורת מאורופוס מגיעה בדיוק לכאן, כ־25 דקות חציה. מאתונה זה כשעה ורבע מדלת לדלת, כולל המעבורת.'],
  pts:[[['Eretria','ארטריה'],ERE]],opts:[]},
 {n:['Chalkida','חלקיס'],h:['Chalkida','חלקיס'],town:{c:CHA,m:7500},
- p:['The island’s capital: shops, hospital and services, joined to the mainland by two bridges. You can drive here from Athens without taking a ferry, and it is about 35 minutes by road from Oropos.','בירת האי: חנויות, בית חולים ושירותים, מחוברת ליבשת בשני גשרים. אפשר להגיע לכאן מאתונה ברכב בלי מעבורת, וממאורופוס זה כ־35 דקות בכביש.'],
+ p:['The island’s capital: shops, hospital and services, joined to the mainland by two bridges. You can drive here from Athens without taking a ferry, and it is about 55 minutes by car from Athens.','בירת האי: חנויות, בית חולים ושירותים, מחוברת ליבשת בשני גשרים. אפשר להגיע לכאן מאתונה ברכב בלי מעבורת, וזה כ־55 דקות נסיעה.'],
  pts:[[['Chalkida','חלקיס'],CHA]],opts:[]},
 {n:['Explore & draw','חקור וצייר'],h:['Explore the land','חוקרים את המקום'],b:[[38.25,23.55],[38.55,23.95]],
  p:['Satellite view. Zoom to any street, draw on a plot, drop pins.','תצלום לוויין. מתקרבים לכל רחוב, מציירים על מגרש ומסמנים נקודות.'],
@@ -818,7 +818,7 @@ function camTo(c,o){o=o||{};return new Promise(res=>{if(!live)return res();let d
  live.once('moveend',fin);setTimeout(fin,ms*1000+700);
  live.flyToBounds(b,{paddingTopLeft:[60,top],paddingBottomRight:[60,bot],duration:ms,maxZoom:c.z||(c.c?15:12),easeLinearity:.2})})}
 function extraHTML(p){let x='';
- if(p.st)x+='<div class="mini">'+p.st.map(s=>`<div><b data-n="${s[0]}" data-pre="${s[1]==='€'?'€':''}" data-s="${s[1]==='+'?'+':''}">0</b><span>${T(s[2])}</span></div>`).join('')+'</div>';
+ if(p.st)x+='<div class="mini">'+p.st.map(s=>`<div><b data-n="${s[0]}" data-pre="${s[1]==='€'?'€':s[1]==='$'?'$':''}" data-s="${s[1]==='+'?'+':''}">0</b><span>${T(s[2])}</span></div>`).join('')+'</div>';
  if(p.bars){const M=rtl()?'יפמאמיואסונד'.split(''):'JFMAMJJASOND'.split('');x+='<div class="bars">'+p.bars[0].map((v,k)=>`<i style="height:${v/1.4}%;${v>=110?'background:#b5b5b5':''}"><em>${M[k]}</em></i>`).join('')+`</div><small class="cap">${T(p.bars[1])}</small>`}
  if(p.note)x+=`<small class="cap">${T(p.note)}</small>`;
  return x}
@@ -857,7 +857,7 @@ const scenes=()=>[
   {sat:false,pts:PH[1].pts,cam:{b:PH[1].b},camMs:2.8,route:OPT(1,'m'),ms:6500,hold:900,
   cap:{n:['02 · Into the city','02 · אל העיר'],t:['Airport → Athens centre','שדה התעופה → מרכז אתונה'],d:[['Metro line 3, about 40 min, €9–10','מטרו קו 3, כ־40 דק׳, €9–10'],['Taxi €40 fixed by day, or a rental car','מונית במחיר קבוע €40 ביום, או רכב שכור']]}},
  {sat:false,hw:1,pts:[PH[2].pts[0],PH[2].pts[1]],cam:{b:[CTR,ORO]},camMs:3,route:OPT(2,'c'),ms:8000,hold:900,
-  cap:{n:['03 · By road','03 · בכביש'],t:['Athens → Oropos','אתונה → אורופוס'],d:[['About 1 hour by car','כשעה נסיעה ברכב'],['Main road: the A1 highway north','הכביש הראשי: כביש A1 צפונה']]}},
+  cap:{n:['03 · By road','03 · בכביש'],t:['Athens → Oropos','אתונה → אורופוס'],d:[['About 40 minutes by car','כ־40 דקות נסיעה ברכב'],['Main road: the A1 highway north','הכביש הראשי: כביש A1 צפונה']]}},
  {sat:false,pts:[PH[2].pts[1],PH[2].pts[2]],cam:{b:[ORO,ERE]},camMs:2.8,route:OPT(3,'f'),ms:5500,hold:800,
   cap:{n:['04 · By sea','04 · בים'],t:['Oropos → Eretria','אורופוס → ארטריה'],d:[['Ferry, about 25 minutes','מעבורת, כ־25 דקות'],['Runs all year, cars and passengers','פועלת כל השנה, רכבים ונוסעים']]}},
  {sat:true,pts:PH[4].pts,cam:{c:ERE,m:6500},camMs:3.2,hold:5200,
@@ -867,7 +867,7 @@ const scenes=()=>[
  {sat:true,pts:PH[5].pts,cam:{c:CHA,m:7500},camMs:3,hold:5200,
   cap:{n:['07 · The capital','07 · בירת האי'],t:['Chalkida','חלקיס'],d:[['Shops, hospital and services','חנויות, בית חולים ושירותים'],['Two bridges to the mainland','שני גשרים ליבשת']]}},
  {sat:false,hw:1,pts:[PH[2].pts[0],PH[2].pts[3]],cam:{b:[CTR,CHA]},camMs:3.4,route:OPT(2,'h'),ms:9000,hold:900,
-  cap:{n:['08 · Another way','08 · דרך נוספת'],t:['Athens → Chalkida by road','אתונה → חלקיס בכביש'],d:[['About 1h 15m by car','כ־1:15 שעות ברכב'],['Over the bridge, no ferry needed','מעל הגשר, בלי מעבורת']]}},
+  cap:{n:['08 · Another way','08 · דרך נוספת'],t:['Athens → Chalkida by road','אתונה → חלקיס בכביש'],d:[['About 55 minutes by car','כ־55 דקות ברכב'],['Over the bridge, no ferry needed','מעל הגשר, בלי מעבורת']]}},
  {full:1,sat:false,pts:PH[6].pts,cam:{b:[[38.25,23.55],[38.55,23.95]]},camMs:3.4,hold:3200,
   cap:{n:['Your home in Evia','הבית שלכם באוויה'],t:['Eretria · Oropos · Chalkida','ארטריה · אורופוס · חלקיס'],d:[['Let’s build your shortlist','בואו נבנה לכם רשימה מותאמת']]}}
 ];
