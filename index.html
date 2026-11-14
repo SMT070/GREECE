@@ -289,6 +289,19 @@ input,textarea{-webkit-user-select:text;user-select:text}
 @keyframes grow{from{transform:scaleX(0)}}
 .tk{display:flex;gap:18px;font-size:.8rem;color:var(--mu);margin:-4px 0 10px}.tk i{display:inline-block;width:11px;height:11px;margin-inline-end:6px;vertical-align:-1px}
 @media(max-width:860px){.tg{grid-template-columns:1fr;gap:3vh}.br{grid-template-columns:1fr;gap:6px}}
+
+/* year calendar animation (slide: all year round) */
+.yr{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-top:2.6vh}
+.yr .m{position:relative;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:#0b5cad;color:#fff;font-weight:600;font-size:clamp(.8rem,1.1vw,1.1rem);opacity:0}
+.yr .m.su{background:#f4b223;color:#111}
+.yr .m.jn{outline:3px solid #e4572e;outline-offset:2px}
+.yr .m em{position:absolute;top:-12px;inset-inline:0;margin:auto;width:max-content;background:#e4572e;color:#fff;font-style:normal;font-size:.72rem;padding:1px 7px;border-radius:99px;direction:ltr}
+.slide.on .yr .m{animation:mp .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k)*.13s + .8s)}
+@keyframes mp{from{opacity:0;transform:translateY(18px) scale(.6)}to{opacity:1;transform:none}}
+.yk{display:flex;flex-wrap:wrap;gap:6px 28px;margin:1.4vh 0 0;font-size:.95rem}.yk span{display:inline-flex;align-items:center;gap:8px}.yk i{width:14px;height:14px;display:inline-block}
+#s1e .tc{margin-top:2.4vh}#s1e .tc b{font-size:clamp(2.2rem,4vw,3.6rem)}
+#s1e{justify-content:center}#s1e h2{max-width:none;font-size:clamp(2rem,3.4vw,3.4rem)}.yr .m{aspect-ratio:1/.9;font-size:clamp(.9rem,1.3vw,1.3rem)}#s1e small{margin-top:.8rem!important}
+@media(max-width:860px){.yr{grid-template-columns:repeat(6,1fr)}}
 </style>
 </head>
 <body>
@@ -369,19 +382,14 @@ input,textarea{-webkit-user-select:text;user-select:text}
 <section class="slide" id="s1e">
  <div class="eyebrow a" data-e="All year round" data-h="לאורך כל השנה"></div>
  <h2 class="a" style="--i:1" data-e="Tourists come all year, not only in summer" data-h="תיירים מגיעים כל השנה, לא רק בקיץ"></h2>
- <div class="tc">
-  <div class="a" style="--i:2"><b>48%</b>
-   <h3 data-e="of foreign visitors come outside the summer" data-h="מהמבקרים הזרים מגיעים מחוץ לקיץ"></h3>
-   <p data-e="Only 52% arrive in July to September. The other 48% come in the other nine months. In 2019 summer was 56%, so the season is getting longer." data-h="רק 52% מגיעים בין יולי לספטמבר. 48% נוספים מגיעים בתשעת החודשים האחרים. ב־2019 הקיץ היה 56%, כך שהעונה מתארכת."></p>
-   <div class="br"><div class="tr"><div class="fl" style="width:52%" data-e="Jul–Sep 52%" data-h="יולי–ספטמבר 52%"></div><div class="fl lt" style="width:48%" data-e="Rest of the year 48%" data-h="שאר השנה 48%"></div></div></div></div>
-  <div class="a" style="--i:3"><b>156M</b>
-   <h3 data-e="nights slept in Greek hotels and rentals in 2025" data-h="לילות לינה במלונות ובדירות להשכרה ביוון ב־2025"></h3>
-   <p data-e="This counts Greeks and foreigners together, so Greeks who holiday inside their own country are included. That is 37.8M stays in total." data-h="הנתון כולל יוונים וזרים יחד, כלומר גם יוונים שמטיילים בתוך ארצם. בסך הכול 37.8 מיליון הגעות ללינה."></p></div>
-  <div class="a" style="--i:4"><b>+33%</b>
-   <h3 data-e="Even January is busy" data-h="אפילו בינואר יש תנועה"></h3>
-   <p data-e="1.09 million foreign visitors came in January 2026, 33% more than January 2025. It was the strongest January on record." data-h="1.09 מיליון מבקרים זרים הגיעו בינואר 2026, 33% יותר מינואר 2025. זה היה ינואר החזק ביותר אי פעם."></p></div>
+ <div class="yr a" style="--i:2"><div class="m jn" style="--k:0"><span data-e="Jan" data-h="ינו׳"></span><em>+33%</em></div><div class="m" style="--k:1"><span data-e="Feb" data-h="פבר׳"></span></div><div class="m" style="--k:2"><span data-e="Mar" data-h="מרץ"></span></div><div class="m" style="--k:3"><span data-e="Apr" data-h="אפר׳"></span></div><div class="m" style="--k:4"><span data-e="May" data-h="מאי"></span></div><div class="m" style="--k:5"><span data-e="Jun" data-h="יוני"></span></div><div class="m su" style="--k:6"><span data-e="Jul" data-h="יולי"></span></div><div class="m su" style="--k:7"><span data-e="Aug" data-h="אוג׳"></span></div><div class="m su" style="--k:8"><span data-e="Sep" data-h="ספט׳"></span></div><div class="m" style="--k:9"><span data-e="Oct" data-h="אוק׳"></span></div><div class="m" style="--k:10"><span data-e="Nov" data-h="נוב׳"></span></div><div class="m" style="--k:11"><span data-e="Dec" data-h="דצמ׳"></span></div></div>
+ <div class="yk a" style="--i:3"><span><i style="background:#f4b223"></i><b data-e="July–September: 52% of foreign tourists" data-h="יולי–ספטמבר: 52% מהתיירים הזרים"></b></span><span><i style="background:#0b5cad"></i><b data-e="The other 9 months: 48%" data-h="תשעת החודשים האחרים: 48%"></b></span></div>
+ <div class="tc a" style="--i:4">
+  <div><b data-n="48" data-s="%">0</b><h3 data-e="of foreign tourists arrive outside the summer" data-h="מהתיירים הזרים מגיעים מחוץ לקיץ"></h3><p data-e="In 2019 the summer share was 56%. The season keeps getting longer." data-h="ב־2019 חלק הקיץ היה 56%. העונה ממשיכה להתארך."></p></div>
+  <div><b>+33%</b><h3 data-e="more tourists in January 2026 than January 2025" data-h="יותר תיירים בינואר 2026 מאשר בינואר 2025"></h3><p data-e="1.09 million foreign visitors, the busiest January ever." data-h="1.09 מיליון מבקרים זרים, ינואר העמוס ביותר אי פעם."></p></div>
+  <div><b data-n="156" data-s="M">0</b><h3 data-e="nights slept in Greek hotels and rentals in 2025" data-h="לילות לינה במלונות ובדירות להשכרה ביוון ב־2025"></h3><p data-e="Greeks and foreigners together." data-h="יוונים וזרים יחד."></p></div>
  </div>
- <small class="a" style="--i:6;opacity:.6;margin-top:1.6rem;max-width:90ch" data-e="Sources: Protothema, Oct 2026 (share of foreign arrivals by quarter); INSETE via To Vima (stays and nights); Greek Trip Planner (January 2026)." data-h="מקורות: Protothema (אוקטובר 2026, חלק ההגעות הזרות לפי רבעון), INSETE (דרך To Vima, הגעות ולילות), Greek Trip Planner (ינואר 2026)."></small>
+ <small class="a" style="--i:6;opacity:.6;margin-top:1.2rem;max-width:90ch" data-e="Sources: Protothema, Oct 2026 (share of foreign arrivals by quarter); INSETE via To Vima (nights); Greek Trip Planner (January 2026). Month tiles show the group, not the size of each month." data-h="מקורות: Protothema (אוקטובר 2026, חלק ההגעות הזרות לפי רבעון); INSETE (דרך To Vima, לילות); Greek Trip Planner (ינואר 2026). האריחים מראים את הקבוצה, לא את גודל כל חודש."></small>
 </section>
 
 <section class="slide" id="s2r1">
