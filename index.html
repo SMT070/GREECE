@@ -916,7 +916,7 @@ $('lDraw').onclick=()=>lmodeSet('draw');$('lPin').onclick=()=>lmodeSet('pin');
 $('lUndo').onclick=()=>{const l=lmine.pop();if(l&&live)live.removeLayer(l)};$('lClr').onclick=()=>{lmine.splice(0).forEach(l=>live.removeLayer(l))};
 
 render();
-const h=parseInt(location.hash.slice(1));show(h>0&&h<=sl.length?h-1:0);
+history.replaceState(null,'',location.pathname+location.search);show(0); /* always open on slide 1 */
 </script>
 <script>document.addEventListener('selectstart',e=>{if(!e.target.closest||!e.target.closest('input,textarea'))e.preventDefault()});document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG'||e.target.tagName==='svg')e.preventDefault()});</script>
 </body>
