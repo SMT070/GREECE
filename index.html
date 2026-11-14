@@ -24,7 +24,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 /* slides */
 .slide{position:fixed;inset:0;padding:96px 7vw 92px;display:flex;flex-direction:column;justify-content:center;background:var(--bg);opacity:0;visibility:hidden;transform:scale(1.035);transition:opacity .9s,transform 1.3s cubic-bezier(.2,.8,.2,1),visibility 0s .9s;overflow:hidden}
 .slide.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
-.slide.alt{background:var(--bg2)}
+.slide.alt{background:var(--bg)}
 .dk{color:#fff}.dk p{color:#e6ebf0}.dk .eyebrow{color:#fff;opacity:.85}
 .slide>*:not(.bgp):not(.pic):not(.mp){position:relative;z-index:2}
 .bgp{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,#111,#3a3a38)}
@@ -108,7 +108,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 .tag{position:absolute;top:10px;inset-inline-start:10px;background:#000a;color:#fff;font-size:.72rem;padding:3px 10px}
 .home .b{padding:16px 18px;display:flex;flex-direction:column;gap:4px;flex:1}.home .pr{font-family:var(--hf);font-size:1.5rem;color:var(--ac);margin-top:auto}.home p{font-size:.95rem}
 .who{display:flex;flex-wrap:wrap;gap:12px;margin:1.6rem 0}
-#s10 .big{font-family:var(--hf);font-size:clamp(1.6rem,2.6vw,2.8rem);color:#fff}
+#s10 .big{font-family:var(--hf);font-size:clamp(1.6rem,2.6vw,2.8rem);color:var(--fg)}
 /* chrome */
 .chrome{position:fixed;z-index:60;color:var(--fg);display:flex;align-items:center;gap:16px}body.dk .chrome{color:#fff}
 #top{inset:0 0 auto 0;padding:16px 3vw}#bot{inset:auto 0 0 0;padding:18px 3vw;gap:20px}
@@ -244,7 +244,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
 .fstats span{display:block;font-size:clamp(.88rem,1vw,1.08rem);color:#eef1f4;margin-top:10px;line-height:1.35}
 @media(max-width:860px){.slide.fs{justify-content:flex-end}.fstats{grid-template-columns:1fr;gap:16px}.fs h2{font-size:clamp(3rem,16vw,5rem)}}
 /* ---- tourism slides (added) ---- */
-#s1c{background:#eef4fa}#s1d{background:#fdf6e7}#s1e{background:#edf7f1}
+#s1c,#s1d,#s1e{background:#fff}
 #s1c .eyebrow,#s1d .eyebrow,#s1e .eyebrow{color:#0b5cad}
 #s1b .stat b{color:#ffd166!important}
 .dc b,.tf b{color:#0b5cad}
@@ -687,8 +687,8 @@ input,textarea{-webkit-user-select:text;user-select:text}
 </section>
 
 <!-- 12 CONTACT -->
-<section class="slide dk" id="s10">
- <div class="bgp"></div>
+<section class="slide" id="s10">
+ 
  <div class="eyebrow a" data-e="Contact" data-h="צור קשר"></div>
  <h2 class="a" style="--i:1" data-e="Let's find your home" data-h="בואו נמצא את הבית שלכם"></h2>
  <p class="a" style="--i:2" data-e="Tell me what you are looking for, a summer house or an investment, and I will build your shortlist." data-h="ספרו לי מה אתם מחפשים, בית קיץ או השקעה, ואכין עבורכם רשימה מותאמת."></p>
