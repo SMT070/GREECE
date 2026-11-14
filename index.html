@@ -630,8 +630,8 @@ const S=[
  {ll:[32.8094,35.0431],en:['Haifa','Direct flight, about 3 hours (Air Haifa)'],he:['חיפה','טיסה ישירה, כ־3 שעות (אייר חיפה)']},
  {ll:[37.9364,23.9445],en:['Athens Airport','Eleftherios Venizelos (ATH). You land here.'],he:['נמל התעופה אתונה','אלפתריוס ונייזלוס (ATH). כאן נוחתים.']},
  {ll:[37.9838,23.7275],en:['Athens','Approx. 33 km from the airport'],he:['אתונה','כ־33 ק״מ מנמל התעופה']},
- {ll:[38.3235,23.7880],en:['Oropos','Approx. 40–50 km from Athens. Ferry port to Evia.'],he:['אורופוס','כ־40–50 ק״מ מאתונה. נמל המעבורת לאוויה.']},
- {ll:[38.3965,23.8035],en:['Eretria','A short ferry crossing from Oropos'],he:['ארטריה','חציית מעבורת קצרה מאורופוס']},
+ {ll:[38.3215,23.7925],en:['Oropos','Approx. 40–50 km from Athens. Ferry port to Evia.'],he:['אורופוס','כ־40–50 ק״מ מאתונה. נמל המעבורת לאוויה.']},
+ {ll:[38.3948,23.7999],en:['Eretria','A short ferry crossing from Oropos'],he:['ארטריה','חציית מעבורת קצרה מאורופוס']},
  {ll:[38.4636,23.5983],en:['Chalkida','Approx. 20 km from Eretria. Bridge to the mainland.'],he:['חלקיס','כ־20 ק״מ מארטריה. גשר ליבשת.']}
 ];
 let lang=(()=>{try{const v=new URLSearchParams(location.search).get('lang')||localStorage.getItem('samir-lang');return v==='he'?'he':'en'}catch(e){return'en'}})(),n=0,booted=false;
@@ -674,7 +674,7 @@ let hi=0;setInterval(()=>{const s=document.querySelectorAll('.hs');if(sl[n].id!=
 
 /* ---------- Phased journey map (one slide, 5 phases) ---------- */
 const T=x=>x[rtl()?1:0],sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const TLV=[32.0114,34.8867],HFA=[32.8094,35.0431],ATH=[37.9364,23.9445],CTR=[37.9755,23.7348],ARE=[37.9932,23.7305],ORO=[38.3235,23.7880],ERE=[38.3965,23.8035],CHA=[38.4636,23.5983];
+const TLV=[32.0114,34.8867],HFA=[32.8094,35.0431],ATH=[37.9364,23.9445],CTR=[37.9755,23.7348],ARE=[37.9932,23.7305],ORO=[38.3215,23.7925],ORP=[38.3223,23.7948],ERE=[38.3948,23.7999],ERP=[38.3912,23.7975],CHA=[38.4636,23.5983];
 const arc=(a,b,k)=>{const c=[(a[0]+b[0])/2+(k==null?2.4:k),(a[1]+b[1])/2];return Array.from({length:81},(_,k)=>{const t=k/80,u=1-t;return[u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]]})};
 const dens=(p,m=70)=>{const s=m/(p.length-1),o=[];for(let i=0;i<p.length-1;i++)for(let k=0;k<s;k++){const t=k/s;o.push([p[i][0]+(p[i+1][0]-p[i][0])*t,p[i][1]+(p[i+1][1]-p[i][1])*t])}o.push(p[p.length-1]);return o};
 const STN=[ATH,[37.9005,23.8975],[37.9830,23.8680],[38.0056,23.8650],[38.0237,23.8334],[38.0200,23.8010],[37.9955,23.7860],[37.9794,23.7536],[37.9762,23.7460],CTR];
@@ -695,7 +695,7 @@ const ic=(k,s=18)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="cu
 const brg=(a,b)=>Math.atan2((b[1]-a[1])*Math.cos(a[0]*Math.PI/180),b[0]-a[0])*180/Math.PI;
 const O=(k,i,l,t,c,pa,n)=>({k,i,l,t,c,pa,n});
 const SCH=[38.3167,23.5833],X=(o,e)=>Object.assign(o,e),SH=(r,a)=>r.map(q=>[q[0]+(a||.004),q[1]+(a||.004)]);
-const FERRY=dens([ORO,ERE],40);
+const FERRY=dens([ORP,ERP],40);
 const PH=[
 {n:['Flight','טיסה'],h:['Tel Aviv or Haifa → Athens','תל אביב או חיפה → אתונה'],b:[[32.0114,23.9445],[37.9364,35.0431]],
  p:['A short nonstop hop, with two ways to fly: from Tel Aviv or from Haifa (Air Haifa). Many airlines compete, so fares stay low all year.','טיסה ישירה וקצרה, עם שתי אפשרויות: מתל אביב או מחיפה (אייר חיפה). הרבה חברות תעופה מתחרות, ולכן המחירים נמוכים כל השנה.'],
@@ -719,7 +719,7 @@ const PH=[
   X(O('r','car',['Car to Eretria, with the ferry','ברכב לארטריה, עם המעבורת'],['About 1 hour drive + 25 min ferry','כשעה נסיעה + 25 דק׳ מעבורת'],['Fuel, tolls and ferry fare','דלק, כבישי אגרה ומחיר המעבורת'],NORTH.concat(FERRY)),{der:[[2,'c'],r=>r.concat(FERRY)],ms:9000}),
   X(O('h','car',['Car to Chalkida, over the bridge','ברכב לחלקיס, מעל הגשר'],['About 1h 15m, no ferry','כ־1:15 שעות, בלי מעבורת'],['Fuel and tolls','דלק וכבישי אגרה'],dens([CTR,[38.07,23.76],[38.19,23.80],SCH,[38.40,23.62],CHA],120)),{osrm:[CTR,SCH,CHA],ms:8500}),
   X(O('b','bus',['KTEL Attikis bus','אוטובוס ΚΤΕΛ אטיקי'],['About 1h 15m from Pedion Areos','כ־1:15 שעות מפדיון אריוס'],['About €5–7','כ־€5–7'],SH(ARENORTH),['Timetables change, check before you travel','לוחות הזמנים משתנים, כדאי לבדוק לפני הנסיעה']),{der:[[2,'c'],r=>SH(r)]}),
-  X(O('e','bus',['Direct bus to Eretria','אוטובוס ישיר לארטריה'],['About 1h 30m, 3 a day (KTEL Evias)','כ־1:30 שעות, 3 ביום (ΚΤΕΛ אוויה)'],['About €10–13','כ־€10–13'],ARENORTH.concat(dens([ORO,ERE],24))),{der:[[2,'c'],r=>SH(r,.002).concat(dens([ORO,ERE],24))],ms:9000})]},
+  X(O('e','bus',['Direct bus to Eretria','אוטובוס ישיר לארטריה'],['About 1h 30m, 3 a day (KTEL Evias)','כ־1:30 שעות, 3 ביום (ΚΤΕΛ אוויה)'],['About €10–13','כ־€10–13'],ARENORTH.concat(dens([ORP,ERP],24))),{der:[[2,'c'],r=>SH(r,.002).concat(dens([ORP,ERP],24))],ms:9000})]},
 {n:['To Evia','לאוויה'],h:['Crossing to Eretria and Chalkida','חוצים לארטריה ולחלקיס'],b:[ORO,CHA],
  p:['A short ferry takes you and your car across to Eretria. Chalkida is a coastal drive away, with trains and buses from Athens too.','מעבורת קצרה מעבירה אתכם והרכב לארטריה. חלקיס במרחק נסיעה לאורך החוף, ויש גם רכבות ואוטובוסים מאתונה.'],
  pts:[[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA]],
