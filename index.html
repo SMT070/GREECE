@@ -291,16 +291,18 @@ input,textarea{-webkit-user-select:text;user-select:text}
 @media(max-width:860px){.tg{grid-template-columns:1fr;gap:3vh}.br{grid-template-columns:1fr;gap:6px}}
 
 /* tourist chart (slide 3) */
-.vch{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:2.4vw;margin-top:3vh;max-width:1100px}
-.vch .vbw{height:30vh;display:flex;flex-direction:column;justify-content:flex-end}
-.vch .vbw i{display:block;height:var(--h);background:#fff;color:#111;padding:12px 8px;text-align:center;transform-origin:bottom}
-.vch .vbw i b{display:block;font-family:var(--hf);font-weight:500;font-size:clamp(1.5rem,3.2vw,3rem);line-height:1}
-.vch .vpj .vbw i{background:#ffffff4d;color:#fff;outline:2px dashed #fffc;outline-offset:-2px}
-.vch .vcol>span{display:block;text-align:center;margin-top:10px;font-weight:600;font-size:clamp(1rem,1.3vw,1.3rem)}
-.vch .vcol>span em{display:block;font-style:normal;font-weight:300;opacity:.85;font-size:.8em}
+.vch{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:3vw;margin-top:3.5vh;max-width:1000px}
+.vch .vbw{height:34vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;border-bottom:2px solid #fff}
+.vch .vbw u{text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;padding:3px 10px;border:1px solid #fffa;border-radius:99px;margin-bottom:8px;white-space:nowrap}
+.vch .vbw u.no{visibility:hidden}
+.vch .vbw b{font-family:var(--hf);font-style:normal;font-weight:500;font-size:clamp(1.9rem,3.6vw,3.4rem);line-height:1;margin-bottom:12px;text-shadow:0 2px 18px #000a}
+.vch .vbw i{display:block;width:58%;max-width:150px;height:calc(var(--p)*20vh);background:#fff;transform-origin:bottom}
+.vch .vpj .vbw i{background:repeating-linear-gradient(135deg,#ffffffe6 0 6px,#ffffff59 6px 12px)}
+.vch .vcol>span{display:block;text-align:center;margin-top:12px;font-weight:600;font-size:clamp(1.05rem,1.4vw,1.35rem)}
+.vch .vcol>span em{display:block;font-style:normal;font-weight:300;opacity:.85;font-size:.78em;margin-top:2px}
 .slide.on .vch .vbw i{animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k)*.18s + .6s)}
 @keyframes rise{from{transform:scaleY(0)}}
-@media(max-width:860px){.vch .vbw{height:24vh}#s2roi{padding-bottom:130px;justify-content:flex-start}}
+@media(max-width:860px){.vch{gap:2vw}.vch .vbw{height:30vh}.vch .vbw i{height:calc(var(--p)*15vh)}#s2roi{padding-bottom:130px;justify-content:flex-start}}
 /* year calendar animation (slide: all year round) */
 .yr{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-top:2.6vh}
 .yr .m{position:relative;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:#111111;color:#fff;font-weight:600;font-size:clamp(.8rem,1.1vw,1.1rem);opacity:0}
@@ -512,10 +514,10 @@ html{-webkit-text-size-adjust:100%}
  <div class="eyebrow a" data-e="Demand" data-h="ביקוש"></div>
  <h2 class="a" style="--i:1" data-e="A record year, three years in a row" data-h="שיא חדש, שלוש שנים ברציפות"></h2>
  <div class="vch a" style="--i:2">
-  <div class="vcol" style="--k:0"><div class="vbw"><i style="--h:84%"><b>36.0M</b></i></div><span>2024<em data-e="actual" data-h="בפועל"></em></span></div>
-  <div class="vcol" style="--k:1"><div class="vbw"><i style="--h:88%"><b>37.98M</b></i></div><span>2025<em data-e="actual" data-h="בפועל"></em></span></div>
-  <div class="vcol vpj" style="--k:2"><div class="vbw"><i style="--h:95%"><b>~41M</b></i></div><span>2026<em data-e="estimate · 28.5M so far" data-h="הערכה · 28.5 מיליון עד אוגוסט"></em></span></div>
-  <div class="vcol vpj" style="--k:3"><div class="vbw"><i style="--h:100%"><b>~43M</b></i></div><span>2027<em data-e="projection" data-h="תחזית"></em></span></div>
+  <div class="vcol" style="--k:0"><div class="vbw"><u class="no">+0%</u><b>36.0M</b><i style="--p:0.84"></i></div><span>2024<em data-e="actual" data-h="בפועל"></em></span></div>
+  <div class="vcol" style="--k:1"><div class="vbw"><u>+5.6%</u><b>37.98M</b><i style="--p:0.88"></i></div><span>2025<em data-e="actual" data-h="בפועל"></em></span></div>
+  <div class="vcol vpj" style="--k:2"><div class="vbw"><u>≈ +8%</u><b>~41M</b><i style="--p:0.95"></i></div><span>2026<em data-e="estimate · 28.5M so far" data-h="הערכה · 28.5 מיליון עד אוגוסט"></em></span></div>
+  <div class="vcol vpj" style="--k:3"><div class="vbw"><u>≈ +4%</u><b>~43M</b><i style="--p:1"></i></div><span>2027<em data-e="projection" data-h="תחזית"></em></span></div>
  </div>
  <p class="a" style="--i:3;margin-top:2vh" data-e="Constant demand for places to stay means strong potential for summer rentals and long-term value." data-h="תמיד יש ביקוש ללינה. זה טוב להשכרה בקיץ ולשמירה על ערך הבית לאורך זמן."></p>
  <small class="a" style="--i:4;opacity:.6;margin-top:1.2rem;max-width:90ch" data-e="International visitors to Greece, in millions. 2025: 37.98M, up 5.6% on 2024 (Bank of Greece via Neos Kosmos); 2024 is worked back from that. 2026: 28.5M in January–August, up 10% (Bank of Greece via Protothema); the full-year figure is our estimate from the year so far. 2027: our projection at about +4%, with airlines planning roughly 5–6% more seats (Greek City Times, Nov 2026). Projections are not guarantees." data-h="תיירים מחו״ל ביוון, במיליונים. 2025: 37.98 מיליון, 5.6% יותר מ־2024 (בנק יוון, דרך Neos Kosmos); 2024 חושב אחורה מזה. 2026: 28.5 מיליון בין ינואר לאוגוסט, 10% יותר (בנק יוון, דרך Protothema); המספר לכל השנה הוא הערכה שלנו לפי התקדמות השנה. 2027: תחזית שלנו של כ־4% צמיחה, כשחברות התעופה מתכננות כ־5% עד 6% יותר מושבים (Greek City Times, נובמבר 2026). תחזית אינה הבטחה."></small>
@@ -537,23 +539,6 @@ html{-webkit-text-size-adjust:100%}
   <p style="margin-top:1.4rem" data-e="Germany and the UK send the most. US visitors are fewer, but they spend among the most per trip." data-h="מגרמניה ומבריטניה מגיעים הכי הרבה תיירים. מארצות הברית מגיעים פחות, אבל הם מוציאים הרבה כסף בכל נסיעה."></p></div>
  </div>
  <small class="a" style="--i:6;opacity:.6;margin-top:1.6rem;max-width:90ch" data-e="Arrivals in millions, 2025, rounded. Source: Bank of Greece (via TravelMole, Feb 2026). “Other” is the remainder of 37.98M." data-h="מספר התיירים במיליונים, 2025, מעוגל. מקור: בנק יוון (דרך TravelMole, פברואר 2026). ״מדינות אחרות״ הן השאר מתוך 37.98 מיליון."></small>
-</section>
-
-<section class="slide alt" id="s1d">
- <div class="eyebrow a" data-e="Greece vs the world" data-h="יוון מול העולם"></div>
- <h2 class="a" style="--i:1" data-e="Greece’s tourism is growing much faster than the world’s" data-h="התיירות ביוון גדלה הרבה יותר מהר מהתיירות בעולם"></h2>
- <div class="tg">
-  <div class="a" style="--i:2">
-   <div class="br"><div class="lb"><b>‎15%‎</b><span data-e="more tourists came to Greece in the first half of 2026, compared with the same months of 2025" data-h="יותר תיירים הגיעו ליוון בחצי הראשון של 2026, לעומת אותו זמן ב־2025"></span></div><div class="tr"><div class="fl " style="width:100%"></div></div></div>
-   <div class="br"><div class="lb"><b>‎1–2%‎</b><span data-e="more tourists expected worldwide in 2026 (forecast)" data-h="יותר תיירים צפויים בעולם ב־2026 (הערכה)"></span></div><div class="tr"><div class="fl md" style="width:10%"></div></div></div>
-  </div>
-  <div class="tf a" style="--i:3">
-   <div><b>‎~3.6×‎</b><span data-e="tourists for every person living in Greece (38 million tourists, 10.4 million residents)" data-h="תיירים על כל תושב ביוון (38 מיליון תיירים, 10.4 מיליון תושבים)"></span></div>
-   <div><b>‎2.5%‎</b><span data-e="of all the world’s tourists chose Greece in 2024, up from 2.1% in 2019" data-h="מכל התיירים בעולם בחרו ביוון ב־2024. ב־2019 זה היה 2.1%"></span></div>
-   <div><b>‎9.1 / 10‎</b><span data-e="average tourist rating for food, fun and sights (2025)" data-h="ציון ממוצע מתיירים על אוכל, בילוי ואתרים (2025)"></span></div>
-  </div>
- </div>
- <small class="a" style="--i:6;opacity:.6;margin-top:1.6rem;max-width:90ch" data-e="Sources: Greek Reporter (H1 2026, world forecast 1–2%); RE+D Magazine; INSETE via To Vima. Residents figure is approximate." data-h="מקורות: Greek Reporter (חצי ראשון של 2026, הערכה עולמית 1–2%); RE+D Magazine; INSETE דרך To Vima. מספר התושבים משוער."></small>
 </section>
 
 <section class="slide" id="s1e">
