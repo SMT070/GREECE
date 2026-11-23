@@ -145,7 +145,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 #pTabs .tb.on,#pTabs .tb:hover,#mTools .tb.on,#mTools .tb:hover,#pTools .tb.on,#pTools .tb:hover{background:var(--ac);border-color:var(--ac);color:var(--on)}
 #mTools .tb.go{background:#111;color:#fff;border-color:#111}
 #lHw:before{content:"";display:inline-block;width:18px;height:5px;background:#f0a30a;border:1px solid #fff;border-radius:3px;margin-inline-end:7px;vertical-align:middle}
-#dock{left:14px;right:72px;bottom:14px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px 30px;background:#fffffff0;backdrop-filter:blur(10px);padding:18px 24px;border:1px solid #1112;box-shadow:0 14px 40px #0003;max-height:48%;overflow:auto;pointer-events:auto;transition:opacity .8s}
+#dock{left:14px;right:72px;bottom:14px;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:14px 30px;background:#fffffff0;backdrop-filter:blur(10px);padding:18px 24px;border:1px solid #1112;box-shadow:0 14px 40px #0003;max-height:48%;overflow:auto;pointer-events:auto;transition:opacity .8s}
 #dock .eyebrow{margin-bottom:.5rem}
 #dock h2{font-size:clamp(1.7rem,2.2vw + 1vh,2.6rem);max-width:none;margin-bottom:.4rem}
 #dock p{max-width:none}
@@ -315,6 +315,11 @@ body.mfull .chrome{display:none}
 .rb button:hover{background:#111;color:#fff}
 .rd{width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #d62828}
 .leaflet-control-scale-line{font-family:Heebo,sans-serif;font-weight:600;color:#111;background:#fffffff2;border-color:#111}
+#dClose{position:absolute;top:10px;inset-inline-start:12px;z-index:3;padding:4px 12px;font-size:.8rem}
+#dOpen{position:absolute;z-index:1100;left:50%;transform:translateX(-50%);bottom:14px;display:none;background:#fffffff2;box-shadow:0 4px 18px #0003}
+#s4.nodock #dOpen{display:block}
+#s4.film #dOpen,#s4.film #dClose{display:none}
+#pBody .opt{padding:6px 12px;font-size:.8rem}
 /* year calendar animation (slide: all year round) */
 .yr{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-top:2.6vh}
 .yr .m{position:relative;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:#111111;color:#fff;font-weight:600;font-size:clamp(.8rem,1.1vw,1.1rem);opacity:0}
@@ -605,10 +610,12 @@ html{-webkit-text-size-adjust:100%}
     <div id="pTools" class="tools" style="display:none"><button class="tb" id="lDraw" data-e="Draw" data-h="ציור"></button><button class="tb" id="lPin" data-e="Pin" data-h="סמן"></button><button class="tb" id="lUndo" data-e="Undo" data-h="בטל"></button><button class="tb" id="lClr" data-e="Clear" data-h="נקה"></button><a class="tb" id="gm" target="_blank" rel="noopener" style="text-decoration:none" data-e="Google Maps ↗" data-h="גוגל מפות ↗"></a></div>
    </div>
    <div class="ov" id="dock">
+    <button class="tb" id="dClose" type="button" data-e="✕ Hide" data-h="✕ הסתר"></button>
     <div class="dl"><div class="eyebrow" data-e="The journey" data-h="המסע"></div><h2 id="pT"></h2><div id="pBody"></div></div>
     <div class="dr"><div id="pExtra"></div><div class="info" id="pInfo" style="display:none"></div></div>
    </div>
-   <div id="cine"></div>
+   <button class="tb" id="dOpen" type="button" data-e="Show info" data-h="הצג מידע"></button>
+    <div id="cine"></div>
    <div class="lbx t"></div><div class="lbx b"></div>
    <div id="fprog"><i></i></div>
    <button class="tb go" id="fstop" data-e="■ Stop" data-h="■ עצירה"></button>
@@ -817,7 +824,7 @@ let hi=0;setInterval(()=>{const s=document.querySelectorAll('.hs');if(sl[n].id!=
 
 /* ---------- Phased journey map (one slide, 5 phases) ---------- */
 const T=x=>x[rtl()?1:0],sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const TLV=[32.0114,34.8867],HFA=[32.8094,35.0431],ATH=[37.9364,23.9445],CTR=[37.9755,23.7348],ARE=[37.9932,23.7305],ORO=[38.3215,23.7925],ORP=[38.3223,23.7948],ERE=[38.3948,23.7999],ERP=[38.3912,23.7975],AMA=[38.3925,23.8820],CHA=[38.4636,23.5983];
+const TLV=[32.0114,34.8867],HFA=[32.8094,35.0431],ATH=[37.9364,23.9445],CTR=[37.9755,23.7348],ARE=[37.9932,23.7305],ORO=[38.3215,23.7925],ORP=[38.3223,23.7948],ERE=[38.3948,23.7999],ERP=[38.3912,23.7975],AMA=[38.3925,23.8820],OROT=[38.3000,23.7500],CHA=[38.4636,23.5983];
 const arc=(a,b,k)=>{const c=[(a[0]+b[0])/2+(k==null?2.4:k),(a[1]+b[1])/2];return Array.from({length:81},(_,k)=>{const t=k/80,u=1-t;return[u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]]})};
 const dens=(p,m=70)=>{const s=m/(p.length-1),o=[];for(let i=0;i<p.length-1;i++)for(let k=0;k<s;k++){const t=k/s;o.push([p[i][0]+(p[i+1][0]-p[i][0])*t,p[i][1]+(p[i+1][1]-p[i][1])*t])}o.push(p[p.length-1]);return o};
 const STN=[ATH,[37.9005,23.8975],[37.9830,23.8680],[38.0056,23.8650],[38.0237,23.8334],[38.0200,23.8010],[37.9955,23.7860],[37.9794,23.7536],[37.9762,23.7460],CTR];
@@ -857,15 +864,15 @@ const PH=[
   X(O('c','car',['Rental car','השכרת רכב'],['About 35 min, pick up at the airport','כ־35 דק׳, איסוף בשדה התעופה'],['Price varies by season','המחיר משתנה לפי עונה'],SH(OD,-.004)),{osrm:[ATH,CTR]})]},
 {n:['Athens → Oropos','אתונה → אורופוס'],h:['From Athens to Oropos','מאתונה לאורופוס'],b:[CTR,ERE,CHA],
  p:['Oropos (Skala Oropou) is the ferry port to Evia, about 40–50 km north of Athens, about 40 minutes by car from Athens and about 50 minutes from the airport. You can also drive to Chalkida over the bridge, with no ferry.','אורופוס (סקאלה אורופו) היא נמל המעבורת לאוויה, כ־40–50 ק״מ צפונית לאתונה, כ־40 דקות נסיעה מאתונה וכ־50 דקות משדה התעופה. אפשר גם לנסוע לחלקיס בכביש מעל הגשר, בלי מעבורת.'],
- pts:[[['Athens','אתונה'],CTR],[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA]],
+ pts:[[['Athens','אתונה'],CTR],[['Skala Oropou','סקאלה אורופו'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA]],
  opts:[X(O('c','car',['Car to Oropos','ברכב לאורופוס'],['About 40 min','כ־40 דק׳'],['Fuel and tolls','דלק וכבישי אגרה'],NORTH),{osrm:[CTR,ORO],via:VIA}),
   X(O('r','car',['Car to Eretria, with the ferry','ברכב לארטריה, עם המעבורת'],['About 1h 15m in all: 40 min drive + 25 min ferry','כ־1:15 שעות בסך הכול: 40 דק׳ נסיעה + 25 דק׳ מעבורת'],['Fuel, tolls and ferry fare','דלק, כבישי אגרה ומחיר המעבורת'],NORTH.concat(FERRY)),{der:[[2,'c'],r=>r.concat(FERRY)],ms:9000}),
   X(O('h','car',['Car to Chalkida, over the bridge','ברכב לחלקיס, מעל הגשר'],['About 55 min, no ferry','כ־55 דק׳, בלי מעבורת'],['Fuel and tolls','דלק וכבישי אגרה'],dens([CTR,[38.07,23.75],[38.13,23.745],[38.245,23.755],SCH,[38.3725,23.5932],[38.4115,23.5898],CHA],120)),{osrm:[CTR,SCH,CHA],via:VIA,ms:8500}),
   X(O('b','bus',['KTEL Attikis bus','אוטובוס KTEL אטיקי'],['About 1h 15m from Pedion Areos','כ־1:15 שעות מפדיון אריוס'],['From €5','החל מ־€5'],SH(ARENORTH),['Timetables change, check before you travel','לוחות הזמנים משתנים, כדאי לבדוק לפני הנסיעה']),{der:[[2,'c'],r=>SH(r)]}),
   X(O('e','bus',['Direct bus to Eretria','אוטובוס ישיר לארטריה'],['About 1h 30m, 3 a day (KTEL Evias)','כ־1:30 שעות, 3 ביום (ΚΤΕΛ אוויה)'],['From €10','החל מ־€10'],ARENORTH.concat(dens([ORP,ERP],24))),{der:[[2,'c'],r=>SH(r,.002).concat(dens([ORP,ERP],24))],ms:9000})]},
-{n:['To Evia','לאוויה'],h:['Crossing to Eretria and Chalkida','חוצים לארטריה ולחלקיס'],b:[ORO,CHA,AMA],
+{n:['To Evia','לאוויה'],h:['Crossing to Eretria and Chalkida','חוצים לארטריה ולחלקיס'],b:[OROT,CHA,AMA],
  p:['A short ferry takes you and your car across to Eretria. Chalkida is a coastal drive away, with trains and buses from Athens too. Amarynthos is about 9 km east of Eretria. You can also drive from Oropos to Chalkida without a ferry.','מעבורת קצרה מעבירה אתכם והרכב לארטריה. חלקיס במרחק נסיעה לאורך החוף, ויש גם רכבות ואוטובוסים מאתונה. אמרינתוס נמצאת כ־9 ק״מ ממזרח לארטריה. אפשר גם לנסוע מאורופוס לחלקיס בלי מעבורת.'],
- pts:[[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA],[['Amarynthos','אמרינתוס'],AMA]],
+ pts:[[['Skala Oropou','סקאלה אורופו'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA],[['Amarynthos','אמרינתוס'],AMA]],
  opts:[O('f','boat',['Ferry Oropos → Eretria','מעבורת אורופוס → ארטריה'],['About 25 min, runs all year','כ־25 דק׳, כל השנה'],['€10 for a car with driver','€10 לרכב עם נהג'],FERRY),
   X(O('c','car',['Eretria → Chalkida by car','ארטריה → חלקיס ברכב'],['About 20 km along the coast','כ־20 ק״מ לאורך החוף'],['Fuel','דלק'],COAST),{osrm:[ERE,CHA]}),
   X(O('b','bus',['KTEL Evias bus','אוטובוס KTEL אוויה'],['Several a day, Chalkida ↔ Eretria','כמה ביום, חלקיס ↔ ארטריה'],['Low fare','מחיר נמוך'],COAST.map(q=>[q[0]+.006,q[1]])),{der:[[3,'c'],r=>r.map(q=>[q[0]+.004,q[1]])]}),
@@ -880,12 +887,20 @@ const PH=[
  pts:[[['Chalkida','חלקיס'],CHA]],opts:[]},
 {n:['Explore & draw','חקור וצייר'],h:['Explore the land','חוקרים את המקום'],b:[[38.25,23.55],[38.55,23.95]],
  p:['Satellite view. Zoom to any street, draw on a plot, drop pins.','תצלום לוויין. מתקרבים לכל רחוב, מציירים על מגרש ומסמנים נקודות.'],
- pts:[[['Oropos','אורופוס'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA],[['Amarynthos','אמרינתוס'],AMA]],opts:[],jump:1}
+ pts:[[['Skala Oropou','סקאלה אורופו'],ORO],[['Eretria','ארטריה'],ERE],[['Chalkida','חלקיס'],CHA],[['Amarynthos','אמרינתוס'],AMA]],opts:[],jump:1}
 ];
 const OPT=(i,k)=>PH[i].opts.find(o=>o.k===k);
+/* film-only routes, all starting at the airport */
+const FA=[],NN=['',''];
+const AS=X(O('as','car',NN,NN,NN,dens([ATH,[38.0150,23.8650],...AO],110)),{osrm:[ATH,ORO],via:VIA,fms:7000}),
+ AC=X(O('ac','car',NN,NN,NN,dens([ATH,[38.0150,23.8650],[38.07,23.75],[38.13,23.745],[38.245,23.755],SCH,[38.3725,23.5932],[38.4115,23.5898],CHA],130)),{osrm:[ATH,SCH,CHA],via:VIA,fms:9000}),
+ CA=X(O('ca','car',NN,NN,NN,COAST.slice().reverse().concat(dens([ERE,[38.3930,23.8250],[38.3925,23.8550],AMA],40))),{osrm:[CHA,ERE,AMA],fms:4500}),
+ EA=X(O('ea','car',NN,NN,NN,dens([ERE,[38.3930,23.8250],[38.3925,23.8550],AMA],40)),{osrm:[ERE,AMA],fms:3500}),
+ FE=X(O('fe','boat',NN,NN,NN,FERRY),{fms:4200});
+FA.push(AS,AC,CA,EA);
 let hwRes;const hwReady=new Promise(r=>hwRes=r);
 const OVP=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter'];
-let live=null,lsat=false,lbase,lref,lmode=null,lln=null,ph=0,tok=0,pt=0,route=null,veh=null,cas=null,pg=null,hwG=null,hwOn=true,hwLoaded=false,hwEls=null,ereP=null,filming=false,fTok=0,curCap=null,curPts=null;const lmine=[],trail=[],RC={};const SPEED=.85;
+let live=null,lsat=false,lbase,lref,lmode=null,lln=null,ph=0,tok=0,pt=0,route=null,veh=null,cas=null,pg=null,hwG=null,hwOn=true,hwLoaded=false,hwEls=null,ereP=null,filming=false,fTok=0,curCap=null,curPts=null,curTowns=false;const lmine=[],trail=[],RC={};let SPEED=.85;
 /* ---------- helpers: geometry, easing, network ---------- */
 const hv=(a,b)=>Math.hypot((b[1]-a[1])*Math.cos((a[0]+b[0])*Math.PI/360),b[0]-a[0]);
 const cum=p=>{const c=[0];for(let i=1;i<p.length;i++)c.push(c[i-1]+hv(p[i-1],p[i]));return c};
@@ -909,8 +924,8 @@ function hwVia(via,dest){const out=[];
  return out}
 function prefetch(){
  const wait=ms=>Promise.race([Promise.all([hwReady,ereP||0]),sleep(ms)]);
- PH.forEach(p=>p.opts.forEach(o=>{if(o.osrm)o.rp=(async()=>{await wait(7000);const e=o.osrm[o.osrm.length-1],v=o.via&&hwEls?hwVia(o.via,e):null,w=v?[o.osrm[0],...v,e]:o.osrm;
-   return osrm(w).then(r=>{if(r){o.pa=r;o.ok=1}return r})})()}));
+ [...PH.flatMap(p=>p.opts),...FA].forEach(o=>{if(o.osrm)o.rp=(async()=>{await wait(7000);const e=o.osrm[o.osrm.length-1],v=o.via&&hwEls?hwVia(o.via,e):null,w=v?[o.osrm[0],...v,e]:o.osrm;
+   return osrm(w).then(r=>{if(r){o.pa=r;o.ok=1}return r})})()});
  PH.forEach(p=>p.opts.forEach(o=>{if(o.der){const src=OPT(o.der[0][0],o.der[0][1]);o.rp=src.rp.then(r=>{if(r)o.pa=o.der[1](r);return r})}}))}
 /* Eretria: put the marker on the central roundabout (largest one near the town centre, from OpenStreetMap) */
 function fixEre(){return ereP=(async()=>{const q='[out:json][timeout:20];way["junction"="roundabout"](38.386,23.780,38.406,23.810);out geom;';
@@ -953,14 +968,17 @@ async function run(o,opt){opt=opt||{};const my=++tok;if(!live)return;
   cas.setLatLngs(sl);route.setLatLngs(sl);veh.setLatLng(q.pt);
   if(o.i==='plane'){const d=veh._icon&&veh._icon.firstChild;if(d)d.style.transform=`rotate(${brg(pa[q.i],pa[Math.min(N,q.i+1)])}deg)`}
   k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)})}
-function setPins(pts){pg&&live.removeLayer(pg);pg=L.layerGroup((pts||[]).map(s=>L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b${s[2]?' class="'+s[2]+'"':''}>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:500}))).addTo(live)}
+const TOWNS=[[['Oropos','אורופוס'],OROT,'l'],[['Skala Oropou','סקאלה אורופו'],ORO],[['Eretria','ארטריה'],ERE,'l'],[['Amarynthos','אמרינתוס'],AMA],[['Chalkida','חלקיס'],CHA]];
+function setPins(pts){pg&&live.removeLayer(pg);const all=(pts||[]).slice();
+ if(filming?curTowns:ph>=2)TOWNS.forEach(w=>{if(!all.some(s=>s[0][0]===w[0][0]))all.push(w)});
+ pg=L.layerGroup(all.map(s=>L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b${s[2]?' class="'+s[2]+'"':''}>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:500}))).addTo(live)}
 /* smooth camera move; resolves when it arrives */
 let flyN=0;
 function setHw(on){hwOn=!!on;$('lHw').classList.toggle('on',hwOn);if(live)live.getContainer().classList.toggle('hwoff',!hwOn)}
 
 function camTo(c,o){o=o||{};return new Promise(res=>{if(!live)return res();let d=0;const lc=live.getContainer(),n=++flyN,fin=()=>{if(!d){d=1;setTimeout(()=>{if(n===flyN)lc.classList.remove('flying')},180);res()}},ms=(o.ms||1.8)*SPEED;lc.classList.add('flying');
  const b=c.c?L.latLng(c.c).toBounds(c.m||5000):L.latLngBounds(c.b),H=live.getSize().y;
- const bot=Math.min(o.film?(o.bot!=null?o.bot:190):$('dock').offsetHeight+34+(o.opts?70:0),H*.62),top=o.film?Math.round(H*.08)+34:72;
+ const bot=Math.min(o.film?(o.bot!=null?o.bot:190):$('dock').offsetHeight+34+(o.opts?70:0),H*.62),top=o.film?Math.round(H*.08)+34:140;
  live.once('moveend',fin);setTimeout(fin,ms*1000+700);
  live.flyToBounds(b,{paddingTopLeft:[60,top],paddingBottomRight:[60,bot],duration:ms,maxZoom:c.z||(c.c?15:12),easeLinearity:.2})})}
 function extraHTML(p){let x='';
@@ -1002,40 +1020,44 @@ const scenes=()=>[
    cap:{n:['01 · By air, option B','01 · בטיסה, אפשרות ב׳'],t:['Haifa → Athens','חיפה → אתונה'],d:[['Direct flight, about 3 hours','טיסה ישירה, כ־3 שעות'],['Air Haifa, from northern Israel','אייר חיפה, מצפון ישראל']]}},
   {sat:false,pts:PH[1].pts,cam:{b:PH[1].b},camMs:2.8,route:OPT(1,'m'),ms:6500,hold:900,
   cap:{n:['02 · Into the city','02 · אל העיר'],t:['Airport → Athens centre','שדה התעופה → מרכז אתונה'],d:[['Metro line 3, about 40 min, €9–10','מטרו קו 3, כ־40 דק׳, €9–10'],['Taxi €40 fixed by day, or a rental car','מונית במחיר קבוע €40 ביום, או רכב שכור']]}},
- {sat:false,hw:1,pts:[PH[2].pts[0],PH[2].pts[1]],cam:{b:[CTR,ORO]},camMs:3,route:OPT(2,'c'),ms:8000,hold:900,
-  cap:{n:['03 · By road','03 · בכביש'],t:['Athens → Oropos','אתונה → אורופוס'],d:[['About 40 minutes by car','כ־40 דקות נסיעה ברכב'],['Main road: the A1 highway north','הכביש הראשי: כביש A1 צפונה']]}},
- {sat:false,pts:[PH[2].pts[1],PH[2].pts[2]],cam:{b:[ORO,ERE]},camMs:2.8,route:OPT(3,'f'),ms:5500,hold:800,
-  cap:{n:['04 · By sea','04 · בים'],t:['Oropos → Eretria','אורופוס → ארטריה'],d:[['Ferry, about 25 minutes','מעבורת, כ־25 דקות'],['Runs all year, cars and passengers','פועלת כל השנה, רכבים ונוסעים']]}},
- {sat:true,pts:PH[4].pts,cam:{c:ERE,m:6500},camMs:3.2,hold:5200,
-  cap:{n:['05 · Arrival','05 · הגעה'],t:['Eretria','ארטריה'],d:[['Seaside town with a promenade and marina','עיירת חוף עם טיילת ומרינה'],['Ancient history on your doorstep','היסטוריה עתיקה ממש ליד הבית']]}},
- {sat:true,pts:[PH[3].pts[1],PH[3].pts[2]],cam:{b:[ERE,CHA]},camMs:3,route:OPT(3,'c'),ms:7000,hold:900,
-  cap:{n:['06 · Along the coast','06 · לאורך החוף'],t:['Eretria → Chalkida','ארטריה → חלקיס'],d:[['About 20 km by car','כ־20 ק״מ ברכב'],['A coastal road','כביש לאורך החוף']]}},
- {sat:true,pts:PH[5].pts,cam:{c:CHA,m:7500},camMs:3,hold:5200,
-  cap:{n:['07 · The capital','07 · בירת האי'],t:['Chalkida','חלקיס'],d:[['Shops, hospital and services','חנויות, בית חולים ושירותים'],['Two bridges to the mainland','שני גשרים ליבשת']]}},
- {sat:false,hw:1,pts:[PH[2].pts[0],PH[2].pts[3]],cam:{b:[CTR,CHA]},camMs:3.4,route:OPT(2,'h'),ms:9000,hold:900,
-  cap:{n:['08 · Another way','08 · דרך נוספת'],t:['Athens → Chalkida by road','אתונה → חלקיס בכביש'],d:[['About 55 minutes by car','כ־55 דקות ברכב'],['Over the bridge, no ferry needed','מעל הגשר, בלי מעבורת']]}},
- {full:1,sat:false,pts:PH[6].pts,cam:{b:[[38.25,23.55],[38.55,23.95]]},camMs:3.4,hold:3200,
-  cap:{n:['Your home in Evia','הבית שלכם באוויה'],t:['Eretria · Oropos · Chalkida','ארטריה · אורופוס · חלקיס'],d:[['Let’s build your shortlist','בואו נבנה לכם רשימה קצרה']]}}
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,OROT,ORO]},camMs:2.6,routes:[AS],hold:700,
+   cap:{n:['03 · By car','03 · ברכב'],t:['Airport → Skala Oropou','שדה התעופה → סקאלה אורופו'],d:[['About 50 minutes by car from the airport','כ־50 דקות נסיעה ברכב מהשדה'],['The ferry port to Evia','נמל המעבורת לאוויה']]}},
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,CHA]},camMs:2.8,routes:[AC],hold:700,
+   cap:{n:['04 · By car','04 · ברכב'],t:['Airport → Chalkida','שדה התעופה → חלקיס'],d:[['Over the bridge, no ferry needed','מעל הגשר, בלי מעבורת'],['The island’s capital','בירת האי']]}},
+ {sat:true,towns:1,clr:1,pts:PH[5].pts,cam:{c:CHA,m:7500},camMs:2.6,hold:3800,
+   cap:{n:['04 · Arrival','04 · הגעה'],t:['Chalkida','חלקיס'],d:[['Shops, hospital and services','חנויות, בית חולים ושירותים'],['Two bridges to the mainland','שני גשרים ליבשת']]}},
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,ERE]},camMs:2.8,routes:[AS,FE],hold:700,
+   cap:{n:['05 · By car and ferry','05 · ברכב ובמעבורת'],t:['Airport → Eretria','שדה התעופה → ארטריה'],d:[['Drive to Skala Oropou, then the ferry','נוסעים לסקאלה אורופו ואז במעבורת'],['The ferry takes about 25 minutes','המעבורת לוקחת כ־25 דקות']]}},
+ {sat:true,towns:1,clr:1,pts:PH[4].pts,cam:{c:ERE,m:6500},camMs:2.8,hold:3800,
+   cap:{n:['05 · Arrival','05 · הגעה'],t:['Eretria','ארטריה'],d:[['Seaside town with a promenade and marina','עיירת חוף עם טיילת ומרינה'],['Ancient history on your doorstep','היסטוריה עתיקה ממש ליד הבית']]}},
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,CHA,AMA]},camMs:2.8,routes:[AC,CA],hold:700,
+   cap:{n:['06 · By car','06 · ברכב'],t:['Airport → Amarynthos','שדה התעופה → אמרינתוס'],d:[['Over the Chalkida bridge, then the coast road','מעל גשר חלקיס ואז בכביש החוף'],['No ferry needed','בלי מעבורת']]}},
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,AMA]},camMs:2.8,routes:[AS,FE,EA],hold:700,
+   cap:{n:['07 · By car, ferry and car','07 · ברכב, במעבורת וברכב'],t:['Airport → Amarynthos','שדה התעופה → אמרינתוס'],d:[['Drive to Skala Oropou, ferry to Eretria','נוסעים לסקאלה אורופו, מעבורת לארטריה'],['Then about 9 km by car to Amarynthos','ואז כ־9 ק״מ ברכב לאמרינתוס']]}},
+ {sat:true,towns:1,clr:1,pts:[[['Amarynthos','אמרינתוס'],AMA]],cam:{c:AMA,m:6000},camMs:2.8,hold:3800,
+   cap:{n:['07 · Arrival','07 · הגעה'],t:['Amarynthos','אמרינתוס'],d:[['A quiet seaside village east of Eretria','כפר חוף שקט ממזרח לארטריה'],['Promenade, beach and a small harbour','טיילת, חוף ונמל קטן']]}},
+ {full:1,sat:false,towns:1,clr:1,pts:PH[6].pts,cam:{b:[[38.25,23.55],[38.55,23.95]]},camMs:3,hold:2800,
+   cap:{n:['Your home in Evia','הבית שלכם באוויה'],t:['Eretria · Amarynthos · Oropos · Chalkida','ארטריה · אמרינתוס · אורופוס · חלקיס'],d:[['Let’s build your shortlist','בואו נבנה לכם רשימה קצרה']]}}
 ];
 const FILM_LOCKS=['dragging','scrollWheelZoom','doubleClickZoom','touchZoom','boxZoom','keyboard'];
 async function film(){if(!live||filming)return;
- const my=++fTok,SC=scenes();filming=true;pt++;clearRoute();hideCap();
+ const my=++fTok,SC=scenes();filming=true;SPEED=.68;pt++;clearRoute();hideCap();
  $('s4').classList.add('film');FILM_LOCKS.forEach(k=>live[k]&&live[k].disable());
  const W=ms=>new Promise((res,rej)=>setTimeout(()=>my===fTok?res():rej('stop'),ms*SPEED)),fp=$('fprog').firstElementChild;fp.style.width='0';
  try{
   await W(1100);
   for(let i=0;i<SC.length;i++){const s=SC[i];fp.style.width=(i/SC.length*100)+'%';
    if(s.sat!==undefined&&s.sat!==lsat){lsat=s.sat;setLBase();$('lSat').classList.toggle('on',lsat)}
-   curPts=s.pts||null;setPins(curPts);setHw(!!s.hw);
+   if(s.clr)clearRoute();curTowns=!!s.towns;curPts=s.pts||null;setPins(curPts);setHw(!!s.hw);
    showCap(s.cap);const cc=$('cine').querySelector('.cc'),H=live.getSize().y;
    const cam=camTo(s.cam,{ms:s.camMs||2.8,film:true,bot:s.cap.full?Math.round(H*.1):cc.offsetHeight+Math.round(H*.08)+14+44});await cam;if(my!==fTok)throw'stop';
-   if(s.route){await run(s.route,{film:true,ms:s.ms});if(my!==fTok)throw'stop'}
+   for(const r of(s.routes||(s.route?[s.route]:[]))){await run(r,{film:true,ms:r.fms||s.ms});if(my!==fTok)throw'stop'}
    await W(s.hold||1000);hideCap();await W(1100)}
   fp.style.width='100%';await W(700)
  }catch(e){if(e!=='stop')console.error(e)}
  if(my===fTok)endFilm()}
 function stopFilm(){if(!filming)return;fTok++;tok++;endFilm()}
-function endFilm(){filming=false;setHw(false);$('s4').classList.remove('film');hideCap();curPts=null;
+function endFilm(){filming=false;SPEED=.85;curTowns=false;setHw(false);$('s4').classList.remove('film');hideCap();curPts=null;
  if(live){FILM_LOCKS.forEach(k=>live[k]&&live[k].enable());phase(0,true,2.6)}}
 /* ---------- map setup ---------- */
 function initMap(){if(live){live.invalidateSize();if(!filming)phase(0);return}
@@ -1073,7 +1095,9 @@ function mapFull(on){sMap.classList.toggle('mfull',on);document.body.classList.t
  else if(!on&&mfFs&&document.fullscreenElement){mfFs=false;document.exitFullscreen().catch(()=>{})}
  mfLbl();[60,400].forEach(ms=>setTimeout(sizeMap,ms))}
 $('mFull').onclick=()=>mapFull(!sMap.classList.contains('mfull'));
-$('mInfo').onclick=()=>{sMap.classList.toggle('nodock');miLbl();sizeMap();setTimeout(sizeMap,350)};
+$('dClose').onclick=$('dOpen').onclick=()=>$('mInfo').click();
+function reframe(){if(!live||filming)return;const p=PH[ph];camTo(p.town?{c:p.town.c,m:p.town.m}:{b:p.b},{ms:.9,opts:p.opts.length})}
+$('mInfo').onclick=()=>{sMap.classList.toggle('nodock');miLbl();sizeMap();setTimeout(()=>{sizeMap();reframe()},350)};
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&mfFs){mfFs=false;if(sMap.classList.contains('mfull'))mapFull(false)}});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&sMap.classList.contains('mfull')&&!document.fullscreenElement)mapFull(false)});
 const _shw=show;show=function(i){if(sl[i]&&sl[i].id!=='s4'&&sMap.classList.contains('mfull'))mapFull(false);_shw(i)};
