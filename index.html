@@ -52,7 +52,7 @@ p{color:var(--mu);font-size:clamp(1rem,1.2vw + .6vh,1.4rem);max-width:56ch}
 .bars{display:flex;align-items:flex-end;gap:5px;height:70px;margin:8px 0 22px}.bars i{flex:1;background:#111;position:relative;display:block;transition:height 1s}.bars em{position:absolute;top:100%;left:0;right:0;text-align:center;font-style:normal;font-size:.68rem;color:var(--mu);margin-top:3px}.cap{display:block;color:var(--mu);font-size:.72rem;margin-bottom:8px}
 .veh{background:none;border:0}.vi{width:42px;height:42px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 14px #0007;transition:transform .08s linear}.vi svg{display:block}
 .pnw{background:none;border:0}.pn{position:relative;width:16px;height:16px}.pn i{position:absolute;inset:0;border-radius:50%;background:#111;border:3px solid #fff;box-shadow:0 0 0 2px #111,0 3px 10px #0007}.pn i:after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid #111;opacity:0;animation:pl 2.2s ease-out infinite}@keyframes pl{0%{transform:scale(.4);opacity:.7}100%{transform:scale(1.5);opacity:0}}
-.pn b{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font:600 .8rem Heebo,sans-serif;white-space:nowrap;padding:4px 11px;border-radius:7px;box-shadow:0 3px 10px #0005}.pn b:after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#111}
+.pn b{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font:600 .9rem Heebo,sans-serif;white-space:nowrap;padding:4px 11px;border-radius:7px;box-shadow:0 3px 10px #0005}.pn b:after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#111}
 .opt svg{margin-inline-end:2px}
 .opt{text-align:start}.veh{font-size:24px;line-height:30px;text-align:center;filter:drop-shadow(0 1px 3px #0008)}.leaflet-tooltip{background:#fff;color:#111;border:1px solid #111;font-weight:600}
 @media(max-width:860px){.mp{grid-template-columns:1fr}}
@@ -959,23 +959,27 @@ async function run(o,opt){opt=opt||{};const my=++tok;if(!live)return;
  const pa=o.pa,c=cum(pa),N=pa.length-1,ms=(opt.ms||o.ms||({plane:6500,boat:4500}[o.i]||6000))*SPEED;
  cas=L.polyline([pa[0]],{color:'#fff',weight:9,opacity:.95,lineCap:'round',lineJoin:'round',interactive:false}).addTo(live);
  route=L.polyline([pa[0]],Object.assign({color:'#111',weight:4.5,lineCap:'round',lineJoin:'round',interactive:false},o.i==='boat'?{dashArray:'1 11'}:{})).addTo(live);
- veh=L.marker(pa[0],{icon:L.divIcon({className:'veh',html:`<div class="vi">${ic(o.i,22)}</div>`,iconSize:[42,42],iconAnchor:[21,21]}),interactive:false,zIndexOffset:900}).addTo(live);
+ veh=L.marker(pa[0],{icon:L.divIcon({className:'veh',html:`<div class="vi">${ic(o.i,22)}</div>`,iconSize:[42,42],iconAnchor:[21,21]}),interactive:false,zIndexOffset:6000}).addTo(live);
  if(!opt.film){document.querySelectorAll('.opt').forEach(b=>b.classList.toggle('on',b.dataset.k===o.k));
    if(ph===0&&PH[0].opts.includes(o)){$('pExtra').innerHTML=extraHTML(o.st?o:PH[0]);counters($('pExtra'))}
   $('pInfo').style.display='block';$('pInfo').innerHTML=`<small>${T(o.l)}</small><h3>${T(o.t)}</h3><p>${T(o.c)}${o.n?'<br>'+T(o.n):''}</p>`}
  return new Promise(res=>{const t0=performance.now();const f=ts=>{if(my!==tok)return res();
   const k=Math.min(Math.max((ts-t0)/ms,0),1),q=at(pa,c,ease(k)),sl=pa.slice(0,q.i+1);sl.push(q.pt);
   cas.setLatLngs(sl);route.setLatLngs(sl);veh.setLatLng(q.pt);
+   if(opt.follow){const f=opt.follow;live.setView(live.unproject(live.project(q.pt,f.z).add([0,f.off||0]),f.z),f.z,{animate:false})}
   if(o.i==='plane'){const d=veh._icon&&veh._icon.firstChild;if(d)d.style.transform=`rotate(${brg(pa[q.i],pa[Math.min(N,q.i+1)])}deg)`}
   k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)})}
 const TOWNS=[[['Oropos','אורופוס'],OROT,'l'],[['Skala Oropou','סקאלה אורופו'],ORO],[['Eretria','ארטריה'],ERE,'l'],[['Amarynthos','אמרינתוס'],AMA],[['Chalkida','חלקיס'],CHA]];
 function setPins(pts){pg&&live.removeLayer(pg);const all=(pts||[]).slice();
  if(filming?curTowns:ph>=2)TOWNS.forEach(w=>{if(!all.some(s=>s[0][0]===w[0][0]))all.push(w)});
- pg=L.layerGroup(all.map(s=>L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b${s[2]?' class="'+s[2]+'"':''}>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:500}))).addTo(live)}
+ pg=L.layerGroup(all.map(s=>L.marker(s[1],{icon:L.divIcon({className:'pnw',html:`<div class="pn"><b${s[2]?' class="'+s[2]+'"':''}>${T(s[0])}</b><i></i></div>`,iconSize:[16,16],iconAnchor:[8,8]}),interactive:false,zIndexOffset:200}))).addTo(live)}
 /* smooth camera move; resolves when it arrives */
 let flyN=0;
 function setHw(on){hwOn=!!on;$('lHw').classList.toggle('on',hwOn);if(live)live.getContainer().classList.toggle('hwoff',!hwOn)}
 
+function flyZ(pt,z,off,ms){return new Promise(res=>{if(!live)return res();const lc=live.getContainer(),n=++flyN;lc.classList.add('flying');let d=0;
+ const fin=()=>{if(!d){d=1;setTimeout(()=>{if(n===flyN)lc.classList.remove('flying')},180);res()}},c=live.unproject(live.project(pt,z).add([0,off||0]),z);
+ live.once('moveend',fin);setTimeout(fin,ms*SPEED*1000+700);live.flyTo(c,z,{duration:ms*SPEED,easeLinearity:.2})})}
 function camTo(c,o){o=o||{};return new Promise(res=>{if(!live)return res();let d=0;const lc=live.getContainer(),n=++flyN,fin=()=>{if(!d){d=1;setTimeout(()=>{if(n===flyN)lc.classList.remove('flying')},180);res()}},ms=(o.ms||1.8)*SPEED;lc.classList.add('flying');
  const b=c.c?L.latLng(c.c).toBounds(c.m||5000):L.latLngBounds(c.b),H=live.getSize().y;
  const bot=Math.min(o.film?(o.bot!=null?o.bot:190):$('dock').offsetHeight+34+(o.opts?70:0),H*.62),top=o.film?Math.round(H*.08)+34:140;
@@ -1020,19 +1024,19 @@ const scenes=()=>[
    cap:{n:['01 · By air, option B','01 · בטיסה, אפשרות ב׳'],t:['Haifa → Athens','חיפה → אתונה'],d:[['Direct flight, about 3 hours','טיסה ישירה, כ־3 שעות'],['Air Haifa, from northern Israel','אייר חיפה, מצפון ישראל']]}},
   {sat:false,pts:PH[1].pts,cam:{b:PH[1].b},camMs:2.8,route:OPT(1,'m'),ms:6500,hold:900,
   cap:{n:['02 · Into the city','02 · אל העיר'],t:['Airport → Athens centre','שדה התעופה → מרכז אתונה'],d:[['Metro line 3, about 40 min, €9–10','מטרו קו 3, כ־40 דק׳, €9–10'],['Taxi €40 fixed by day, or a rental car','מונית במחיר קבוע €40 ביום, או רכב שכור']]}},
- {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,OROT,ORO]},camMs:2.6,routes:[AS],hold:700,
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,OROT,ORO]},fol:{at:ATH,z:11,off:60},camMs:2.2,routes:[AS],hold:700,
    cap:{n:['03 · By car','03 · ברכב'],t:['Airport → Skala Oropou','שדה התעופה → סקאלה אורופו'],d:[['About 50 minutes by car from the airport','כ־50 דקות נסיעה ברכב מהשדה'],['The ferry port to Evia','נמל המעבורת לאוויה']]}},
- {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,CHA]},camMs:2.8,routes:[AC],hold:700,
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,CHA]},fol:{at:ATH,z:11,off:60},camMs:2.2,routes:[AC],hold:700,
    cap:{n:['04 · By car','04 · ברכב'],t:['Airport → Chalkida','שדה התעופה → חלקיס'],d:[['Over the bridge, no ferry needed','מעל הגשר, בלי מעבורת'],['The island’s capital','בירת האי']]}},
  {sat:true,towns:1,clr:1,pts:PH[5].pts,cam:{c:CHA,m:7500},camMs:2.6,hold:3800,
    cap:{n:['04 · Arrival','04 · הגעה'],t:['Chalkida','חלקיס'],d:[['Shops, hospital and services','חנויות, בית חולים ושירותים'],['Two bridges to the mainland','שני גשרים ליבשת']]}},
- {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,ERE]},camMs:2.8,routes:[AS,FE],hold:700,
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,ERE]},fol:{at:ATH,z:11.5,off:60},camMs:2.2,routes:[AS,FE],hold:700,
    cap:{n:['05 · By car and ferry','05 · ברכב ובמעבורת'],t:['Airport → Eretria','שדה התעופה → ארטריה'],d:[['Drive to Skala Oropou, then the ferry','נוסעים לסקאלה אורופו ואז במעבורת'],['The ferry takes about 25 minutes','המעבורת לוקחת כ־25 דקות']]}},
  {sat:true,towns:1,clr:1,pts:PH[4].pts,cam:{c:ERE,m:6500},camMs:2.8,hold:3800,
    cap:{n:['05 · Arrival','05 · הגעה'],t:['Eretria','ארטריה'],d:[['Seaside town with a promenade and marina','עיירת חוף עם טיילת ומרינה'],['Ancient history on your doorstep','היסטוריה עתיקה ממש ליד הבית']]}},
- {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,CHA,AMA]},camMs:2.8,routes:[AC,CA],hold:700,
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,CHA,AMA]},fol:{at:ATH,z:11,off:60},camMs:2.2,routes:[AC,CA],hold:700,
    cap:{n:['06 · By car','06 · ברכב'],t:['Airport → Amarynthos','שדה התעופה → אמרינתוס'],d:[['Over the Chalkida bridge, then the coast road','מעל גשר חלקיס ואז בכביש החוף'],['No ferry needed','בלי מעבורת']]}},
- {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,AMA]},camMs:2.8,routes:[AS,FE,EA],hold:700,
+ {sat:false,hw:1,towns:1,clr:1,pts:[PH[1].pts[0]],cam:{b:[ATH,AMA]},fol:{at:ATH,z:11.5,off:60},camMs:2.2,routes:[AS,FE,EA],hold:700,
    cap:{n:['07 · By car, ferry and car','07 · ברכב, במעבורת וברכב'],t:['Airport → Amarynthos','שדה התעופה → אמרינתוס'],d:[['Drive to Skala Oropou, ferry to Eretria','נוסעים לסקאלה אורופו, מעבורת לארטריה'],['Then about 9 km by car to Amarynthos','ואז כ־9 ק״מ ברכב לאמרינתוס']]}},
  {sat:true,towns:1,clr:1,pts:[[['Amarynthos','אמרינתוס'],AMA]],cam:{c:AMA,m:6000},camMs:2.8,hold:3800,
    cap:{n:['07 · Arrival','07 · הגעה'],t:['Amarynthos','אמרינתוס'],d:[['A quiet seaside village east of Eretria','כפר חוף שקט ממזרח לארטריה'],['Promenade, beach and a small harbour','טיילת, חוף ונמל קטן']]}},
@@ -1050,8 +1054,8 @@ async function film(){if(!live||filming)return;
    if(s.sat!==undefined&&s.sat!==lsat){lsat=s.sat;setLBase();$('lSat').classList.toggle('on',lsat)}
    if(s.clr)clearRoute();curTowns=!!s.towns;curPts=s.pts||null;setPins(curPts);setHw(!!s.hw);
    showCap(s.cap);const cc=$('cine').querySelector('.cc'),H=live.getSize().y;
-   const cam=camTo(s.cam,{ms:s.camMs||2.8,film:true,bot:s.cap.full?Math.round(H*.1):cc.offsetHeight+Math.round(H*.08)+14+44});await cam;if(my!==fTok)throw'stop';
-   for(const r of(s.routes||(s.route?[s.route]:[]))){await run(r,{film:true,ms:r.fms||s.ms});if(my!==fTok)throw'stop'}
+   const cam=s.fol?flyZ(s.fol.at,s.fol.z,s.fol.off,s.camMs||2.4):camTo(s.cam,{ms:s.camMs||2.8,film:true,bot:s.cap.full?Math.round(H*.1):cc.offsetHeight+Math.round(H*.08)+14+44});await cam;if(my!==fTok)throw'stop';
+   for(const r of(s.routes||(s.route?[s.route]:[]))){await run(r,{film:true,ms:r.fms||s.ms,follow:s.fol?{z:s.fol.z,off:s.fol.off}:null});if(my!==fTok)throw'stop'}
    await W(s.hold||1000);hideCap();await W(1100)}
   fp.style.width='100%';await W(700)
  }catch(e){if(e!=='stop')console.error(e)}
